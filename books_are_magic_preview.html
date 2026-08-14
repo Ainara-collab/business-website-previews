@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Books Are Magic | Brooklyn's Independent Bookshop</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            emerald: { 400: '#34d399', 500: '#10b981', 600: '#059669', 950: '#022c22' },
+            teal: { 400: '#2dd4bf', 500: '#14b8a6' },
+            darkBg: '#0c1a14', darkCard: '#142a21'
+          },
+          fontFamily: { serif: ['Playfair Display', 'serif'], sans: ['Inter', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    body { background-color: #0c1a14; color: #f0fdf4; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+    .glass-nav { background: rgba(12, 26, 20, 0.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(20, 184, 166, 0.25); }
+    .glass-card { background: rgba(20, 42, 33, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(20, 184, 166, 0.2); }
+    .glass-card:hover { border-color: rgba(52, 211, 153, 0.5); box-shadow: 0 12px 35px -10px rgba(16, 185, 129, 0.35); }
+    .orb { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.25; pointer-events: none; }
+    @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
+    .animate-marquee { display: flex; width: 200%; animation: marquee 28s linear infinite; }
+    .animate-marquee:hover { animation-play-state: paused; }
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .tilt-card { transform-style: preserve-3d; transition: transform 0.15s ease-out; }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #0c1a14; }
+    ::-webkit-scrollbar-thumb { background: #059669; border-radius: 4px; }
+  </style>
+</head>
+<body class="relative min-h-screen text-slate-100">
+  <div class="orb w-96 h-96 bg-emerald-600 top-12 -left-24"></div>
+  <div class="orb w-[500px] h-[500px] bg-teal-600 top-[1100px] -right-28"></div>
+  <div id="progress-bar" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-emerald-400 via-teal-400 to-emerald-500 z-50 w-0 transition-all duration-100"></div>
+
+  <!-- Glassmorphism Nav -->
+  <header class="glass-nav fixed top-0 left-0 right-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-600 flex items-center justify-center text-slate-950 font-bold shadow-lg">✨</div>
+        <div>
+          <span class="font-serif text-xl font-bold text-white block leading-tight">Books Are Magic</span>
+          <span class="text-[10px] uppercase tracking-widest text-emerald-400 font-semibold block">Cobble Hill • Brooklyn</span>
+        </div>
+      </a>
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+        <a href="#featured" class="hover:text-emerald-300 transition-colors">Magic Picks</a>
+        <a href="#events" class="hover:text-emerald-300 transition-colors">Author Salon</a>
+        <a href="#clubs" class="hover:text-emerald-300 transition-colors">Book Clubs</a>
+        <a href="#stats" class="hover:text-emerald-300 transition-colors">Impact</a>
+        <a href="#faq" class="hover:text-emerald-300 transition-colors">FAQ</a>
+        <a href="#contact" class="hover:text-emerald-300 transition-colors">Visit Store</a>
+      </nav>
+      <a href="#clubs" class="hidden md:inline-flex px-5 py-2.5 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 font-bold text-sm shadow-lg hover:scale-105 transition-all">Join Book Club</a>
+      <button id="mobile-menu-btn" class="md:hidden text-slate-300 p-2"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-[#0c1a14]/95 px-6 py-4 space-y-3 border-b border-emerald-800/40">
+      <a href="#featured" class="block text-slate-200">Magic Picks</a>
+      <a href="#events" class="block text-slate-200">Author Salon</a>
+      <a href="#clubs" class="block text-slate-200">Book Clubs</a>
+      <a href="#stats" class="block text-slate-200">Impact</a>
+      <a href="#faq" class="block text-slate-200">FAQ</a>
+      <a href="#contact" class="block text-slate-200">Visit Store</a>
+    </div>
+  </header>
+
+  <main class="pt-20">
+    <!-- Hero Section (Split Layout) -->
+    <section class="relative min-h-[88vh] flex items-center justify-center overflow-hidden py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div class="lg:col-span-7 text-left reveal active">
+            <span class="inline-block px-4 py-1.5 rounded-full glass-card text-emerald-300 text-xs font-semibold uppercase tracking-widest mb-6">Cobble Hill, Brooklyn • Literary Haven</span>
+            <h1 class="font-serif text-4xl sm:text-6xl font-extrabold text-white leading-tight mb-6">
+              Where Every Page <br><span class="bg-gradient-to-r from-emerald-300 via-teal-300 to-emerald-400 bg-clip-text text-transparent italic">Holds A New Adventure</span>
+            </h1>
+            <p class="text-lg text-emerald-100/80 max-w-xl font-light leading-relaxed mb-8">
+              Brooklyn's vibrant home for readers, authors, and curious minds seeking handpicked literary discoveries.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a href="#featured" class="px-8 py-4 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 font-bold shadow-xl hover:scale-105 transition-all text-center">Explore Magic Picks</a>
+              <a href="#events" class="px-8 py-4 rounded-full glass-card text-emerald-200 font-semibold hover:bg-emerald-950/60 transition-all text-center">Upcoming Readings</a>
+            </div>
+          </div>
+          <div class="lg:col-span-5 relative reveal">
+            <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-emerald-500/30">
+              <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=1000&q=80" alt="Books Are Magic Storefront" class="w-full h-[420px] object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#0c1a14] via-transparent to-transparent opacity-80"></div>
+              <div class="absolute bottom-6 left-6 right-6 glass-card p-4 rounded-2xl border border-emerald-400/30">
+                <p class="font-serif text-sm font-bold text-white mb-1">Cobble Hill Flagship</p>
+                <p class="text-xs text-emerald-300">225 Smith St, Brooklyn, NY • Open Daily 10 AM - 8 PM</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Marquee Banner -->
+    <section class="bg-emerald-950/80 border-y border-emerald-800/40 text-emerald-200 text-xs py-3 overflow-hidden backdrop-blur-md">
+      <div class="animate-marquee whitespace-nowrap flex items-center gap-12 font-medium">
+        <span>✨ "Books are a uniquely portable magic." — Stephen King</span>
+        <span>✨ Brooklyn's Premier Independent Bookstore & Literary Community</span>
+        <span>✨ "I have always imagined that Paradise will be a kind of library." — Jorge Luis Borges</span>
+        <span>✨ Free Brooklyn Local Pickup & Shipping Available</span>
+        <span>✨ "Books are a uniquely portable magic." — Stephen King</span>
+      </div>
+    </section>
+
+    <!-- Curated Picks Grid -->
+    <section id="featured" class="py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-12 reveal">
+          <span class="text-emerald-400 text-xs font-bold uppercase tracking-widest">Handpicked Literature</span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white mt-2">Books Are Magic Staff Picks</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="glass-card p-6 rounded-2xl tilt-card reveal group">
+            <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&q=80" alt="Book Cover" class="w-full h-64 object-cover rounded-xl mb-4">
+            <div class="flex justify-between items-start mb-1">
+              <h3 class="font-serif text-lg font-bold text-white group-hover:text-emerald-300">The Magic of Cobble Hill</h3>
+              <span class="text-emerald-300 font-bold">$27.00</span>
+            </div>
+            <p class="text-xs text-emerald-400 mb-2">by Hannah Montgomery • Hardcover</p>
+            <p class="text-slate-300 text-xs font-light mb-4">A heartwarming story celebrating community, independent shops, and friendships.</p>
+            <button onclick="alert('Added to your Magic Wishlist!')" class="w-full py-2.5 rounded-xl bg-emerald-950 hover:bg-emerald-600 border border-emerald-500/30 text-emerald-200 text-xs font-semibold transition-all">Add to Wishlist</button>
+          </div>
+          <div class="glass-card p-6 rounded-2xl tilt-card reveal group">
+            <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=600&q=80" alt="Book Cover" class="w-full h-64 object-cover rounded-xl mb-4">
+            <div class="flex justify-between items-start mb-1">
+              <h3 class="font-serif text-lg font-bold text-white group-hover:text-emerald-300">Rivers & Rooftops</h3>
+              <span class="text-emerald-300 font-bold">$22.50</span>
+            </div>
+            <p class="text-xs text-emerald-400 mb-2">by Julian Cross • Signed Edition</p>
+            <p class="text-slate-300 text-xs font-light mb-4">Vibrant verse reflecting life along the East River, urban solitude, and city light.</p>
+            <button onclick="alert('Added to your Magic Wishlist!')" class="w-full py-2.5 rounded-xl bg-emerald-950 hover:bg-emerald-600 border border-emerald-500/30 text-emerald-200 text-xs font-semibold transition-all">Add to Wishlist</button>
+          </div>
+          <div class="glass-card p-6 rounded-2xl tilt-card reveal group">
+            <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?w=600&q=80" alt="Book Cover" class="w-full h-64 object-cover rounded-xl mb-4">
+            <div class="flex justify-between items-start mb-1">
+              <h3 class="font-serif text-lg font-bold text-white group-hover:text-emerald-300">The Paper Archipelago</h3>
+              <span class="text-emerald-300 font-bold">$29.95</span>
+            </div>
+            <p class="text-xs text-emerald-400 mb-2">by Sophia Thorne • Hardcover</p>
+            <p class="text-slate-300 text-xs font-light mb-4">An imaginative fantasy journey across island libraries retaining ancient secrets.</p>
+            <button onclick="alert('Added to your Magic Wishlist!')" class="w-full py-2.5 rounded-xl bg-emerald-950 hover:bg-emerald-600 border border-emerald-500/30 text-emerald-200 text-xs font-semibold transition-all">Add to Wishlist</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Author Salon Section -->
+    <section id="events" class="py-20 bg-emerald-950/30 border-y border-emerald-800/30">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="text-center max-w-2xl mx-auto mb-12 reveal">
+          <span class="text-emerald-400 text-xs font-bold uppercase tracking-widest">In-Store & Virtual Events</span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white mt-2">Literary Salon & Readings</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="glass-card p-6 rounded-2xl reveal flex flex-col justify-between">
+            <div>
+              <span class="text-xs text-emerald-300 font-semibold bg-emerald-900/70 px-3 py-1 rounded-full">Fri, Aug 21 • 7:00 PM</span>
+              <h3 class="font-serif text-xl font-bold text-white mt-4 mb-2">Emma Straub & Guests</h3>
+              <p class="text-slate-300 text-xs mb-6">Summer release party with Brooklyn cider and author signing session.</p>
+            </div>
+            <button onclick="alert('RSVP confirmed!')" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 font-bold text-xs">Reserve Free Ticket</button>
+          </div>
+          <div class="glass-card p-6 rounded-2xl reveal flex flex-col justify-between">
+            <div>
+              <span class="text-xs text-emerald-300 font-semibold bg-emerald-900/70 px-3 py-1 rounded-full">Sun, Aug 23 • 11:00 AM</span>
+              <h3 class="font-serif text-xl font-bold text-white mt-4 mb-2">Magic Children's Hour</h3>
+              <p class="text-slate-300 text-xs mb-6">Fun interactive picture book readings and drawing for kids ages 2–7.</p>
+            </div>
+            <button onclick="alert('RSVP confirmed!')" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 font-bold text-xs">RSVP Family Spot</button>
+          </div>
+          <div class="glass-card p-6 rounded-2xl reveal flex flex-col justify-between">
+            <div>
+              <span class="text-xs text-emerald-300 font-semibold bg-emerald-900/70 px-3 py-1 rounded-full">Tue, Aug 25 • 7:30 PM</span>
+              <h3 class="font-serif text-xl font-bold text-white mt-4 mb-2">Non-Fiction Memoir Panel</h3>
+              <p class="text-slate-300 text-xs mb-6">Virtual roundtable with historians on memory, urban life, and narrative.</p>
+            </div>
+            <button onclick="alert('RSVP confirmed!')" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 font-bold text-xs">Get Zoom Link</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Book Clubs & Subscriptions -->
+    <section id="clubs" class="py-20">
+      <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <div class="reveal">
+          <span class="text-emerald-400 text-xs font-bold uppercase tracking-widest">Delivered To Your Door</span>
+          <h2 class="font-serif text-3xl font-bold text-white my-3">Monthly Book Subscriptions</h2>
+          <p class="text-slate-300 text-sm leading-relaxed mb-6">
+            Receive handpicked hardcovers, exclusive bookseller notes, and gifts delivered directly to your doorstep.
+          </p>
+          <button onclick="alert('Subscription page loading!')" class="px-8 py-3 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 font-bold text-xs shadow-lg">Choose Your Box</button>
+        </div>
+        <div class="reveal">
+          <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=800&q=80" alt="Book Box" class="rounded-3xl shadow-2xl border border-emerald-500/30 w-full h-[360px] object-cover">
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="stats" class="py-16 bg-emerald-950/30 border-y border-emerald-800/30">
+      <div class="max-w-6xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div class="glass-card p-6 rounded-2xl reveal">
+          <div class="font-serif text-4xl font-bold text-emerald-300 counter" data-target="8">0</div>
+          <p class="text-xs text-emerald-200/70 font-medium uppercase mt-1">Years of Magic</p>
+        </div>
+        <div class="glass-card p-6 rounded-2xl reveal">
+          <div class="font-serif text-4xl font-bold text-emerald-300 counter" data-target="60000">0</div>
+          <p class="text-xs text-emerald-200/70 font-medium uppercase mt-1">Books Sold</p>
+        </div>
+        <div class="glass-card p-6 rounded-2xl reveal">
+          <div class="font-serif text-4xl font-bold text-emerald-300 counter" data-target="280">0</div>
+          <p class="text-xs text-emerald-200/70 font-medium uppercase mt-1">Author Talks</p>
+        </div>
+        <div class="glass-card p-6 rounded-2xl reveal">
+          <div class="font-serif text-4xl font-bold text-emerald-300 counter" data-target="40000">0</div>
+          <p class="text-xs text-emerald-200/70 font-medium uppercase mt-1">Club Members</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16">
+      <div class="max-w-4xl mx-auto px-4 text-center reveal">
+        <span class="text-emerald-400 text-xs font-bold uppercase tracking-widest">Community Love</span>
+        <h2 class="font-serif text-2xl sm:text-3xl font-bold text-white mt-2 mb-6">Words From Our Readers</h2>
+        <div class="glass-card p-8 rounded-2xl">
+          <p id="test-text" class="font-serif text-lg text-emerald-100 italic mb-4">"Books Are Magic is hands-down my favorite place in Brooklyn. The staff recommendation cards never miss."</p>
+          <p id="test-author" class="font-bold text-white text-sm">Michael Chang</p>
+          <p id="test-role" class="text-xs text-emerald-300">Cobble Hill Resident</p>
+          <div class="flex justify-center gap-4 mt-6">
+            <button id="prev-test" class="w-8 h-8 rounded-full glass-card text-white">←</button>
+            <button id="next-test" class="w-8 h-8 rounded-full glass-card text-white">→</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Accordion -->
+    <section id="faq" class="py-16 bg-emerald-950/20 border-t border-emerald-800/30">
+      <div class="max-w-3xl mx-auto px-4">
+        <h2 class="font-serif text-3xl font-bold text-white text-center mb-8 reveal">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+          <div class="glass-card rounded-xl overflow-hidden reveal">
+            <button class="faq-btn w-full p-4 text-left font-semibold text-white flex justify-between items-center">
+              <span>Where are your two Brooklyn stores located?</span>
+              <span class="faq-icon text-emerald-400">+</span>
+            </button>
+            <div class="faq-content hidden p-4 text-xs text-slate-300 border-t border-emerald-800/20">
+              Our flagship store is in Cobble Hill at 225 Smith St, and our second home is in Brooklyn Heights at 122 Montague St.
+            </div>
+          </div>
+          <div class="glass-card rounded-xl overflow-hidden reveal">
+            <button class="faq-btn w-full p-4 text-left font-semibold text-white flex justify-between items-center">
+              <span>How do author reading reservations work?</span>
+              <span class="faq-icon text-emerald-400">+</span>
+            </button>
+            <div class="faq-content hidden p-4 text-xs text-slate-300 border-t border-emerald-800/20">
+              Most author readings are free with RSVP. Select ticketed events include a signed hardcover copy of the book.
+            </div>
+          </div>
+          <div class="glass-card rounded-xl overflow-hidden reveal">
+            <button class="faq-btn w-full p-4 text-left font-semibold text-white flex justify-between items-center">
+              <span>Can I order books online for store pickup?</span>
+              <span class="faq-icon text-emerald-400">+</span>
+            </button>
+            <div class="faq-content hidden p-4 text-xs text-slate-300 border-t border-emerald-800/20">
+              Yes! Choose 'In-Store Pickup' at checkout and we'll email you when your package is ready at the desk.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact & Store Location -->
+    <section id="contact" class="py-20">
+      <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <div class="reveal">
+          <span class="text-emerald-400 text-xs font-bold uppercase tracking-widest">Visit Store</span>
+          <h2 class="font-serif text-3xl font-bold text-white my-3">Plan Your Visit</h2>
+          <p class="text-slate-300 text-sm mb-6">Come browse our shelves and snap photos by our iconic mural.</p>
+          <div class="space-y-4 text-xs text-emerald-200">
+            <p>📍 225 Smith St, Brooklyn, NY 11231</p>
+            <p>⏰ Open Daily: 10:00 AM – 8:00 PM</p>
+            <p>✉️ hello@booksaremagic.net | (718) 246-2665</p>
+          </div>
+        </div>
+        <div class="glass-card p-6 rounded-2xl reveal">
+          <form onsubmit="event.preventDefault(); document.getElementById('form-msg').classList.remove('hidden');" class="space-y-4">
+            <div>
+              <label class="block text-xs text-emerald-200 mb-1">Name</label>
+              <input type="text" required class="w-full p-2.5 rounded-lg bg-emerald-950/80 border border-emerald-800/50 text-white text-xs focus:outline-none">
+            </div>
+            <div>
+              <label class="block text-xs text-emerald-200 mb-1">Email</label>
+              <input type="email" required class="w-full p-2.5 rounded-lg bg-emerald-950/80 border border-emerald-800/50 text-white text-xs focus:outline-none">
+            </div>
+            <div>
+              <label class="block text-xs text-emerald-200 mb-1">Message</label>
+              <textarea rows="3" required class="w-full p-2.5 rounded-lg bg-emerald-950/80 border border-emerald-800/50 text-white text-xs focus:outline-none"></textarea>
+            </div>
+            <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 font-bold text-xs">Send Message</button>
+          </form>
+          <div id="form-msg" class="hidden mt-3 p-3 bg-emerald-900/80 rounded-lg text-emerald-100 text-xs text-center">✨ Thank you! We will get back to you shortly.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-[#07120d] py-10 border-t border-emerald-900/40 text-xs text-slate-400">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div>
+        <p class="font-serif text-base text-white font-bold">Books Are Magic</p>
+        <p>© 2026 Books Are Magic LLC • Cobble Hill, Brooklyn</p>
+      </div>
+      <div class="flex gap-2">
+        <input type="email" placeholder="Magic Newsletter" class="p-2 rounded-lg bg-emerald-950 border border-emerald-800/40 text-white text-xs">
+        <button onclick="alert('Subscribed!')" class="px-4 py-2 bg-emerald-500 text-slate-950 font-bold rounded-lg">Subscribe</button>
+      </div>
+    </div>
+  </footer>
+
+  <a id="floating-cta" href="#clubs" class="fixed bottom-6 right-20 z-40 px-4 py-2.5 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 font-bold text-xs shadow-xl opacity-0 transition-all pointer-events-none">✨ Join Book Club</a>
+  <button id="back-to-top" class="fixed bottom-6 right-6 z-40 w-10 h-10 rounded-full bg-emerald-900/80 text-white border border-emerald-500/40 flex items-center justify-center shadow-xl opacity-0 transition-all pointer-events-none">↑</button>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      const scroll = document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      document.getElementById('progress-bar').style.width = (scroll / height * 100) + '%';
+      const fCta = document.getElementById('floating-cta');
+      const bTop = document.getElementById('back-to-top');
+      if (scroll > 300) {
+        fCta.classList.remove('opacity-0', 'pointer-events-none');
+        bTop.classList.remove('opacity-0', 'pointer-events-none');
+      } else {
+        fCta.classList.add('opacity-0', 'pointer-events-none');
+        bTop.classList.add('opacity-0', 'pointer-events-none');
+      }
+    });
+    document.getElementById('back-to-top').onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.getElementById('mobile-menu-btn').onclick = () => document.getElementById('mobile-menu').classList.toggle('hidden');
+
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+    const counterObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const c = e.target;
+          const target = +c.getAttribute('data-target');
+          let count = 0;
+          const update = () => {
+            count += Math.ceil(target / 40);
+            if (count < target) { c.innerText = count.toLocaleString() + '+'; setTimeout(update, 30); }
+            else { c.innerText = target.toLocaleString() + '+'; }
+          };
+          update();
+          counterObs.unobserve(c);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.counter').forEach(el => counterObs.observe(el));
+
+    document.querySelectorAll('.faq-btn').forEach(btn => {
+      btn.onclick = () => {
+        const content = btn.nextElementSibling;
+        content.classList.toggle('hidden');
+      };
+    });
+
+    document.querySelectorAll('.tilt-card').forEach(card => {
+      card.onmousemove = (e) => {
+        const r = card.getBoundingClientRect();
+        const x = (e.clientX - r.left - r.width / 2) / (r.width / 2) * 6;
+        const y = (e.clientY - r.top - r.height / 2) / (r.height / 2) * -6;
+        card.style.transform = `perspective(1000px) rotateX(${y}deg) rotateY(${x}deg) translateY(-4px)`;
+      };
+      card.onmouseleave = () => card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+    });
+
+    const testimonials = [
+      { text: '"Books Are Magic is hands-down my favorite place in Brooklyn. The staff recommendation cards never miss."', author: 'Michael Chang', role: 'Cobble Hill Resident' },
+      { text: '"Their monthly book box subscription is the highlight of my mail deliveries. Always something brilliant."', author: 'Jessica Alba', role: 'Book Club Subscriber' }
+    ];
+    let tIdx = 0;
+    const updateT = () => {
+      document.getElementById('test-text').innerText = testimonials[tIdx].text;
+      document.getElementById('test-author').innerText = testimonials[tIdx].author;
+      document.getElementById('test-role').innerText = testimonials[tIdx].role;
+    };
+    document.getElementById('next-test').onclick = () => { tIdx = (tIdx + 1) % testimonials.length; updateT(); };
+    document.getElementById('prev-test').onclick = () => { tIdx = (tIdx - 1 + testimonials.length) % testimonials.length; updateT(); };
+    setInterval(() => { tIdx = (tIdx + 1) % testimonials.length; updateT(); }, 6000);
+  </script>
+
+<!-- WhatsApp Contact Button -->
+<a href="https://wa.me/+9233390025902?text=Hi%21%20I%20just%20saw%20the%20enhanced%20website%20preview%20you%20created%20for%20my%20business%20and%20I'm%20interested%20in%20learning%20more." 
+   target="_blank"
+   style="position:fixed;bottom:30px;left:30px;z-index:999;background:#25D366;color:white;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(37,211,102,0.5);transition:transform 0.3s;cursor:pointer;text-decoration:none;"
+   onmouseover="this.style.transform='scale(1.1)'"
+   onmouseout="this.style.transform='scale(1)'"
+   title="Chat with us on WhatsApp">
+   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="white">
+     <path d="M17.472 14.382c-.297.149-1.255.223-1.679.223-.62 0-1.225-.046-1.782-.158-.287-.057-.584-.124-.884-.124-.246 0-.49.036-.724.107-.399.121-.772.323-1.134.547-.51.316-.997.683-1.513.999-.413.253-.847.476-1.301.634-.473.165-.967.237-1.463.237-.553 0-1.106-.086-1.633-.257-.431-.14-.841-.342-1.221-.598-.358-.241-.689-.531-.99-.846-.293-.307-.557-.648-.776-1.012-.21-.349-.382-.722-.516-1.106-.124-.356-.21-.727-.262-1.101-.046-.333-.069-.671-.069-1.009 0-.475.069-.951.206-1.406.137-.455.342-.887.598-1.287.262-.41.581-.776.93-1.106.358-.338.758-.626 1.187-.854.431-.229.887-.404 1.357-.523.471-.119.96-.179 1.45-.179.515 0 1.027.065 1.526.193.5.129.981.319 1.433.567.453.249.873.558 1.249.916.377.359.71.776.989 1.234.279.459.491.961.629 1.484.137.523.206 1.069.206 1.614 0 .316-.027.629-.08.938-.052.31-.131.614-.234.911-.103.296-.231.583-.382.857-.151.275-.323.537-.516.785-.192.249-.405.481-.638.697-.232.217-.484.414-.752.591-.268.177-.552.331-.849.462-.296.131-.605.238-.923.32-.317.082-.642.139-.971.172-.329.032-.66.049-.991.049-.43 0-.858-.039-1.28-.117-.421-.077-.836-.194-1.236-.349-.4-.155-.784-.349-1.146-.583-.362-.234-.702-.506-1.015-.816-.313-.31-.598-.648-.854-1.009-.257-.361-.485-.746-.683-1.146-.198-.4-.366-.816-.504-1.246-.137-.43-.236-.872-.296-1.32-.06-.449-.09-.902-.09-1.355 0-.355.027-.711.08-1.062.052-.352.13-.699.234-1.038.103-.339.231-.671.382-.994.151-.323.323-.635.516-.937.192-.303.405-.591.638-.864.232-.273.484-.527.752-.762.268-.235.552-.451.849-.648.296-.197.605-.375.923-.534.317-.158.642-.298.971-.419.329-.121.66-.223.991-.307.329-.083.66-.146.991-.189.329-.043.66-.065.991-.065.43 0 .858.039 1.28.117.421.078.836.195 1.236.35.4.155.784.349 1.146.583.362.234.702.506 1.015.816.313.31.598.648.854 1.009.257.362.485.746.683 1.146.198.4.366.816.504 1.246.137.43.236.872.296 1.32.06.449.09.902.09 1.355 0 .355-.027.711-.08 1.062-.052.352-.13.699-.234 1.038-.103.339-.231.671-.382.994-.151.323-.323.635-.516.937-.192.303-.405.591-.638.864-.232.273-.484.527-.752.762-.268.235-.552.451-.849.648-.296.197-.605.375-.923.534-.317.158-.642.298-.971.419-.329.121-.66.223-.991.307z"/>
+   </svg>
+</a>
+
+</body>
+</html>
