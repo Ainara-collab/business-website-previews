@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Center for Fiction — Where Stories Come Alive in Brooklyn</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['Playfair Display', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            amber: { 950: '#1a1208', 900: '#2a1d0d', 800: '#3d2812', 500: '#f59e0b', 400: '#fbbf24' },
+            rose: { 500: '#f43f5e', 400: '#fb7185' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #1a1208; color: #fef3c7; }
+    h1, h2, h3, h4, .font-serif { font-family: 'Playfair Display', serif; }
+    .glass-card { background: rgba(42,29,13,0.7); backdrop-filter: blur(14px); border: 1px solid rgba(245,158,11,0.22); }
+    .glass-card:hover { border-color: rgba(244,63,94,0.45); box-shadow: 0 12px 30px -10px rgba(245,158,11,0.2); }
+    .glass-nav { background: rgba(26,18,8,0.85); backdrop-filter: blur(18px); border-bottom: 1px solid rgba(245,158,11,0.2); }
+    .text-gradient { background: linear-gradient(135deg, #fbbf24 0%, #f43f5e 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .reveal { opacity: 0; transform: translateY(22px); transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body class="relative overflow-x-hidden">
+
+  <!-- Scroll Progress Bar -->
+  <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-amber-500 via-rose-500 to-amber-400 z-50 transition-all duration-150" style="width: 0%"></div>
+
+  <!-- Ambient Gradient Orbs -->
+  <div class="fixed top-12 left-10 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none z-0"></div>
+  <div class="fixed top-1/2 right-10 w-96 h-96 bg-rose-500/10 rounded-full blur-3xl pointer-events-none z-0"></div>
+
+  <!-- Top Announcement Bar -->
+  <div class="bg-gradient-to-r from-amber-950 via-amber-900 to-amber-950 text-amber-200 text-xs py-2 px-4 border-b border-amber-500/20 relative z-40">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping inline-block"></span>
+        <span class="font-bold text-amber-300">BROOKLYN LITERARY SEASON:</span>
+        <span class="hidden md:inline text-amber-200/80">Writing Masterclasses & Spring Author Talks Now Open for Registration</span>
+      </div>
+      <a href="#events" class="font-bold text-rose-400 hover:text-white transition flex items-center gap-1">
+        🎟 Reserve Tickets →
+      </a>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <header class="glass-nav sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-rose-500 flex items-center justify-center text-slate-950 font-black text-xl shadow-lg shadow-amber-500/20 font-serif">CF</div>
+        <div>
+          <span class="text-xl font-bold tracking-wide text-white block leading-none font-serif">THE CENTER FOR FICTION</span>
+          <span class="text-[10px] tracking-widest text-amber-400 uppercase font-semibold">Downtown Brooklyn, NY</span>
+        </div>
+      </a>
+
+      <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-amber-100/90">
+        <a href="#authors" class="hover:text-amber-400 transition">Featured Voices</a>
+        <a href="#programs" class="hover:text-amber-400 transition">Programs</a>
+        <a href="#events" class="hover:text-amber-400 transition">Event Calendar</a>
+        <a href="#membership" class="hover:text-amber-400 transition">Membership</a>
+        <a href="#faq" class="hover:text-amber-400 transition">FAQ</a>
+        <a href="#contact" class="hover:text-amber-400 transition">Visit Us</a>
+      </nav>
+
+      <a href="#membership" class="hidden md:inline-block px-5 py-2.5 rounded-full bg-gradient-to-r from-amber-500 to-rose-500 text-slate-950 font-bold text-sm hover:opacity-90 transition shadow-lg shadow-amber-500/20">
+        Join Membership
+      </a>
+
+      <button id="mobile-menu-btn" class="md:hidden text-amber-200 hover:text-white p-2">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+
+    <!-- Mobile Dropdown -->
+    <div id="mobile-menu" class="hidden md:hidden bg-amber-950/95 border-b border-amber-500/20 px-6 py-4 space-y-3 text-sm">
+      <a href="#authors" class="block text-amber-100 hover:text-amber-400">Featured Voices</a>
+      <a href="#programs" class="block text-amber-100 hover:text-amber-400">Literary Programs</a>
+      <a href="#events" class="block text-amber-100 hover:text-amber-400">Event Calendar</a>
+      <a href="#membership" class="block text-amber-100 hover:text-amber-400">Membership Tiers</a>
+      <a href="#faq" class="block text-amber-100 hover:text-amber-400">FAQ</a>
+      <a href="#contact" class="block text-amber-100 hover:text-amber-400">Visit Us</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative min-h-[88vh] flex items-center justify-center px-4 py-20 text-center z-10">
+    <div class="absolute inset-0 -z-10 overflow-hidden">
+      <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1920&q=80" alt="Atmospheric Literary Center" class="w-full h-full object-cover brightness-[0.25] filter">
+      <div class="absolute inset-0 bg-gradient-to-b from-[#1a1208]/80 via-[#1a1208]/60 to-[#1a1208]"></div>
+    </div>
+
+    <div class="max-w-4xl mx-auto reveal">
+      <span class="inline-block px-4 py-1.5 rounded-full glass-card text-amber-300 text-xs font-medium mb-6 border border-amber-500/30">
+        📚 Est. 1820 — The Only Non-Profit Devoted Solely to Fiction
+      </span>
+      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight font-serif">
+        Where Stories Come Alive in the <span class="text-gradient">Heart of Brooklyn</span>
+      </h1>
+      <p class="text-base sm:text-xl text-amber-100/80 mb-8 max-w-2xl mx-auto leading-relaxed">
+        A home for readers, writers, and storytellers. Explore masterclasses, curated reading rooms, author talks, and writer fellowships in Downtown Brooklyn.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="#programs" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-amber-500 to-rose-500 text-slate-950 font-bold text-base hover:opacity-90 transition shadow-xl shadow-amber-500/25">
+          Explore Workshops & Programs
+        </a>
+        <a href="#events" class="w-full sm:w-auto px-8 py-4 rounded-xl glass-card text-amber-300 font-bold text-base border border-amber-500/40 hover:bg-amber-900/60 transition">
+          View Event Calendar
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Authors Section -->
+  <section id="authors" class="py-16 px-4 max-w-7xl mx-auto relative z-10">
+    <div class="text-center max-w-3xl mx-auto mb-12 reveal">
+      <span class="text-xs uppercase font-bold text-amber-400 tracking-widest">Literary Voices</span>
+      <h2 class="text-3xl sm:text-5xl font-bold text-white mt-1 font-serif">Featured Authors & Keynotes</h2>
+      <p class="text-amber-200/70 text-sm mt-2">Engage directly with Pulitzer winners, National Book Award finalists, and groundbreaking debut novelists.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="glass-card rounded-2xl overflow-hidden reveal">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=500&q=80" alt="Zadie Smith" class="w-full h-56 object-cover filter brightness-95">
+        <div class="p-5">
+          <span class="text-[10px] font-bold text-rose-400 uppercase tracking-wider">Keynote Speaker</span>
+          <h3 class="text-lg font-bold text-white mt-0.5 font-serif">Zadie Smith</h3>
+          <p class="text-amber-200/70 text-xs mt-1">"The Craft of the Contemporary Novel & Narrative Voice."</p>
+        </div>
+      </div>
+
+      <div class="glass-card rounded-2xl overflow-hidden reveal">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500&q=80" alt="Colson Whitehead" class="w-full h-56 object-cover filter brightness-95">
+        <div class="p-5">
+          <span class="text-[10px] font-bold text-rose-400 uppercase tracking-wider">Masterclass Lead</span>
+          <h3 class="text-lg font-bold text-white mt-0.5 font-serif">Colson Whitehead</h3>
+          <p class="text-amber-200/70 text-xs mt-1">"Historical Fiction & Reimagining American Realities."</p>
+        </div>
+      </div>
+
+      <div class="glass-card rounded-2xl overflow-hidden reveal">
+        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=500&q=80" alt="Jennifer Egan" class="w-full h-56 object-cover filter brightness-95">
+        <div class="p-5">
+          <span class="text-[10px] font-bold text-rose-400 uppercase tracking-wider">Writer-in-Residence</span>
+          <h3 class="text-lg font-bold text-white mt-0.5 font-serif">Jennifer Egan</h3>
+          <p class="text-amber-200/70 text-xs mt-1">"Polyphonic Narratives and Structural Experimentation."</p>
+        </div>
+      </div>
+
+      <div class="glass-card rounded-2xl overflow-hidden reveal">
+        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=500&q=80" alt="Alexander Chee" class="w-full h-56 object-cover filter brightness-95">
+        <div class="p-5">
+          <span class="text-[10px] font-bold text-rose-400 uppercase tracking-wider">Fellowship Mentor</span>
+          <h3 class="text-lg font-bold text-white mt-0.5 font-serif">Alexander Chee</h3>
+          <p class="text-amber-200/70 text-xs mt-1">"Autofiction, Memoir & The Personal Essay in Fiction."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programs Grid -->
+  <section id="programs" class="py-16 px-4 max-w-7xl mx-auto relative z-10">
+    <div class="text-center max-w-3xl mx-auto mb-12 reveal">
+      <span class="text-xs uppercase font-bold text-amber-400 tracking-widest">Writers & Readers</span>
+      <h2 class="text-3xl sm:text-5xl font-bold text-white mt-1 font-serif">Curated Literary Initiatives</h2>
+      <p class="text-amber-200/70 text-sm mt-2">Tailored for emerging authors, seasoned writers, and avid readers.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="glass-card rounded-2xl p-6 transition duration-300 hover:-translate-y-1 reveal">
+        <div class="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-300 text-2xl mb-4">✍️</div>
+        <h3 class="text-xl font-bold text-white mb-2 font-serif">Masterclass Workshops</h3>
+        <p class="text-amber-200/70 text-xs leading-relaxed">Intensive 8-week workshops on novel revision, short story craft, worldbuilding, and literary agent query letters.</p>
+      </div>
+
+      <div class="glass-card rounded-2xl p-6 transition duration-300 hover:-translate-y-1 reveal">
+        <div class="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-300 text-2xl mb-4">🎤</div>
+        <h3 class="text-xl font-bold text-white mb-2 font-serif">Author Conversations</h3>
+        <p class="text-amber-200/70 text-xs leading-relaxed">Weekly live discussions in our Brooklyn auditorium featuring celebrated authors, book launches, and Q&A sessions.</p>
+      </div>
+
+      <div class="glass-card rounded-2xl p-6 transition duration-300 hover:-translate-y-1 reveal">
+        <div class="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-300 text-2xl mb-4">📖</div>
+        <h3 class="text-xl font-bold text-white mb-2 font-serif">Curated Book Clubs</h3>
+        <p class="text-amber-200/70 text-xs leading-relaxed">Monthly reader circles exploring translated fiction, contemporary Brooklyn debuts, classics, and speculative fiction.</p>
+      </div>
+
+      <div class="glass-card rounded-2xl p-6 transition duration-300 hover:-translate-y-1 reveal">
+        <div class="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-300 text-2xl mb-4">🌱</div>
+        <h3 class="text-xl font-bold text-white mb-2 font-serif">Youth & Emerging Writers</h3>
+        <p class="text-amber-200/70 text-xs leading-relaxed">Free NYC public school writing labs, high school story competitions, and college preparatory creative writing tracks.</p>
+      </div>
+
+      <div class="glass-card rounded-2xl p-6 transition duration-300 hover:-translate-y-1 reveal">
+        <div class="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-300 text-2xl mb-4">🏛️</div>
+        <h3 class="text-xl font-bold text-white mb-2 font-serif">Writers-in-Residence</h3>
+        <p class="text-amber-200/70 text-xs leading-relaxed">Stipend-funded annual fellowships providing quiet private desks, publishing mentorship, and library access.</p>
+      </div>
+
+      <div class="glass-card rounded-2xl p-6 transition duration-300 hover:-translate-y-1 reveal">
+        <div class="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-300 text-2xl mb-4">🍷</div>
+        <h3 class="text-xl font-bold text-white mb-2 font-serif">Literary Events & Cafe</h3>
+        <p class="text-amber-200/70 text-xs leading-relaxed">Our open-to-the-public bookstore and literary cafe serving artisanal coffee, wine, and local Brooklyn pastries.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Event Calendar Section -->
+  <section id="events" class="py-16 px-4 max-w-7xl mx-auto relative z-10 bg-amber-950/40">
+    <div class="text-center max-w-3xl mx-auto mb-12 reveal">
+      <span class="text-xs uppercase font-bold text-amber-400 tracking-widest">Season Schedule</span>
+      <h2 class="text-3xl sm:text-5xl font-bold text-white mt-1 font-serif">Upcoming Cultural Events</h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="glass-card rounded-2xl p-6 reveal">
+        <div class="flex justify-between items-center text-xs font-bold text-rose-400 mb-2">
+          <span>THU, APR 16 • 7:00 PM</span>
+          <span class="bg-rose-500/20 px-2 py-0.5 rounded text-rose-300">Auditorium</span>
+        </div>
+        <h3 class="text-xl font-bold text-white mb-2 font-serif">Zadie Smith in Conversation</h3>
+        <p class="text-amber-200/70 text-xs mb-4">Discussion on contemporary narrative structure followed by audience Q&A and book signing.</p>
+        <button onclick="alert('Ticket reserved for Zadie Smith event!')" class="w-full py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs transition">Reserve Ticket ($15)</button>
+      </div>
+
+      <div class="glass-card rounded-2xl p-6 reveal">
+        <div class="flex justify-between items-center text-xs font-bold text-rose-400 mb-2">
+          <span>SAT, APR 18 • 2:00 PM</span>
+          <span class="bg-amber-500/20 px-2 py-0.5 rounded text-amber-300">Studio 4</span>
+        </div>
+        <h3 class="text-xl font-bold text-white mb-2 font-serif">Fiction Revision Masterclass</h3>
+        <p class="text-amber-200/70 text-xs mb-4">4-hour intensive editing lab with Colson Whitehead. Bring 5 pages of manuscript draft.</p>
+        <button onclick="alert('Masterclass seat requested!')" class="w-full py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs transition">Apply for Seat ($75)</button>
+      </div>
+
+      <div class="glass-card rounded-2xl p-6 reveal">
+        <div class="flex justify-between items-center text-xs font-bold text-rose-400 mb-2">
+          <span>WED, APR 22 • 6:30 PM</span>
+          <span class="bg-rose-500/20 px-2 py-0.5 rounded text-rose-300">Reading Room</span>
+        </div>
+        <h3 class="text-xl font-bold text-white mb-2 font-serif">Brooklyn Debut Novelists Circle</h3>
+        <p class="text-amber-200/70 text-xs mb-4">Readings and panel discussion with three breakout NYC authors celebrating spring launches.</p>
+        <button onclick="alert('Free RSVP confirmed!')" class="w-full py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs transition">Free Member RSVP</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Animated Stats Counter -->
+  <section class="py-12 bg-amber-950/80 border-y border-amber-500/20 relative z-10" id="stats-section">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      <div>
+        <div class="text-3xl sm:text-4xl font-extrabold text-amber-400 font-mono"><span class="counter" data-target="206">0</span></div>
+        <div class="text-xs font-semibold text-amber-100 mt-1">Years of Heritage (Est. 1820)</div>
+      </div>
+      <div>
+        <div class="text-3xl sm:text-4xl font-extrabold text-rose-400 font-mono"><span class="counter" data-target="85000">0</span>+</div>
+        <div class="text-xs font-semibold text-amber-100 mt-1">Fiction Library Collection</div>
+      </div>
+      <div>
+        <div class="text-3xl sm:text-4xl font-extrabold text-amber-400 font-mono"><span class="counter" data-target="180">0</span>+</div>
+        <div class="text-xs font-semibold text-amber-100 mt-1">Annual Literary Events</div>
+      </div>
+      <div>
+        <div class="text-3xl sm:text-4xl font-extrabold text-rose-400 font-mono">$<span class="counter" data-target="250">0</span>k</div>
+        <div class="text-xs font-semibold text-amber-100 mt-1">Annual Writer Fellowships</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Membership Tiers -->
+  <section id="membership" class="py-16 px-4 max-w-7xl mx-auto relative z-10">
+    <div class="text-center max-w-3xl mx-auto mb-12 reveal">
+      <span class="text-xs uppercase font-bold text-amber-400 tracking-widest">Support Literary Arts</span>
+      <h2 class="text-3xl sm:text-5xl font-bold text-white mt-1 font-serif">Membership Levels</h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="glass-card rounded-3xl p-6 flex flex-col justify-between reveal">
+        <div>
+          <span class="text-xs font-bold text-amber-400 uppercase">Reader Pass</span>
+          <h3 class="text-2xl font-bold text-white mt-1 font-serif">Literary Member</h3>
+          <div class="text-3xl font-extrabold text-white my-3">$120 <span class="text-xs text-amber-200/60 font-normal">/ year</span></div>
+          <ul class="text-xs text-amber-200/80 space-y-2 mb-6">
+            <li>✓ Full borrowing rights (85,000+ fiction books)</li>
+            <li>✓ 10% discount at bookstore & cafe</li>
+            <li>✓ Priority event ticketing access</li>
+          </ul>
+        </div>
+        <a href="#contact" class="w-full py-2.5 rounded-xl glass-card hover:bg-amber-500 hover:text-slate-950 text-amber-300 font-bold text-center text-xs transition">Join as Reader</a>
+      </div>
+
+      <div class="glass-card rounded-3xl p-6 border-2 border-rose-500 bg-amber-950/90 flex flex-col justify-between shadow-xl shadow-rose-500/10 reveal relative">
+        <span class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-rose-500 text-white text-[10px] font-black uppercase">Most Popular</span>
+        <div>
+          <span class="text-xs font-bold text-rose-400 uppercase">Writers & Scholars</span>
+          <h3 class="text-2xl font-bold text-white mt-1 font-serif">Writers Studio Fellow</h3>
+          <div class="text-3xl font-extrabold text-white my-3">$450 <span class="text-xs text-amber-200/60 font-normal">/ year</span></div>
+          <ul class="text-xs text-amber-200/80 space-y-2 mb-6">
+            <li>✓ 24/7 Access to quiet Writers Studio desks</li>
+            <li>✓ High-speed WiFi & private phone booths</li>
+            <li>✓ Free admission to all author talks</li>
+            <li>✓ Inclusion in bi-annual agent showcases</li>
+          </ul>
+        </div>
+        <a href="#contact" class="w-full py-3 rounded-xl bg-gradient-to-r from-amber-500 to-rose-500 text-slate-950 font-bold text-center text-xs hover:opacity-90 transition">Join Writers Studio</a>
+      </div>
+
+      <div class="glass-card rounded-3xl p-6 flex flex-col justify-between reveal">
+        <div>
+          <span class="text-xs font-bold text-amber-400 uppercase">Patron Circle</span>
+          <h3 class="text-2xl font-bold text-white mt-1 font-serif">Brooklyn Literary Guild</h3>
+          <div class="text-3xl font-extrabold text-white my-3">$1,200 <span class="text-xs text-amber-200/60 font-normal">/ year</span></div>
+          <ul class="text-xs text-amber-200/80 space-y-2 mb-6">
+            <li>✓ VIP seating at major keynotes</li>
+            <li>✓ Private dinners with featured authors</li>
+            <li>✓ Sponsor 2 youth writing fellowships</li>
+          </ul>
+        </div>
+        <a href="#contact" class="w-full py-2.5 rounded-xl glass-card hover:bg-amber-500 hover:text-slate-950 text-amber-300 font-bold text-center text-xs transition">Become Guild Patron</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Signup -->
+  <section class="py-16 px-4 max-w-4xl mx-auto relative z-10">
+    <div class="glass-card rounded-3xl p-8 sm:p-12 text-center border border-amber-500/30">
+      <span class="text-xs font-bold uppercase text-amber-400 tracking-widest">Literary Digest</span>
+      <h2 class="text-3xl sm:text-4xl font-bold text-white mt-1 mb-3 font-serif">Subscribe to The Brooklyn Review</h2>
+      <p class="text-amber-200/80 text-xs sm:text-sm max-w-xl mx-auto mb-6">Receive weekly recommended fiction reading lists, workshop announcements, and ticket pre-sale alerts directly to your inbox.</p>
+      <form onsubmit="handleFictionSubscribe(event)" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+        <input type="email" required placeholder="Enter your email address..." class="w-full px-4 py-3 rounded-xl bg-amber-950 border border-amber-500/30 text-white placeholder-amber-200/50 text-xs focus:outline-none focus:border-amber-400">
+        <button type="submit" class="px-6 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-rose-500 text-slate-950 font-bold text-xs shrink-0 hover:opacity-90 transition">Subscribe Free</button>
+      </form>
+      <div id="subscribe-msg" class="hidden mt-4 text-xs font-semibold text-rose-400">✓ Welcome to The Brooklyn Review newsletter!</div>
+    </div>
+  </section>
+
+  <!-- Testimonials Carousel -->
+  <section class="py-16 px-4 max-w-4xl mx-auto relative z-10">
+    <div class="glass-card rounded-3xl p-8 relative overflow-hidden text-center" id="testimonial-box">
+      <div class="text-amber-400 mb-3 text-lg">★★★★★</div>
+      <div class="t-slide active">
+        <p class="text-base sm:text-xl text-amber-100 italic mb-4 font-serif">"The Center for Fiction is a sanctuary for writers in New York. The Writers Studio gave me the quiet space and community I needed to finish my second novel."</p>
+        <div class="text-xs font-bold text-white">Mona Simpson — Author & Member</div>
+      </div>
+      <div class="t-slide hidden">
+        <p class="text-base sm:text-xl text-amber-100 italic mb-4 font-serif">"From author keynotes to the gorgeous fiction reading room, there is simply no place like this in the country."</p>
+        <div class="text-xs font-bold text-white">David L. — Downtown Brooklyn Resident</div>
+      </div>
+      <div class="t-slide hidden">
+        <p class="text-base sm:text-xl text-amber-100 italic mb-4 font-serif">"The youth writing workshops transformed my daughter's confidence. A true cultural crown jewel of Brooklyn."</p>
+        <div class="text-xs font-bold text-white">Rachel K. — Park Slope Parent</div>
+      </div>
+      <div class="flex justify-center gap-2 mt-6">
+        <button onclick="setTestimonial(0)" class="w-2.5 h-2.5 rounded-full bg-amber-400 t-dot"></button>
+        <button onclick="setTestimonial(1)" class="w-2.5 h-2.5 rounded-full bg-amber-950 t-dot"></button>
+        <button onclick="setTestimonial(2)" class="w-2.5 h-2.5 rounded-full bg-amber-950 t-dot"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Accordion -->
+  <section id="faq" class="py-16 px-4 max-w-3xl mx-auto relative z-10">
+    <div class="text-center mb-10">
+      <span class="text-xs uppercase font-bold text-amber-400 tracking-widest">Help & Info</span>
+      <h2 class="text-3xl font-bold text-white mt-1 font-serif">Frequently Asked Questions</h2>
+    </div>
+
+    <div class="space-y-3">
+      <div class="glass-card rounded-xl p-5 cursor-pointer" onclick="toggleFaq(this)">
+        <div class="flex justify-between items-center font-bold text-white text-sm">
+          <span>Can non-members visit the bookstore and cafe?</span>
+          <span class="text-amber-400 text-lg">+</span>
+        </div>
+        <div class="faq-body hidden mt-3 text-amber-200/80 text-xs border-t border-amber-500/20 pt-3">
+          Yes! Our ground-floor independent bookstore, cafe, and courtyard are open to the general public 7 days a week.
+        </div>
+      </div>
+
+      <div class="glass-card rounded-xl p-5 cursor-pointer" onclick="toggleFaq(this)">
+        <div class="flex justify-between items-center font-bold text-white text-sm">
+          <span>How do I apply for a Writers-in-Residence Fellowship?</span>
+          <span class="text-amber-400 text-lg">+</span>
+        </div>
+        <div class="faq-body hidden mt-3 text-amber-200/80 text-xs border-t border-amber-500/20 pt-3">
+          Fellowship applications open annually on September 1st for early-career fiction writers residing in New York City.
+        </div>
+      </div>
+
+      <div class="glass-card rounded-xl p-5 cursor-pointer" onclick="toggleFaq(this)">
+        <div class="flex justify-between items-center font-bold text-white text-sm">
+          <span>Are event tickets refundable or transferable?</span>
+          <span class="text-amber-400 text-lg">+</span>
+        </div>
+        <div class="faq-body hidden mt-3 text-amber-200/80 text-xs border-t border-amber-500/20 pt-3">
+          Tickets are non-refundable but can be transferred to another guest or credited toward a future event with 24 hours notice.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Location Form -->
+  <section id="contact" class="py-16 px-4 max-w-7xl mx-auto relative z-10">
+    <div class="grid lg:grid-cols-2 gap-10 items-center">
+      <div>
+        <span class="text-xs font-bold uppercase text-amber-400">Visit Our Center</span>
+        <h2 class="text-3xl sm:text-4xl font-bold text-white mt-1 mb-4 font-serif">15 Lafayette Avenue, Brooklyn</h2>
+        <p class="text-amber-200/80 text-sm leading-relaxed mb-6">Located in the heart of the Brooklyn Cultural District, steps from BAM (Brooklyn Academy of Music) and Barclays Center.</p>
+        <div class="space-y-3 text-xs text-amber-200/90">
+          <div>📍 <strong>Address:</strong> 15 Lafayette Ave, Brooklyn, NY 11217</div>
+          <div>📞 <strong>Phone:</strong> (212) 245-4200</div>
+          <div>🕒 <strong>Hours:</strong> Mon–Sat: 10am–8pm | Sun: 12pm–6pm</div>
+        </div>
+      </div>
+
+      <div class="glass-card rounded-3xl p-6 border border-amber-500/30">
+        <h3 class="text-xl font-bold text-white mb-4 font-serif">Inquire or Contact Us</h3>
+        <form onsubmit="event.preventDefault(); alert('Inquiry received! We will reply shortly.');" class="space-y-3">
+          <input type="text" required placeholder="Full Name *" class="w-full px-4 py-2.5 rounded-xl bg-amber-950 border border-amber-500/30 text-white placeholder-amber-200/50 text-xs focus:outline-none focus:border-amber-400">
+          <input type="email" required placeholder="Email Address *" class="w-full px-4 py-2.5 rounded-xl bg-amber-950 border border-amber-500/30 text-white placeholder-amber-200/50 text-xs focus:outline-none focus:border-amber-400">
+          <textarea rows="3" placeholder="How can we assist you? (Workshops, events, membership...)" class="w-full px-4 py-2.5 rounded-xl bg-amber-950 border border-amber-500/30 text-white placeholder-amber-200/50 text-xs focus:outline-none focus:border-amber-400"></textarea>
+          <button class="w-full py-3 rounded-xl bg-gradient-to-r from-amber-500 to-rose-500 text-slate-950 font-bold text-xs hover:opacity-90 transition">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-amber-950 border-t border-amber-500/20 py-12 px-4 relative z-10 text-amber-200/60 text-xs">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+      <div>
+        <div class="flex items-center gap-2 mb-3">
+          <div class="w-7 h-7 rounded-lg bg-amber-500 flex items-center justify-center text-slate-950 font-bold font-serif">CF</div>
+          <span class="text-base font-bold text-white font-serif">THE CENTER FOR FICTION</span>
+        </div>
+        <p class="leading-relaxed">Building community around stories and supporting writers since 1820 in Brooklyn, NY.</p>
+      </div>
+
+      <div>
+        <h4 class="text-white font-bold mb-3 uppercase">Explore</h4>
+        <ul class="space-y-1.5">
+          <li><a href="#authors" class="hover:text-amber-300">Featured Voices</a></li>
+          <li><a href="#programs" class="hover:text-amber-300">Workshops & Fellowships</a></li>
+          <li><a href="#events" class="hover:text-amber-300">Event Tickets</a></li>
+          <li><a href="#membership" class="hover:text-amber-300">Membership Tiers</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-white font-bold mb-3 uppercase">Visit Us</h4>
+        <p>15 Lafayette Ave<br>Brooklyn, NY 11217</p>
+        <p class="text-amber-400 font-bold mt-2">(212) 245-4200</p>
+      </div>
+
+      <div>
+        <h4 class="text-white font-bold mb-3 uppercase">Follow Our Guild</h4>
+        <p class="mb-2">Join 45,000+ literary enthusiasts on social media.</p>
+        <div class="flex space-x-3 text-amber-400 font-bold">
+          <a href="#" class="hover:text-white">Instagram</a> •
+          <a href="#" class="hover:text-white">Twitter</a> •
+          <a href="#" class="hover:text-white">Substack</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto pt-6 border-t border-amber-500/10 flex justify-between items-center text-amber-200/40">
+      <div>© 2026 The Center for Fiction. 501(c)(3) Non-Profit Organization.</div>
+      <div class="space-x-4">
+        <a href="#" class="hover:text-amber-300">Privacy Policy</a>
+        <a href="#" class="hover:text-amber-300">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Membership CTA -->
+  <a href="#membership" class="fixed bottom-5 left-5 z-40 px-4 py-2.5 rounded-full bg-rose-500 text-white font-bold text-xs shadow-2xl flex items-center gap-2 hover:bg-rose-400 transition border border-rose-300">
+    <span>📖 JOIN LITERARY GUILD</span>
+  </a>
+
+  <!-- Back to Top Button -->
+  <button id="back-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})" class="fixed bottom-5 right-5 z-40 p-3 rounded-full glass-card text-amber-400 hidden hover:text-white border border-amber-500/40">
+    ↑
+  </button>
+
+  <script>
+    document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+
+    window.addEventListener('scroll', () => {
+      const scroll = document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      document.getElementById('scroll-progress').style.width = (scroll / height) * 100 + '%';
+      if (scroll > 300) document.getElementById('back-to-top').classList.remove('hidden');
+      else document.getElementById('back-to-top').classList.add('hidden');
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    let counterRun = false;
+    const statsSec = document.getElementById('stats-section');
+    if (statsSec) {
+      new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && !counterRun) {
+          counterRun = true;
+          document.querySelectorAll('.counter').forEach(c => {
+            const target = +c.getAttribute('data-target');
+            let count = 0;
+            const step = target / 50;
+            const t = setInterval(() => {
+              count += step;
+              if (count >= target) { c.innerText = target.toLocaleString(); clearInterval(t); }
+              else { c.innerText = Math.floor(count).toLocaleString(); }
+            }, 30);
+          });
+        }
+      }, { threshold: 0.2 }).observe(statsSec);
+    }
+
+    let tIndex = 0;
+    const tSlides = document.querySelectorAll('.t-slide');
+    const tDots = document.querySelectorAll('.t-dot');
+    function setTestimonial(idx) {
+      tSlides.forEach((s, i) => s.classList.toggle('hidden', i !== idx));
+      tDots.forEach((d, i) => {
+        d.classList.toggle('bg-amber-400', i === idx);
+        d.classList.toggle('bg-amber-950', i !== idx);
+      });
+      tIndex = idx;
+    }
+    setInterval(() => setTestimonial((tIndex + 1) % tSlides.length), 5000);
+
+    function toggleFaq(card) {
+      const body = card.querySelector('.faq-body');
+      const isHidden = body.classList.contains('hidden');
+      document.querySelectorAll('.faq-body').forEach(b => b.classList.add('hidden'));
+      if (isHidden) body.classList.remove('hidden');
+    }
+
+    function handleFictionSubscribe(e) {
+      e.preventDefault();
+      document.getElementById('subscribe-msg').classList.remove('hidden');
+      e.target.reset();
+    }
+  </script>
+
+<!-- WhatsApp Contact Button -->
+<a href="https://wa.me/+9233390025902?text=Hi%21%20I%20just%20saw%20the%20enhanced%20website%20preview%20you%20created%20for%20my%20business%20and%20I'm%20interested%20in%20learning%20more." 
+   target="_blank"
+   style="position:fixed;bottom:30px;left:30px;z-index:999;background:#25D366;color:white;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(37,211,102,0.5);transition:transform 0.3s;cursor:pointer;text-decoration:none;"
+   onmouseover="this.style.transform='scale(1.1)'"
+   onmouseout="this.style.transform='scale(1)'"
+   title="Chat with us on WhatsApp">
+   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="white">
+     <path d="M17.472 14.382c-.297.149-1.255.223-1.679.223-.62 0-1.225-.046-1.782-.158-.287-.057-.584-.124-.884-.124-.246 0-.49.036-.724.107-.399.121-.772.323-1.134.547-.51.316-.997.683-1.513.999-.413.253-.847.476-1.301.634-.473.165-.967.237-1.463.237-.553 0-1.106-.086-1.633-.257-.431-.14-.841-.342-1.221-.598-.358-.241-.689-.531-.99-.846-.293-.307-.557-.648-.776-1.012-.21-.349-.382-.722-.516-1.106-.124-.356-.21-.727-.262-1.101-.046-.333-.069-.671-.069-1.009 0-.475.069-.951.206-1.406.137-.455.342-.887.598-1.287.262-.41.581-.776.93-1.106.358-.338.758-.626 1.187-.854.431-.229.887-.404 1.357-.523.471-.119.96-.179 1.45-.179.515 0 1.027.065 1.526.193.5.129.981.319 1.433.567.453.249.873.558 1.249.916.377.359.71.776.989 1.234.279.459.491.961.629 1.484.137.523.206 1.069.206 1.614 0 .316-.027.629-.08.938-.052.31-.131.614-.234.911-.103.296-.231.583-.382.857-.151.275-.323.537-.516.785-.192.249-.405.481-.638.697-.232.217-.484.414-.752.591-.268.177-.552.331-.849.462-.296.131-.605.238-.923.32-.317.082-.642.139-.971.172-.329.032-.66.049-.991.049-.43 0-.858-.039-1.28-.117-.421-.077-.836-.194-1.236-.349-.4-.155-.784-.349-1.146-.583-.362-.234-.702-.506-1.015-.816-.313-.31-.598-.648-.854-1.009-.257-.361-.485-.746-.683-1.146-.198-.4-.366-.816-.504-1.246-.137-.43-.236-.872-.296-1.32-.06-.449-.09-.902-.09-1.355 0-.355.027-.711.08-1.062.052-.352.13-.699.234-1.038.103-.339.231-.671.382-.994.151-.323.323-.635.516-.937.192-.303.405-.591.638-.864.232-.273.484-.527.752-.762.268-.235.552-.451.849-.648.296-.197.605-.375.923-.534.317-.158.642-.298.971-.419.329-.121.66-.223.991-.307.329-.083.66-.146.991-.189.329-.043.66-.065.991-.065.43 0 .858.039 1.28.117.421.078.836.195 1.236.35.4.155.784.349 1.146.583.362.234.702.506 1.015.816.313.31.598.648.854 1.009.257.362.485.746.683 1.146.198.4.366.816.504 1.246.137.43.236.872.296 1.32.06.449.09.902.09 1.355 0 .355-.027.711-.08 1.062-.052.352-.13.699-.234 1.038-.103.339-.231.671-.382.994-.151.323-.323.635-.516.937-.192.303-.405.591-.638.864-.232.273-.484.527-.752.762-.268.235-.552.451-.849.648-.296.197-.605.375-.923.534-.317.158-.642.298-.971.419-.329.121-.66.223-.991.307z"/>
+   </svg>
+</a>
+
+</body>
+</html>
