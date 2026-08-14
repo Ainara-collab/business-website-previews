@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ivy Tax and Accounting — Enhanced Preview</title>
+    <style>
+        :root {
+            --primary: #2980b9;
+            --primary-light: #3498db;
+            --primary-dark: #1a5276;
+            --navy: #1b2631;
+            --bg: #f8f9fa;
+            --white: #ffffff;
+            --text: #2c3e50;
+            --muted: #7f8c8d;
+            --border: #e1e4e8;
+            --green: #27ae60;
+            --radius: 12px;
+            --shadow: 0 2px 16px rgba(0,0,0,0.06);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        /* Preview Banner */
+        .preview-banner {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+            color: white;
+            text-align: center;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .preview-banner a { color: #d4af37; text-decoration: underline; }
+        /* Nav */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 5%;
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 38px;
+            z-index: 999;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo-badge {
+            width: 48px; height: 48px;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 22px; font-weight: 800;
+            letter-spacing: -1px;
+        }
+        .logo-text { display: flex; flex-direction: column; line-height: 1.2; }
+        .logo-text .name { font-size: 18px; font-weight: 800; color: var(--navy); }
+        .logo-text .sub { font-size: 12px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-links { display: flex; gap: 28px; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--text); font-weight: 600; font-size: 14px; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--primary-light); }
+        .nav-cta {
+            background: var(--primary-light);
+            color: white; border: none;
+            padding: 10px 24px; border-radius: 50px;
+            font-weight: 700; font-size: 14px; cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(52,152,219,0.3); }
+        /* Hero */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 80px 5%;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--primary-dark) 100%);
+            color: white;
+            gap: 40px;
+        }
+        .hero-content { flex: 1; max-width: 550px; }
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+        .hero h1 .accent { color: var(--primary-light); }
+        .hero p {
+            font-size: 18px;
+            opacity: 0.85;
+            margin-bottom: 32px;
+        }
+        .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+        .btn-primary {
+            background: var(--primary-light);
+            color: white; border: none;
+            padding: 16px 36px; border-radius: 50px;
+            font-weight: 700; font-size: 16px; cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none; display: inline-block;
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(52,152,219,0.4); }
+        .btn-gold {
+            background: #d4af37;
+            color: var(--navy); border: none;
+            padding: 16px 36px; border-radius: 50px;
+            font-weight: 700; font-size: 16px; cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none; display: inline-block;
+        }
+        .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(212,175,55,0.4); }
+        /* Consultation Card */
+        .consult-card {
+            flex: 1;
+            max-width: 400px;
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 36px;
+            box-shadow: var(--shadow-lg);
+        }
+        .consult-card h3 { font-size: 22px; color: var(--navy); margin-bottom: 8px; }
+        .consult-card p { font-size: 14px; color: var(--muted); margin-bottom: 24px; }
+        .form-group { margin-bottom: 16px; }
+        .form-group label { font-size: 13px; font-weight: 600; color: var(--text); display: block; margin-bottom: 6px; }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: inherit;
+            transition: border-color 0.2s;
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-light);
+        }
+        .form-group textarea { resize: vertical; min-height: 80px; }
+        .consult-card .btn-primary { width: 100%; text-align: center; margin-top: 8px; }
+        /* Trust Bar */
+        .trust-bar {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            padding: 30px 5%;
+            background: var(--white);
+            box-shadow: var(--shadow);
+            flex-wrap: wrap;
+        }
+        .trust-item { display: flex; align-items: center; gap: 12px; }
+        .trust-item .trust-icon {
+            width: 44px; height: 44px;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px;
+        }
+        .trust-item strong { display: block; font-size: 15px; color: var(--text); }
+        .trust-item span { font-size: 13px; color: var(--muted); }
+        /* Services */
+        .services {
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .section-header h2 { font-size: 36px; font-weight: 800; color: var(--navy); letter-spacing: -0.5px; }
+        .section-header p { font-size: 16px; color: var(--muted); margin-top: 10px; }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+        .service-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 36px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid var(--primary-light);
+        }
+        .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+        .service-card .service-icon {
+            width: 56px; height: 56px;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .service-card h3 { font-size: 20px; color: var(--navy); margin-bottom: 12px; }
+        .service-card p { font-size: 14px; color: var(--muted); line-height: 1.7; }
+        .service-card ul { list-style: none; margin-top: 12px; }
+        .service-card ul li { font-size: 14px; color: var(--muted); padding: 4px 0; }
+        .service-card ul li::before { content: "→ "; color: var(--primary-light); font-weight: 700; }
+        /* About */
+        .about {
+            padding: 80px 5%;
+            background: linear-gradient(135deg, #eef5fb 0%, var(--bg) 100%);
+        }
+        .about-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+        .about-text { flex: 1; min-width: 300px; }
+        .about-text h2 { font-size: 34px; font-weight: 800; color: var(--navy); margin-bottom: 20px; }
+        .about-text p { font-size: 17px; color: var(--muted); line-height: 1.8; margin-bottom: 16px; }
+        .about-features { display: flex; gap: 30px; margin-top: 28px; flex-wrap: wrap; }
+        .about-feature { display: flex; align-items: center; gap: 10px; }
+        .about-feature .check {
+            width: 30px; height: 30px;
+            background: var(--green);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 16px; flex-shrink: 0;
+        }
+        .about-feature span { font-weight: 600; color: var(--text); font-size: 14px; }
+        .about-visual { flex: 1; min-width: 250px; display: flex; flex-direction: column; gap: 16px; }
+        .stat-badge {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 24px;
+            box-shadow: var(--shadow);
+            display: flex; align-items: center;
+            gap: 16px;
+        }
+        .stat-badge .badge-icon {
+            width: 48px; height: 48px;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 22px;
+        }
+        .stat-badge h4 { font-size: 16px; color: var(--navy); }
+        .stat-badge p { font-size: 13px; color: var(--muted); }
+        /* Tax Tools */
+        .tax-tools {
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+        .tool-card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 24px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        .tool-card:hover { transform: translateY(-4px); }
+        .tool-card .tool-icon { font-size: 28px; margin-bottom: 14px; }
+        .tool-card h4 { font-size: 15px; color: var(--navy); margin-bottom: 6px; }
+        .tool-card p { font-size: 13px; color: var(--muted); }
+        /* FAQ */
+        .faq { padding: 60px 5%; max-width: 800px; margin: 0 auto; }
+        .faq-item {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 24px;
+            margin-bottom: 12px;
+            box-shadow: var(--shadow);
+        }
+        .faq-item h4 { font-size: 16px; color: var(--navy); margin-bottom: 10px; }
+        .faq-item p { font-size: 15px; color: var(--muted); }
+        /* CTA */
+        .cta {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+            padding: 80px 5%;
+            text-align: center;
+            color: white;
+        }
+        .cta h2 { font-size: 36px; font-weight: 800; margin-bottom: 16px; }
+        .cta p { font-size: 18px; opacity: 0.9; margin-bottom: 40px; }
+        .contact-grid {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        .contact-item { display: flex; align-items: center; gap: 12px; font-size: 16px; }
+        .contact-item .contact-icon {
+            width: 44px; height: 44px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px;
+        }
+        .contact-item strong { display: block; }
+        .contact-item span { font-size: 14px; opacity: 0.8; }
+        .cta .btn-gold { background: #d4af37; color: var(--navy); }
+        /* Footer */
+        footer {
+            background: var(--navy);
+            color: rgba(255,255,255,0.7);
+            padding: 40px 5%;
+            text-align: center;
+        }
+        footer p { font-size: 14px; margin-bottom: 8px; }
+        footer .footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 20px; flex-wrap: wrap; }
+        footer .footer-links a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 14px; }
+        footer .footer-links a:hover { color: var(--primary-light); }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero { flex-direction: column; text-align: center; padding: 50px 5%; }
+            .hero h1 { font-size: 32px; }
+            .hero-buttons { justify-content: center; }
+            .consult-card { max-width: 100%; }
+            .about-container { flex-direction: column; }
+            .section-header h2 { font-size: 26px; }
+            .cta h2 { font-size: 26px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Preview Banner -->
+    <div class="preview-banner">
+        📊 This is a <strong>free preview</strong> created by <strong>Elio</strong> — not the live site. Like what you see? <a href="#contact">Let's talk</a>.
+    </div>
+
+    <!-- Nav -->
+    <nav>
+        <div class="logo">
+            <div class="logo-badge">I</div>
+            <div class="logo-text">
+                <span class="name">Ivy Tax</span>
+                <span class="sub">Accounting Services</span>
+            </div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#tools">Tax Center</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Free Consultation</button>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Your Expert <span class="accent">Accountant</span> and Tax Advisor</h1>
+            <p>Professional, experienced, and affordable accounting services for business owners, executives, and independent professionals in NYC.</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn-gold">Schedule Free Consultation</a>
+                <a href="#services" class="btn-primary">Explore Services</a>
+            </div>
+        </div>
+        <div class="consult-card">
+            <h3>Get Your Free Consultation</h3>
+            <p>We'll help you with your accounting or tax situation — no obligation.</p>
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" placeholder="Your name">
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" placeholder="you@email.com">
+            </div>
+            <div class="form-group">
+                <label>Phone</label>
+                <input type="tel" placeholder="(212) 555-0000">
+            </div>
+            <div class="form-group">
+                <label>How can we help?</label>
+                <textarea placeholder="Tell us about your tax or accounting needs..."></textarea>
+            </div>
+            <a href="mailto:info@healthytaxes.com" class="btn-primary">Schedule Consultation</a>
+        </div>
+    </section>
+
+    <!-- Trust Bar -->
+    <div class="trust-bar">
+        <div class="trust-item">
+            <div class="trust-icon">📋</div>
+            <div><strong>Licensed in NY</strong><span>Certified professionals</span></div>
+        </div>
+        <div class="trust-item">
+            <div class="trust-icon">🆓</div>
+            <div><strong>Free Consultation</strong><span>No obligation</span></div>
+        </div>
+        <div class="trust-item">
+            <div class="trust-icon">🔒</div>
+            <div><strong>IRS Problem Resolution</strong><span>We've got your back</span></div>
+        </div>
+        <div class="trust-item">
+            <div class="trust-icon">📈</div>
+            <div><strong>QuickBooks Experts</strong><span>Get more from your software</span></div>
+        </div>
+    </div>
+
+    <!-- Services -->
+    <section class="services" id="services">
+        <div class="section-header">
+            <h2>Our Services</h2>
+            <p>A broad range of services for business owners, executives, and independent professionals</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">👤</div>
+                <h3>Individual Services</h3>
+                <p>Personal tax preparation and planning, financial planning, and expert guidance for individuals and couples.</p>
+                <ul>
+                    <li>Tax preparation</li>
+                    <li>Financial planning</li>
+                    <li>Family tax strategies</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💼</div>
+                <h3>Business Services</h3>
+                <p>Full-service accounting for small and mid-size businesses — from bookkeeping to payroll to financial reporting.</p>
+                <ul>
+                    <li>Bookkeeping</li>
+                    <li>Payroll management</li>
+                    <li>Business tax filing</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📋</div>
+                <h3>Tax Services</h3>
+                <p>Today's tax laws are complicated. Don't overlook deductions and credits you're entitled to — let an expert handle it.</p>
+                <ul>
+                    <li>Tax preparation</li>
+                    <li>Tax planning</li>
+                    <li>IRS problem resolution</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <h3>QuickBooks Services</h3>
+                <p>Get the most out of QuickBooks with expert setup, training, and ongoing optimization for your business.</p>
+                <ul>
+                    <li>QuickBooks setup</li>
+                    <li>Training & support</li>
+                    <li>Optimization</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="about" id="about">
+        <div class="about-container">
+            <div class="about-text">
+                <h2>Accounting Is What We Do Best</h2>
+                <p>Ivy Tax and Accounting Services is licensed in NY and specializes in Accounting. We are professional, experienced, and affordable. We offer a broad range of services for business owners, executives, and independent professionals.</p>
+                <p>Today's tax laws are complicated. Filing a relatively simple return can be confusing. It is just too easy to overlook deductions and credits to which you are entitled. Even if you use a computer software program, there's no substitute for the assistance of an experienced tax professional.</p>
+                <div class="about-features">
+                    <div class="about-feature"><div class="check">✓</div><span>NY Licensed</span></div>
+                    <div class="about-feature"><div class="check">✓</div><span>Free consultation</span></div>
+                    <div class="about-feature"><div class="check">✓</div><span>Affordable rates</span></div>
+                </div>
+            </div>
+            <div class="about-visual">
+                <div class="stat-badge">
+                    <div class="badge-icon">🏆</div>
+                    <div><h4>Leading Local Firm</h4><p>Trusted by NYC businesses & individuals</p></div>
+                </div>
+                <div class="stat-badge">
+                    <div class="badge-icon">🛡️</div>
+                    <div><h4>IRS Problem Resolution</h4><p>Put an end to IRS stress</p></div>
+                </div>
+                <div class="stat-badge">
+                    <div class="badge-icon">📍</div>
+                    <div><h4>Midtown Manhattan</h4><p>1350 6th Avenue, 2nd Floor</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tax Tools -->
+    <section class="tax-tools" id="tools">
+        <div class="section-header">
+            <h2>Tax Center</h2>
+            <p>Tools and resources to help you stay on top of your taxes</p>
+        </div>
+        <div class="tools-grid">
+            <div class="tool-card"><div class="tool-icon">💰</div><h4>Track Your Refund</h4><p>Check your refund status</p></div>
+            <div class="tool-card"><div class="tool-icon">📅</div><h4>Tax Due Dates</h4><p>Never miss a deadline</p></div>
+            <div class="tool-card"><div class="tool-icon">💵</div><h4>Tax Rates</h4><p>Current tax rates</p></div>
+            <div class="tool-card"><div class="tool-icon">📁</div><h4>Record Retention</h4><p>What to keep & how long</p></div>
+            <div class="tool-card"><div class="tool-icon">🗂️</div><h4>State Tax Forms</h4><p>Forms for your state</p></div>
+            <div class="tool-card"><div class="tool-icon">🧮</div><h4>Calculators</h4><p>Financial calculators</p></div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+        <div class="section-header">
+            <h2>Common Questions</h2>
+        </div>
+        <div class="faq-item">
+            <h4>My company's books are a nightmare. Where do I start?</h4>
+            <p>We take care of your books for you, so you can get back to the job of running your business and generating profits.</p>
+        </div>
+        <div class="faq-item">
+            <h4>I'm spending all my time managing payroll.</h4>
+            <p>Let us handle your payroll management so you can focus on growing your business.</p>
+        </div>
+        <div class="faq-item">
+            <h4>I use QuickBooks but I'm not sure I'm getting the most out of it.</h4>
+            <p>Our QuickBooks experts can optimize your setup and train you to get maximum value from the software.</p>
+        </div>
+        <div class="faq-item">
+            <h4>I made a mistake on my taxes.</h4>
+            <p>We can help you correct filing errors and communicate with the IRS on your behalf.</p>
+        </div>
+        <div class="faq-item">
+            <h4>I need help planning my family's financial future.</h4>
+            <p>Our financial planning services help you build a strategy for long-term family financial health.</p>
+        </div>
+    </section>
+
+    <!-- CTA / Contact -->
+    <section class="cta" id="contact">
+        <h2>Ready to Get Your Taxes in Order?</h2>
+        <p>Call us today for a free consultation — we'll help you find your path to healthy taxes.</p>
+        <div class="contact-grid">
+            <div class="contact-item">
+                <div class="contact-icon">📞</div>
+                <div><strong>(212) 279-9000</strong><span>Call us</span></div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">✉️</div>
+                <div><strong>info@healthytaxes.com</strong><span>Email us</span></div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">📍</div>
+                <div><strong>1350 6th Avenue, 2nd Floor</strong><span>New York, NY 10019</span></div>
+            </div>
+        </div>
+        <a href="mailto:info@healthytaxes.com" class="btn-gold">Get Your Free Consultation</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#tools">Tax Center</a>
+            <a href="#faq">FAQ</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <p>© 2026 Ivy Tax and Accounting Services. All Rights Reserved.</p>
+        <p style="font-size: 12px; margin-top: 10px; opacity: 0.5;">This is a preview website created by Elio — not the official Ivy Tax site.</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+<!-- WhatsApp Contact Button -->
+<a href="https://wa.me/+9233390025902" target="_blank" style="position:fixed;bottom:30px;left:30px;z-index:999;background:#25D366;color:white;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(37,211,102,0.5);transition:transform 0.3s;cursor:pointer;text-decoration:none;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'" title="Chat with us on WhatsApp"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297.149-1.255.223-1.679.223-.62 0-1.225-.046-1.782-.158-.287-.057-.584-.124-.884-.124-.246 0-.49.036-.724.107-.399.121-.772.323-1.134.547-.51.316-.997.683-1.513.999-.413.253-.847.476-1.301.634-.473.165-.967.237-1.463.237-.553 0-1.106-.086-1.633-.257-.431-.14-.841-.342-1.221-.598-.358-.241-.689-.531-.99-.846-.293-.307-.557-.648-.776-1.012-.21-.349-.382-.722-.516-1.106-.124-.356-.21-.727-.262-1.101-.046-.333-.069-.671-.069-1.009 0-.475.069-.951.206-1.406.137-.455.342-.887.598-1.287.262-.41.581-.776.93-1.106.358-.338.758-.626 1.187-.854.431-.229.887-.404 1.357-.523.471-.119.96-.179 1.45-.179.515 0 1.027.065 1.526.193.5.129.981.319 1.433.567.453.249.873.558 1.249.916.377.359.71.776.989 1.234.279.459.491.961.629 1.484.137.523.206 1.069.206 1.614 0 .316-.027.629-.08.938-.052.31-.131.614-.234.911-.103.296-.231.583-.382.857-.151.275-.323.537-.516.785-.192.249-.405.481-.638.697-.232.217-.484.414-.752.591-.268.177-.552.331-.849.462-.296.131-.605.238-.923.32-.317.082-.642.139-.971.172-.329.032-.66.049-.991.049-.43 0-.858-.039-1.28-.117-.421-.077-.836-.194-1.236-.349-.4-.155-.784-.349-1.146-.583-.362-.234-.702-.506-1.015-.816-.313-.31-.598-.648-.854-1.009-.257-.361-.485-.746-.683-1.146-.198-.4-.366-.816-.504-1.246-.137-.43-.236-.872-.296-1.32-.06-.449-.09-.902-.09-1.355 0-.355.027-.711.08-1.062.052-.352.13-.699.234-1.038.103-.339.231-.671.382-.994.151-.323.323-.635.516-.937.192-.303.405-.591.638-.864.232-.273.484-.527.752-.762.268-.235.552-.451.849-.648.296-.197.605-.375.923-.534.317-.158.642-.298.971-.419.329-.121.66-.223.991-.307.329-.083.66-.146.991-.189.329-.043.66-.065.991-.065.43 0 .858.039 1.28.117.421.078.836.195 1.236.35.4.155.784.349 1.146.583.362.234.702.506 1.015.816.313.31.598.648.854 1.009.257.362.485.746.683 1.146.198.4.366.816.504 1.246.137.43.236.872.296 1.32.06.449.09.902.09 1.355 0 .355-.027.711-.08 1.062-.052.352-.13.699-.234 1.038-.103.339-.231.671-.382.994-.151.323-.323.635-.516.937-.192.303-.405.591-.638.864-.232.273-.484.527-.752.762-.268.235-.552.451-.849.648-.296.197-.605.375-.923.534-.317.158-.642.298-.971.419-.329.121-.66.223-.991.307z"/></svg></a>
+</body>
+</html>
