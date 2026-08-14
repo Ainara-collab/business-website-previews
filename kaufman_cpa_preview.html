@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Irwin Kaufman CPA | Financial Expertise in Brooklyn</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script>
+tailwind.config = {
+theme: {
+extend: {
+fontFamily: { sans: ['DM Sans', 'sans-serif'] },
+colors: {
+slate: { 950: '#0c0f1a', 900: '#111628' },
+indigo: { 600: '#4f46e5', 500: '#6366f1', 400: '#818cf8' }
+}
+}
+}
+}
+</script>
+<style>
+body { font-family: 'DM Sans', sans-serif; background-color: #0c0f1a; color: #f8fafc; overflow-x: hidden; }
+.indigo-glass { background: rgba(17, 22, 40, 0.7); backdrop-filter: blur(16px); border: 1px solid rgba(99, 102, 241, 0.2); transition: all 0.3s ease; }
+.indigo-glass:hover { border-color: rgba(99, 102, 241, 0.5); box-shadow: 0 10px 30px -10px rgba(99, 102, 241, 0.3); transform: translateY(-4px); }
+.glow-orb { position: absolute; border-radius: 50%; filter: blur(110px); pointer-events: none; }
+.fade-up { opacity: 0; transform: translateY(25px); transition: all 0.7s ease; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+.accordion-panel { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+.accordion-panel.show { max-height: 200px; }
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #0c0f1a; }
+::-webkit-scrollbar-thumb { background: #6366f1; border-radius: 4px; }
+</style>
+</head>
+<body class="relative">
+<div id="scroll-bar" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 z-50 transition-all duration-100" style="width: 0%"></div>
+<div class="glow-orb w-[500px] h-[500px] bg-indigo-600/15 top-0 right-[-100px]"></div>
+<div class="glow-orb w-[400px] h-[400px] bg-purple-600/10 top-[1200px] left-[-100px]"></div>
+<header class="sticky top-0 z-40 bg-slate-950/85 backdrop-blur-md border-b border-indigo-900/40">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+<a href="#" class="flex items-center space-x-3">
+<div class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-extrabold text-xl shadow-lg shadow-indigo-600/30">IK</div>
+<div>
+<span class="text-xl font-extrabold tracking-tight text-white block leading-none">IRWIN KAUFMAN</span>
+<span class="text-[10px] text-indigo-400 font-bold tracking-widest uppercase">Certified Public Accountant</span>
+</div>
+</a>
+<nav class="hidden md:flex space-x-8 text-sm font-medium text-slate-300">
+<a href="#credentials" class="hover:text-indigo-400 transition-colors">Credentials</a>
+<a href="#services" class="hover:text-indigo-400 transition-colors">Services</a>
+<a href="#pricing" class="hover:text-indigo-400 transition-colors">Pricing</a>
+<a href="#timeline" class="hover:text-indigo-400 transition-colors">Process</a>
+<a href="#faq" class="hover:text-indigo-400 transition-colors">FAQ</a>
+</nav>
+<div class="hidden md:flex items-center space-x-4">
+<a href="tel:7185550188" class="text-sm font-bold text-slate-300 hover:text-indigo-400"><i class="fa-solid fa-phone text-indigo-400 mr-1"></i> (718) 555-0188</a>
+<a href="#contact" class="px-5 py-2.5 text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-500 rounded-xl shadow-lg shadow-indigo-600/30 transition-all">Consultation</a>
+</div>
+<button id="menu-btn" class="md:hidden text-slate-300 text-2xl focus:outline-none"><i class="fa-solid fa-bars"></i></button>
+</div>
+<div id="kaufman-mobile-menu" class="hidden md:hidden bg-slate-950 border-b border-indigo-900 px-6 py-6 space-y-4">
+<a href="#credentials" class="block text-slate-300 hover:text-indigo-400">Credentials</a>
+<a href="#services" class="block text-slate-300 hover:text-indigo-400">Services</a>
+<a href="#pricing" class="block text-slate-300 hover:text-indigo-400">Pricing</a>
+<a href="#timeline" class="block text-slate-300 hover:text-indigo-400">Process</a>
+<a href="#faq" class="block text-slate-300 hover:text-indigo-400">FAQ</a>
+<a href="#contact" class="block text-center py-3 text-white bg-indigo-600 rounded-xl font-bold">Book Consultation</a>
+</div>
+</header>
+<section class="relative pt-24 pb-20 md:pt-36 md:pb-32 overflow-hidden flex items-center">
+<div class="absolute inset-0 z-0">
+<img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1800&q=80" alt="CPA Office" class="w-full h-full object-cover opacity-20">
+<div class="absolute inset-0 bg-gradient-to-t from-[#0c0f1a] via-[#0c0f1a]/80 to-transparent"></div>
+</div>
+<div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+<div class="max-w-4xl mx-auto space-y-8">
+<div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 text-xs font-bold uppercase">
+<i class="fa-solid fa-award"></i><span>Decades of Trusted Financial Expertise in Brooklyn</span>
+</div>
+<h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-tight">
+Decades of trusted financial expertise <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-300 to-indigo-200">in Brooklyn</span>
+</h1>
+<p class="text-lg text-slate-300 font-normal leading-relaxed max-w-2xl mx-auto">
+Strategic tax advisory, high-net-worth estate planning, and corporate CPA accounting tailored specifically to Brooklyn business leaders.
+</p>
+<div class="flex flex-col sm:flex-row justify-center gap-4">
+<a href="#contact" class="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white bg-indigo-600 hover:bg-indigo-500 rounded-xl shadow-xl shadow-indigo-600/30 transition-all hover:scale-105 group">
+Book CPA Consultation <i class="fa-solid fa-arrow-right ml-3 group-hover:translate-x-1 transition-transform"></i>
+</a>
+<a href="#services" class="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-slate-200 bg-slate-900/80 border border-slate-700 rounded-xl transition-all">View Practice Areas</a>
+</div>
+</div>
+</div>
+</section>
+<section id="credentials" class="py-12 bg-slate-900/90 border-y border-indigo-900/40 relative z-10">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex flex-wrap justify-around items-center gap-6 text-center text-xs text-slate-400 font-semibold">
+<div class="flex items-center gap-3">
+<i class="fa-solid fa-shield-check text-indigo-400 text-2xl"></i>
+<div class="text-left"><span class="block text-white font-bold text-sm">NY State Licensed CPA</span><span>License # 0849201</span></div>
+</div>
+<div class="flex items-center gap-3">
+<i class="fa-solid fa-building-columns text-indigo-400 text-2xl"></i>
+<div class="text-left"><span class="block text-white font-bold text-sm">AICPA Member</span><span>American Inst. of CPAs</span></div>
+</div>
+<div class="flex items-center gap-3">
+<i class="fa-solid fa-scale-balanced text-indigo-400 text-2xl"></i>
+<div class="text-left"><span class="block text-white font-bold text-sm">IRS Representation</span><span>Authorized Practitioner</span></div>
+</div>
+<div class="flex items-center gap-3">
+<i class="fa-solid fa-star text-indigo-400 text-2xl"></i>
+<div class="text-left"><span class="block text-white font-bold text-sm">5.0 Star Rated</span><span>Brooklyn Business Journal</span></div>
+</div>
+</div>
+</div>
+</section>
+<section id="services" class="py-24 relative z-10">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center max-w-3xl mx-auto mb-16 fade-up">
+<h2 class="text-xs font-semibold text-indigo-400 uppercase tracking-widest mb-2">Practice Areas</h2>
+<p class="text-3xl font-extrabold text-white">Bespoke Financial & Tax Solutions</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="indigo-glass p-8 rounded-2xl fade-up group">
+<div class="w-12 h-12 rounded-xl bg-indigo-600/20 text-indigo-400 flex items-center justify-center text-xl mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-all"><i class="fa-solid fa-calculator"></i></div>
+<h3 class="text-xl font-bold text-white mb-2">CPA Tax Preparation</h3>
+<p class="text-slate-400 text-sm mb-4">High-precision tax compliance for individuals, partnerships, and corporations.</p>
+<a href="#contact" class="text-xs font-bold text-indigo-400 flex items-center gap-1">Schedule Review <i class="fa-solid fa-chevron-right text-[10px]"></i></a>
+</div>
+<div class="indigo-glass p-8 rounded-2xl fade-up group">
+<div class="w-12 h-12 rounded-xl bg-indigo-600/20 text-indigo-400 flex items-center justify-center text-xl mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-all"><i class="fa-solid fa-chart-line"></i></div>
+<h3 class="text-xl font-bold text-white mb-2">Corporate Advisory</h3>
+<p class="text-slate-400 text-sm mb-4">Strategic financial planning, balance sheet optimization, and capital allocation.</p>
+<a href="#contact" class="text-xs font-bold text-indigo-400 flex items-center gap-1">Schedule Review <i class="fa-solid fa-chevron-right text-[10px]"></i></a>
+</div>
+<div class="indigo-glass p-8 rounded-2xl fade-up group">
+<div class="w-12 h-12 rounded-xl bg-indigo-600/20 text-indigo-400 flex items-center justify-center text-xl mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-all"><i class="fa-solid fa-gavel"></i></div>
+<h3 class="text-xl font-bold text-white mb-2">IRS Audit Defense</h3>
+<p class="text-slate-400 text-sm mb-4">Aggressive representation in federal and state audits and tax debt negotiation.</p>
+<a href="#contact" class="text-xs font-bold text-indigo-400 flex items-center gap-1">Schedule Review <i class="fa-solid fa-chevron-right text-[10px]"></i></a>
+</div>
+<div class="indigo-glass p-8 rounded-2xl fade-up group">
+<div class="w-12 h-12 rounded-xl bg-indigo-600/20 text-indigo-400 flex items-center justify-center text-xl mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-all"><i class="fa-solid fa-vault"></i></div>
+<h3 class="text-xl font-bold text-white mb-2">Estate & Trust Strategy</h3>
+<p class="text-slate-400 text-sm mb-4">Preserving wealth through trust structuring, gift tax strategy, and legacy planning.</p>
+<a href="#contact" class="text-xs font-bold text-indigo-400 flex items-center gap-1">Schedule Review <i class="fa-solid fa-chevron-right text-[10px]"></i></a>
+</div>
+<div class="indigo-glass p-8 rounded-2xl fade-up group">
+<div class="w-12 h-12 rounded-xl bg-indigo-600/20 text-indigo-400 flex items-center justify-center text-xl mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-all"><i class="fa-solid fa-receipt"></i></div>
+<h3 class="text-xl font-bold text-white mb-2">Bookkeeping & Accounting</h3>
+<p class="text-slate-400 text-sm mb-4">Monthly ledger accounting, financial statement preparation, and general ledger auditing.</p>
+<a href="#contact" class="text-xs font-bold text-indigo-400 flex items-center gap-1">Schedule Review <i class="fa-solid fa-chevron-right text-[10px]"></i></a>
+</div>
+<div class="indigo-glass p-8 rounded-2xl fade-up group">
+<div class="w-12 h-12 rounded-xl bg-indigo-600/20 text-indigo-400 flex items-center justify-center text-xl mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-all"><i class="fa-solid fa-handshake"></i></div>
+<h3 class="text-xl font-bold text-white mb-2">Real Estate Tax Advisory</h3>
+<p class="text-slate-400 text-sm mb-4">Specialized 1031 exchange guidance and cost segregation for Brooklyn investors.</p>
+<a href="#contact" class="text-xs font-bold text-indigo-400 flex items-center gap-1">Schedule Review <i class="fa-solid fa-chevron-right text-[10px]"></i></a>
+</div>
+</div>
+</div>
+</section>
+<section id="timeline" class="py-24 bg-slate-900/50 border-t border-indigo-900/40 relative z-10">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center max-w-3xl mx-auto mb-16 fade-up">
+<h2 class="text-xs font-semibold text-indigo-400 uppercase tracking-widest mb-2">Excellence in Action</h2>
+<p class="text-3xl font-extrabold text-white">Our 5-Stage Advisory Workflow</p>
+</div>
+<div class="relative border-l-2 border-indigo-600/40 ml-4 md:ml-32 space-y-10">
+<div class="relative pl-8 md:pl-12 fade-up">
+<div class="absolute -left-[17px] top-0 w-8 h-8 rounded-full bg-indigo-600 text-white font-bold flex items-center justify-center text-xs">1</div>
+<h4 class="text-lg font-bold text-white mb-1">Stage 1: Discovery Consultation</h4>
+<p class="text-xs text-slate-400">Comprehensive review of financial posture and prior returns.</p>
+</div>
+<div class="relative pl-8 md:pl-12 fade-up">
+<div class="absolute -left-[17px] top-0 w-8 h-8 rounded-full bg-indigo-600 text-white font-bold flex items-center justify-center text-xs">2</div>
+<h4 class="text-lg font-bold text-white mb-1">Stage 2: Secure Document Ingestion</h4>
+<p class="text-xs text-slate-400">Confidential data gathering via encrypted client portal.</p>
+</div>
+<div class="relative pl-8 md:pl-12 fade-up">
+<div class="absolute -left-[17px] top-0 w-8 h-8 rounded-full bg-indigo-600 text-white font-bold flex items-center justify-center text-xs">3</div>
+<h4 class="text-lg font-bold text-white mb-1">Stage 3: CPA Deduction Audit</h4>
+<p class="text-xs text-slate-400">Personal review by Irwin Kaufman to apply tax minimization techniques.</p>
+</div>
+<div class="relative pl-8 md:pl-12 fade-up">
+<div class="absolute -left-[17px] top-0 w-8 h-8 rounded-full bg-indigo-600 text-white font-bold flex items-center justify-center text-xs">4</div>
+<h4 class="text-lg font-bold text-white mb-1">Stage 4: Precision E-Filing</h4>
+<p class="text-xs text-slate-400">Direct transmission to federal and state tax agencies.</p>
+</div>
+<div class="relative pl-8 md:pl-12 fade-up">
+<div class="absolute -left-[17px] top-0 w-8 h-8 rounded-full bg-indigo-600 text-white font-bold flex items-center justify-center text-xs">5</div>
+<h4 class="text-lg font-bold text-white mb-1">Stage 5: Year-Round Tax Strategy</h4>
+<p class="text-xs text-slate-400">Continuous updates as NY state and federal codes evolve.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="py-16 bg-slate-950 border-y border-indigo-900/40 relative z-10">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+<div><div class="text-4xl font-extrabold text-indigo-400 font-mono kaufman-counter" data-target="25">0</div><div class="text-xs text-slate-400 uppercase mt-1 font-semibold">Years in Practice</div></div>
+<div><div class="text-4xl font-extrabold text-indigo-400 font-mono kaufman-counter" data-target="3400">0</div><div class="text-xs text-slate-400 uppercase mt-1 font-semibold">Brooklyn Clients</div></div>
+<div><div class="text-4xl font-extrabold text-indigo-400 font-mono kaufman-counter" data-target="15000">0</div><div class="text-xs text-slate-400 uppercase mt-1 font-semibold">Tax Returns Filed</div></div>
+<div><div class="text-4xl font-extrabold text-indigo-400 font-mono kaufman-counter" data-target="100">0</div><div class="text-xs text-slate-400 uppercase mt-1 font-semibold">% Audit Success Rate</div></div>
+</div>
+</div>
+</section>
+<section id="pricing" class="py-24 relative z-10">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center max-w-3xl mx-auto mb-16 fade-up">
+<h2 class="text-xs font-semibold text-indigo-400 uppercase tracking-widest mb-2">Transparent Fees</h2>
+<p class="text-3xl font-extrabold text-white">CPA Services Pricing</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="indigo-glass p-8 rounded-3xl flex flex-col justify-between fade-up">
+<div>
+<div class="text-xs font-bold text-indigo-400 uppercase mb-2">Individual CPA</div>
+<h3 class="text-2xl font-bold text-white mb-3">Personal Executive</h3>
+<div class="text-4xl font-extrabold text-white mb-6">$450 <span class="text-xs font-normal text-slate-400">/ return</span></div>
+<ul class="space-y-3 text-xs text-slate-300 mb-8">
+<li class="flex items-center gap-2"><i class="fa-solid fa-check text-indigo-400"></i> Federal & NY State Returns</li>
+<li class="flex items-center gap-2"><i class="fa-solid fa-check text-indigo-400"></i> Capital Gains & Dividend Planning</li>
+<li class="flex items-center gap-2"><i class="fa-solid fa-check text-indigo-400"></i> Direct CPA Consultation</li>
+</ul>
+</div>
+<a href="#contact" class="w-full text-center py-3 rounded-xl font-bold text-white bg-slate-900 border border-indigo-900 hover:bg-slate-800 transition-all">Schedule Appointment</a>
+</div>
+<div class="indigo-glass p-8 rounded-3xl flex flex-col justify-between fade-up border-2 border-indigo-500 bg-slate-900/90 shadow-2xl relative">
+<div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-indigo-600 text-white text-[10px] font-bold uppercase">Popular Choice</div>
+<div>
+<div class="text-xs font-bold text-indigo-400 uppercase mb-2">Corporate & LLC</div>
+<h3 class="text-2xl font-bold text-white mb-3">Business Tax & Accounting</h3>
+<div class="text-4xl font-extrabold text-white mb-6">$750 <span class="text-xs font-normal text-slate-400">/ month</span></div>
+<ul class="space-y-3 text-xs text-slate-300 mb-8">
+<li class="flex items-center gap-2"><i class="fa-solid fa-check text-indigo-400"></i> Corporate Returns (1120/1120S/1065)</li>
+<li class="flex items-center gap-2"><i class="fa-solid fa-check text-indigo-400"></i> Monthly Financial Statements</li>
+<li class="flex items-center gap-2"><i class="fa-solid fa-check text-indigo-400"></i> Payroll & Sales Tax Processing</li>
+</ul>
+</div>
+<a href="#contact" class="w-full text-center py-3 rounded-xl font-bold text-white bg-indigo-600 hover:bg-indigo-500 transition-all">Select Business Plan</a>
+</div>
+<div class="indigo-glass p-8 rounded-3xl flex flex-col justify-between fade-up">
+<div>
+<div class="text-xs font-bold text-indigo-400 uppercase mb-2">Wealth Advisory</div>
+<h3 class="text-2xl font-bold text-white mb-3">Estate & Enterprise</h3>
+<div class="text-4xl font-extrabold text-white mb-6">$1,500 <span class="text-xs font-normal text-slate-400">/ month</span></div>
+<ul class="space-y-3 text-xs text-slate-300 mb-8">
+<li class="flex items-center gap-2"><i class="fa-solid fa-check text-indigo-400"></i> High-Net-Worth Wealth Planning</li>
+<li class="flex items-center gap-2"><i class="fa-solid fa-check text-indigo-400"></i> Unlimited IRS Representation</li>
+<li class="flex items-center gap-2"><i class="fa-solid fa-check text-indigo-400"></i> Estate & Trust Tax Compliance</li>
+</ul>
+</div>
+<a href="#contact" class="w-full text-center py-3 rounded-xl font-bold text-white bg-slate-900 border border-indigo-900 hover:bg-slate-800 transition-all">Contact Office</a>
+</div>
+</div>
+</div>
+</section>
+<section class="py-20 bg-slate-900/40 border-t border-indigo-900/40 relative z-10">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center max-w-3xl mx-auto mb-16 fade-up">
+<h2 class="text-xs font-semibold text-indigo-400 uppercase tracking-widest mb-2">Client Trust</h2>
+<p class="text-3xl font-extrabold text-white">Endorsed By Brooklyn Professionals</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="indigo-glass p-6 rounded-2xl fade-up">
+<p class="text-slate-300 text-xs italic mb-4">"Irwin Kaufman has been our CPA for over 12 years. His real estate tax advice saved us over $40,000."</p>
+<div class="flex items-center gap-3">
+<img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=120&q=80" alt="Client" class="w-10 h-10 rounded-full object-cover border border-indigo-500">
+<div><h5 class="text-white font-bold text-xs">Robert Goldstein</h5><span class="text-[10px] text-slate-400">Brooklyn Commercial Properties</span></div>
+</div>
+</div>
+<div class="indigo-glass p-6 rounded-2xl fade-up">
+<p class="text-slate-300 text-xs italic mb-4">"When the IRS sent an audit notice, Irwin handled every meeting personally with zero penalties."</p>
+<div class="flex items-center gap-3">
+<img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=120&q=80" alt="Client" class="w-10 h-10 rounded-full object-cover border border-indigo-500">
+<div><h5 class="text-white font-bold text-xs">Dr. Miriam Weiss</h5><span class="text-[10px] text-slate-400">Brooklyn Heights Medical</span></div>
+</div>
+</div>
+<div class="indigo-glass p-6 rounded-2xl fade-up">
+<p class="text-slate-300 text-xs italic mb-4">"The most professional CPA firm in NYC. Impeccable attention to detail and tax advice."</p>
+<div class="flex items-center gap-3">
+<img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=120&q=80" alt="Client" class="w-10 h-10 rounded-full object-cover border border-indigo-500">
+<div><h5 class="text-white font-bold text-xs">Charles Sterling</h5><span class="text-[10px] text-slate-400">Sterling Capital</span></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="faq" class="py-24 relative z-10">
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16 fade-up">
+<h2 class="text-xs font-semibold text-indigo-400 uppercase tracking-widest mb-2">Knowledge Base</h2>
+<p class="text-3xl font-extrabold text-white">Frequently Asked Questions</p>
+</div>
+<div class="space-y-4">
+<div class="indigo-glass rounded-2xl p-6 cursor-pointer faq-item">
+<div class="flex justify-between items-center font-bold text-white text-base">
+<span>Why choose a CPA over a standard tax preparer?</span>
+<i class="fa-solid fa-chevron-down text-indigo-400 text-xs transition-transform"></i>
+</div>
+<div class="accordion-panel text-slate-400 text-xs mt-3 leading-relaxed">
+CPAs pass rigorous exams, maintain state license standards, and hold unlimited representation rights before the IRS.
+</div>
+</div>
+<div class="indigo-glass rounded-2xl p-6 cursor-pointer faq-item">
+<div class="flex justify-between items-center font-bold text-white text-base">
+<span>What is your policy on electronic documents?</span>
+<i class="fa-solid fa-chevron-down text-indigo-400 text-xs transition-transform"></i>
+</div>
+<div class="accordion-panel text-slate-400 text-xs mt-3 leading-relaxed">
+All client records are encrypted with SSL protocols and stored in a private cloud vault for 24/7 client access.
+</div>
+</div>
+<div class="indigo-glass rounded-2xl p-6 cursor-pointer faq-item">
+<div class="flex justify-between items-center font-bold text-white text-base">
+<span>Do you offer year-round consultations?</span>
+<i class="fa-solid fa-chevron-down text-indigo-400 text-xs transition-transform"></i>
+</div>
+<div class="accordion-panel text-slate-400 text-xs mt-3 leading-relaxed">
+Yes, our Brooklyn office remains open year-round for tax strategy, corporate planning, and financial advisory.
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="contact" class="py-24 bg-slate-900/60 relative z-10 border-t border-indigo-900/40">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div class="space-y-6 fade-up">
+<h2 class="text-3xl sm:text-5xl font-extrabold text-white">Schedule a Private CPA Meeting</h2>
+<p class="text-slate-400 text-sm">Experience the difference decades of Brooklyn CPA expertise can make for your wealth and business.</p>
+<div class="space-y-3 pt-2 text-xs text-slate-300">
+<p><i class="fa-solid fa-location-dot text-indigo-400 mr-2"></i> 26 Court St, Suite 1204, Brooklyn, NY 11241</p>
+<p><i class="fa-solid fa-phone text-indigo-400 mr-2"></i> (718) 555-0188</p>
+<p><i class="fa-solid fa-envelope text-indigo-400 mr-2"></i> kaufman@kaufmancpa.com</p>
+</div>
+</div>
+<div class="indigo-glass p-8 rounded-3xl border-indigo-500/20 fade-up">
+<form onsubmit="event.preventDefault(); document.getElementById('kaufman-success').classList.remove('hidden');" class="space-y-4">
+<div>
+<label class="block text-xs font-bold uppercase text-slate-300 mb-1">Full Name</label>
+<input type="text" required placeholder="John Client" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-700 text-white text-xs focus:outline-none focus:border-indigo-500">
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div>
+<label class="block text-xs font-bold uppercase text-slate-300 mb-1">Email</label>
+<input type="email" required placeholder="client@example.com" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-700 text-white text-xs focus:outline-none focus:border-indigo-500">
+</div>
+<div>
+<label class="block text-xs font-bold uppercase text-slate-300 mb-1">Phone</label>
+<input type="tel" placeholder="(718) 000-0000" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-700 text-white text-xs focus:outline-none focus:border-indigo-500">
+</div>
+</div>
+<div>
+<label class="block text-xs font-bold uppercase text-slate-300 mb-1">Inquiry Details</label>
+<textarea rows="3" placeholder="Describe your tax situation..." class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-700 text-white text-xs focus:outline-none focus:border-indigo-500"></textarea>
+</div>
+<button type="submit" class="w-full py-3.5 text-white bg-indigo-600 hover:bg-indigo-500 font-bold text-xs rounded-xl transition-all">Request Consultation</button>
+<div id="kaufman-success" class="hidden text-center text-indigo-400 font-bold text-xs pt-2"><i class="fa-solid fa-circle-check"></i> Thank you! Irwin Kaufman CPA office will contact you shortly.</div>
+</form>
+</div>
+</div>
+</div>
+</section>
+<footer class="bg-slate-950 border-t border-indigo-900/60 text-slate-400 text-xs py-12 relative z-10">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded bg-indigo-600 text-white font-bold flex items-center justify-center text-xs">IK</div>
+<span class="text-white font-bold tracking-wider">IRWIN KAUFMAN CPA</span>
+</div>
+<p>&copy; 2026 Irwin Kaufman CPA Firm, Brooklyn NY. All rights reserved.</p>
+<div class="flex space-x-4">
+<a href="#" class="hover:text-indigo-400">Privacy Policy</a>
+<a href="#" class="hover:text-indigo-400">Terms of Practice</a>
+</div>
+</div>
+</footer>
+<a href="#contact" class="fixed bottom-6 right-6 z-40 px-5 py-3 rounded-full bg-indigo-600 text-white font-bold text-xs shadow-xl hover:scale-105 transition-all">
+<i class="fa-solid fa-calendar"></i> Book CPA Meeting
+</a>
+<button id="kaufman-top" class="fixed bottom-6 left-6 z-40 w-10 h-10 rounded-full bg-slate-900 border border-slate-700 text-slate-300 opacity-0 pointer-events-none transition-all hover:bg-indigo-600 hover:text-white">
+<i class="fa-solid fa-arrow-up"></i>
+</button>
+<script>
+window.addEventListener('scroll', () => {
+const top = document.documentElement.scrollTop;
+const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+document.getElementById('scroll-bar').style.width = (top / height * 100) + '%';
+const topBtn = document.getElementById('kaufman-top');
+if (top > 300) topBtn.classList.remove('opacity-0', 'pointer-events-none');
+else topBtn.classList.add('opacity-0', 'pointer-events-none');
+});
+document.getElementById('kaufman-top').addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+document.getElementById('menu-btn').addEventListener('click', () => document.getElementById('kaufman-mobile-menu').classList.toggle('hidden'));
+document.querySelectorAll('.faq-item').forEach(item => {
+item.addEventListener('click', () => {
+const panel = item.querySelector('.accordion-panel');
+const isOpen = panel.classList.contains('show');
+document.querySelectorAll('.accordion-panel').forEach(p => p.classList.remove('show'));
+if (!isOpen) panel.classList.add('show');
+});
+});
+const fadeObs = new IntersectionObserver((entries) => {
+entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => fadeObs.observe(el));
+const kCounters = document.querySelectorAll('.kaufman-counter');
+let kDone = false;
+const kObs = new IntersectionObserver((entries) => {
+if (entries[0].isIntersecting && !kDone) {
+kDone = true;
+kCounters.forEach(c => {
+const target = +c.getAttribute('data-target');
+let count = 0;
+const step = target / 40;
+const timer = setInterval(() => {
+count += step;
+if (count >= target) { c.innerText = target + '+'; clearInterval(timer); }
+else { c.innerText = Math.ceil(count) + '+'; }
+}, 30);
+});
+}
+}, { threshold: 0.5 });
+if (kCounters.length) kObs.observe(kCounters[0].parentElement.parentElement);
+</script>
+
+<!-- WhatsApp Contact Button -->
+<a href="https://wa.me/+9233390025902?text=Hi%21%20I%20just%20saw%20the%20enhanced%20website%20preview%20you%20created%20for%20my%20business%20and%20I'm%20interested%20in%20learning%20more." 
+   target="_blank"
+   style="position:fixed;bottom:30px;left:30px;z-index:999;background:#25D366;color:white;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(37,211,102,0.5);transition:transform 0.3s;cursor:pointer;text-decoration:none;"
+   onmouseover="this.style.transform='scale(1.1)'"
+   onmouseout="this.style.transform='scale(1)'"
+   title="Chat with us on WhatsApp">
+   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="white">
+     <path d="M17.472 14.382c-.297.149-1.255.223-1.679.223-.62 0-1.225-.046-1.782-.158-.287-.057-.584-.124-.884-.124-.246 0-.49.036-.724.107-.399.121-.772.323-1.134.547-.51.316-.997.683-1.513.999-.413.253-.847.476-1.301.634-.473.165-.967.237-1.463.237-.553 0-1.106-.086-1.633-.257-.431-.14-.841-.342-1.221-.598-.358-.241-.689-.531-.99-.846-.293-.307-.557-.648-.776-1.012-.21-.349-.382-.722-.516-1.106-.124-.356-.21-.727-.262-1.101-.046-.333-.069-.671-.069-1.009 0-.475.069-.951.206-1.406.137-.455.342-.887.598-1.287.262-.41.581-.776.93-1.106.358-.338.758-.626 1.187-.854.431-.229.887-.404 1.357-.523.471-.119.96-.179 1.45-.179.515 0 1.027.065 1.526.193.5.129.981.319 1.433.567.453.249.873.558 1.249.916.377.359.71.776.989 1.234.279.459.491.961.629 1.484.137.523.206 1.069.206 1.614 0 .316-.027.629-.08.938-.052.31-.131.614-.234.911-.103.296-.231.583-.382.857-.151.275-.323.537-.516.785-.192.249-.405.481-.638.697-.232.217-.484.414-.752.591-.268.177-.552.331-.849.462-.296.131-.605.238-.923.32-.317.082-.642.139-.971.172-.329.032-.66.049-.991.049-.43 0-.858-.039-1.28-.117-.421-.077-.836-.194-1.236-.349-.4-.155-.784-.349-1.146-.583-.362-.234-.702-.506-1.015-.816-.313-.31-.598-.648-.854-1.009-.257-.361-.485-.746-.683-1.146-.198-.4-.366-.816-.504-1.246-.137-.43-.236-.872-.296-1.32-.06-.449-.09-.902-.09-1.355 0-.355.027-.711.08-1.062.052-.352.13-.699.234-1.038.103-.339.231-.671.382-.994.151-.323.323-.635.516-.937.192-.303.405-.591.638-.864.232-.273.484-.527.752-.762.268-.235.552-.451.849-.648.296-.197.605-.375.923-.534.317-.158.642-.298.971-.419.329-.121.66-.223.991-.307.329-.083.66-.146.991-.189.329-.043.66-.065.991-.065.43 0 .858.039 1.28.117.421.078.836.195 1.236.35.4.155.784.349 1.146.583.362.234.702.506 1.015.816.313.31.598.648.854 1.009.257.362.485.746.683 1.146.198.4.366.816.504 1.246.137.43.236.872.296 1.32.06.449.09.902.09 1.355 0 .355-.027.711-.08 1.062-.052.352-.13.699-.234 1.038-.103.339-.231.671-.382.994-.151.323-.323.635-.516.937-.192.303-.405.591-.638.864-.232.273-.484.527-.752.762-.268.235-.552.451-.849.648-.296.197-.605.375-.923.534-.317.158-.642.298-.971.419-.329.121-.66.223-.991.307z"/>
+   </svg>
+</a>
+
+</body>
+</html>
