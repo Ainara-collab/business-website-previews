@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gaststätte Ambrosius | Traditionelle Deutsche Küche in Berlin Tiergarten</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            red: { 600: '#dc2626', 700: '#b91c1c', 800: '#991b1b', 900: '#7f1d1d' },
+            amber: { 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706' },
+            pub: { 900: '#1c1917', 950: '#140909' }
+          },
+          fontFamily: { sans: ['DM Sans', 'sans-serif'], display: ['Oswald', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { background-color: #140909; color: #fef3c7; font-family: 'DM Sans', sans-serif; overflow-x: hidden; }
+    .glass-nav { background: rgba(20, 9, 9, 0.88); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(245, 158, 11, 0.25); }
+    .glass-card { background: rgba(38, 14, 14, 0.75); backdrop-filter: blur(12px); border: 1px solid rgba(245, 158, 11, 0.2); }
+    .glass-card:hover { border-color: rgba(251, 191, 36, 0.5); box-shadow: 0 12px 35px -10px rgba(153, 27, 27, 0.4); }
+    .orb { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.22; pointer-events: none; }
+    @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
+    .animate-marquee { display: flex; width: 200%; animation: marquee 26s linear infinite; }
+    .animate-marquee:hover { animation-play-state: paused; }
+    .reveal { opacity: 0; transform: translateY(28px); transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .tilt-card { transform-style: preserve-3d; transition: transform 0.2s ease-out; }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #140909; }
+    ::-webkit-scrollbar-thumb { background: #991b1b; border-radius: 4px; }
+  </style>
+</head>
+<body class="relative min-h-screen text-amber-50">
+  <div class="orb w-96 h-96 bg-red-800 top-10 -left-28"></div>
+  <div class="orb w-[500px] h-[500px] bg-amber-600 top-[1200px] -right-32"></div>
+
+  <!-- Scroll Progress -->
+  <div id="progress-bar" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-red-600 via-amber-500 to-red-700 z-50 w-0 transition-all duration-100"></div>
+
+  <!-- Glass Nav -->
+  <header class="glass-nav fixed top-0 left-0 right-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-red-700 to-amber-500 flex items-center justify-center text-pub-950 font-bold text-xl shadow-lg">🍺</div>
+        <div>
+          <span class="font-display font-bold text-xl text-white block leading-tight tracking-wider uppercase">Gaststätte Ambrosius</span>
+          <span class="text-[10px] uppercase tracking-widest text-amber-400 font-semibold block">Traditionslokal • Tiergarten</span>
+        </div>
+      </a>
+      <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-amber-100/90">
+        <a href="#services" class="hover:text-amber-400 transition">Speisen & Bier</a>
+        <a href="#about" class="hover:text-amber-400 transition">Über Uns</a>
+        <a href="#bewertungen" class="hover:text-amber-400 transition">Stimmen</a>
+        <a href="#faq" class="hover:text-amber-400 transition">FAQ</a>
+        <a href="#kontakt" class="hover:text-amber-400 transition">Kontakt</a>
+      </nav>
+      <a href="tel:+49302640526" class="hidden md:inline-flex px-5 py-2.5 rounded-full bg-gradient-to-r from-red-700 to-amber-500 text-white font-bold text-sm shadow-lg hover:scale-105 transition">📞 +49 30 26 40 526</a>
+      <button id="mobile-menu-btn" class="md:hidden text-amber-200 p-2"><svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-pub-950/95 px-6 py-4 space-y-3 border-b border-red-800/30 text-sm">
+      <a href="#services" class="block text-amber-100">Speisen & Bier</a>
+      <a href="#about" class="block text-amber-100">Über Uns</a>
+      <a href="#bewertungen" class="block text-amber-100">Stimmen</a>
+      <a href="#faq" class="block text-amber-100">FAQ</a>
+      <a href="#kontakt" class="block text-amber-100">Kontakt</a>
+    </div>
+  </header>
+
+  <main class="pt-20">
+    <!-- Hero Section -->
+    <section class="relative min-h-[88vh] flex items-center justify-center overflow-hidden py-16">
+      <div class="absolute inset-0 z-0">
+        <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=1600&q=80" alt="Gaststätte Ambrosius Berlin Tiergarten" class="w-full h-full object-cover opacity-25">
+        <div class="absolute inset-0 bg-gradient-to-t from-[#140909] via-[#140909]/80 to-transparent"></div>
+      </div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div class="lg:col-span-7 reveal active">
+            <span class="inline-block px-4 py-1.5 rounded-full glass-card text-amber-300 text-xs font-semibold uppercase tracking-widest mb-6 border border-amber-500/30">Berliner Gemütlichkeit & Gastfreundschaft</span>
+            <h1 class="font-display text-4xl sm:text-6xl font-black text-white leading-tight mb-6 uppercase tracking-wide">
+              Traditionelle Küche. <br><span class="bg-gradient-to-r from-amber-300 via-yellow-400 to-red-400 bg-clip-text text-transparent italic">Frisch Gezapft.</span>
+            </h1>
+            <p class="text-base sm:text-lg text-amber-100/90 max-w-xl leading-relaxed mb-8">
+              Herzlich willkommen in der Gaststätte Ambrosius nahe Tiergarten. Klassische Berliner Spezialitäten, knuspriges Schnitzel, frisches Fassbier und urige Kneipenatmosphäre mitten in Berlin.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a href="#kontakt" class="px-8 py-4 rounded-full bg-gradient-to-r from-red-700 to-amber-500 text-white font-bold shadow-xl hover:scale-105 transition text-center">Tisch Reservieren</a>
+              <a href="#services" class="px-8 py-4 rounded-full glass-card text-amber-200 font-semibold hover:bg-red-950/60 transition text-center border border-amber-500/30">Speisekarte Ansehen</a>
+            </div>
+          </div>
+          <div class="lg:col-span-5 reveal">
+            <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-amber-500/30 glass-card p-3">
+              <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=900&q=80" alt="Deutsches Schnitzel Essen" class="w-full h-[400px] object-cover rounded-2xl">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#140909] via-transparent to-transparent opacity-80"></div>
+              <div class="absolute bottom-6 left-6 right-6 glass-card p-4 rounded-2xl border border-amber-400/30">
+                <p class="font-display text-base font-bold text-white uppercase">Karl-Heinrich-Ulrichs-Str. 14</p>
+                <p class="text-xs text-amber-300">10785 Berlin Tiergarten • +49 30 26 40 526</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Marquee Banner -->
+    <section class="bg-red-950/80 border-y border-red-800/40 text-amber-200 text-xs py-3 overflow-hidden backdrop-blur-md">
+      <div class="animate-marquee whitespace-nowrap flex items-center gap-12 font-medium uppercase tracking-wider">
+        <span>🍺 Frische Deutsche Fassbiere vom Zapfhahn</span>
+        <span>🥩 Original Berliner Eisbein & Wiener Schnitzel</span>
+        <span>🥨 Gemütlicher Biergarten & Außenplätze</span>
+        <span>🎉 Räumlichkeiten für Private Feiern & Events</span>
+        <span>🍲 Saisonspezialitäten & Pfifferlinge</span>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section id="stats-section" class="py-14 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div class="glass-card p-5 rounded-2xl text-center">
+            <div class="font-display text-3xl font-extrabold text-amber-400 mb-1"><span class="counter" data-target="40">0</span>+</div>
+            <p class="text-[11px] text-amber-200 uppercase tracking-wider">Jahre Gastronomie</p>
+          </div>
+          <div class="glass-card p-5 rounded-2xl text-center">
+            <div class="font-display text-3xl font-extrabold text-amber-400 mb-1"><span class="counter" data-target="8">0</span></div>
+            <p class="text-[11px] text-amber-200 uppercase tracking-wider">Biersorten vom Fass</p>
+          </div>
+          <div class="glass-card p-5 rounded-2xl text-center">
+            <div class="font-display text-3xl font-extrabold text-amber-400 mb-1"><span class="counter" data-target="100">0</span>%</div>
+            <p class="text-[11px] text-amber-200 uppercase tracking-wider">Hausgemacht</p>
+          </div>
+          <div class="glass-card p-5 rounded-2xl text-center">
+            <div class="font-display text-3xl font-extrabold text-amber-400 mb-1"><span class="counter" data-target="48">0</span>/50</div>
+            <p class="text-[11px] text-amber-200 uppercase tracking-wider">Gästezufriedenheit</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Grid (3D Tilt Cards) -->
+    <section id="services" class="py-16 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-14 reveal">
+          <span class="text-xs uppercase tracking-widest text-amber-400 font-bold block mb-2">Unser Angebot</span>
+          <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-white uppercase">Speisen, Getränke & Gastlichkeit</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="glass-card rounded-2xl p-6 tilt-card reveal">
+            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=800&q=80" alt="Traditional German Cuisine" class="w-full h-44 object-cover rounded-xl mb-5">
+            <h3 class="font-display text-xl font-bold text-white mb-2 uppercase">Traditional German Cuisine</h3>
+            <p class="text-xs text-amber-100/80 leading-relaxed mb-4">Deftiges Berliner Eisbein, golden gebackenes Schnitzel, Rinderrouladen und hausgemachte Beilagen.</p>
+            <ul class="text-xs text-amber-300 space-y-1 mb-4">
+              <li>✓ Hausgemachter Kartoffelsalat</li>
+              <li>✓ Frische regionale Zutaten</li>
+            </ul>
+            <a href="#kontakt" class="text-xs font-bold text-amber-400 hover:underline">Tisch Reservieren &rarr;</a>
+          </div>
+
+          <div class="glass-card rounded-2xl p-6 tilt-card reveal">
+            <img src="https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=800&q=80" alt="Craft Beer Selection" class="w-full h-44 object-cover rounded-xl mb-5">
+            <h3 class="font-display text-xl font-bold text-white mb-2 uppercase">Craft Beer Selection</h3>
+            <p class="text-xs text-amber-100/80 leading-relaxed mb-4">Eiskaltes Pilsner, Berliner Weisse, dunkles Lager und wechselnde regionale Bierspezialitäten vom Fass.</p>
+            <ul class="text-xs text-amber-300 space-y-1 mb-4">
+              <li>✓ Perfect-Pour Schankanlage</li>
+              <li>✓ Urige Bierauswahl</li>
+            </ul>
+            <a href="#kontakt" class="text-xs font-bold text-amber-400 hover:underline">Tisch Reservieren &rarr;</a>
+          </div>
+
+          <div class="glass-card rounded-2xl p-6 tilt-card reveal">
+            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80" alt="Seasonal Menu" class="w-full h-44 object-cover rounded-xl mb-5">
+            <h3 class="font-display text-xl font-bold text-white mb-2 uppercase">Seasonal Menu</h3>
+            <p class="text-xs text-amber-100/80 leading-relaxed mb-4">Saisonale Highlights wie Beelitzer Spargel im Frühjahr, frische Pfifferlinge und Martinsgans im Winter.</p>
+            <ul class="text-xs text-amber-300 space-y-1 mb-4">
+              <li>✓ Monatlich wechselnde Gerichte</li>
+              <li>✓ Frische Marktzutaten</li>
+            </ul>
+            <a href="#kontakt" class="text-xs font-bold text-amber-400 hover:underline">Tisch Reservieren &rarr;</a>
+          </div>
+
+          <div class="glass-card rounded-2xl p-6 tilt-card reveal">
+            <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&q=80" alt="Private Events" class="w-full h-44 object-cover rounded-xl mb-5">
+            <h3 class="font-display text-xl font-bold text-white mb-2 uppercase">Private Events</h3>
+            <p class="text-xs text-amber-100/80 leading-relaxed mb-4">Ausrichtung von Geburtstagen, Stammtischen, Firmenfeiern und Jubiläen in urigem Ambiente.</p>
+            <ul class="text-xs text-amber-300 space-y-1 mb-4">
+              <li>✓ Individuelle Buffet-Menüs</li>
+              <li>✓ Platz für bis zu 80 Personen</li>
+            </ul>
+            <a href="#kontakt" class="text-xs font-bold text-amber-400 hover:underline">Tisch Reservieren &rarr;</a>
+          </div>
+
+          <div class="glass-card rounded-2xl p-6 tilt-card reveal">
+            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80" alt="Outdoor Seating" class="w-full h-44 object-cover rounded-xl mb-5">
+            <h3 class="font-display text-xl font-bold text-white mb-2 uppercase">Outdoor Seating</h3>
+            <p class="text-xs text-amber-100/80 leading-relaxed mb-4">Sonnige Außenplätze vor dem Lokal zum Entspannen bei kühlem Bier nach einem Tiergarten-Spaziergang.</p>
+            <ul class="text-xs text-amber-300 space-y-1 mb-4">
+              <li>✓ Gemütliche Sommerterrasse</li>
+              <li>✓ Ruhige Seitenstraße</li>
+            </ul>
+            <a href="#kontakt" class="text-xs font-bold text-amber-400 hover:underline">Tisch Reservieren &rarr;</a>
+          </div>
+
+          <div class="glass-card rounded-2xl p-6 tilt-card reveal">
+            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80" alt="Takeaway" class="w-full h-44 object-cover rounded-xl mb-5">
+            <h3 class="font-display text-xl font-bold text-white mb-2 uppercase">Takeaway</h3>
+            <p class="text-xs text-amber-100/80 leading-relaxed mb-4">Alle Gerichte unserer Speisekarte frisch zubereitet zum Mitnehmen für zu Hause oder das Büro.</p>
+            <ul class="text-xs text-amber-300 space-y-1 mb-4">
+              <li>✓ Schnelle Zubereitung</li>
+              <li>✓ Umweltschonende Verpackung</li>
+            </ul>
+            <a href="#kontakt" class="text-xs font-bold text-amber-400 hover:underline">Tisch Reservieren &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 relative bg-red-950/20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          <div class="lg:col-span-6 reveal">
+            <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=900&q=80" alt="Kneipenatmosphäre Ambrosius" class="w-full h-96 object-cover rounded-3xl border border-amber-500/30">
+          </div>
+          <div class="lg:col-span-6 reveal">
+            <span class="text-xs uppercase tracking-widest text-amber-400 font-bold block mb-2">Echte Berliner Kiez-Kultur</span>
+            <h2 class="font-display text-3xl font-extrabold text-white mb-4 uppercase">Wo Kiez-Tradition Weiterlebt</h2>
+            <p class="text-xs text-amber-100/90 leading-relaxed mb-6">
+              Die Gaststätte Ambrosius ist ein echter Berliner Treffpunkt in Tiergarten. Bei uns treffen sich Nachbarn, Stammgäste und Berlin-Besucher auf ein gut gezapftes Bier und ehrliche deutscher Küche.
+            </p>
+            <div class="space-y-3 text-xs text-amber-200 mb-6">
+              <p>✓ Herzlicher Service & typisch Berliner Charme</p>
+              <p>✓ Faire Preise und reichliche Portionen</p>
+              <p>✓ Zentral gelegen nahe Nollendorfplatz & Tiergarten</p>
+            </div>
+            <a href="#kontakt" class="px-6 py-3 rounded-full bg-red-700 text-white font-bold text-xs shadow-lg hover:bg-red-600 transition inline-block">Karl-Heinrich-Ulrichs-Str. Besuchen</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="bewertungen" class="py-16 relative">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12 reveal">
+          <span class="text-xs uppercase tracking-widest text-amber-400 font-bold block mb-2">Gästestimmen</span>
+          <h2 class="font-display text-3xl font-extrabold text-white uppercase">Das Sagen Unsere Gäste</h2>
+        </div>
+        <div class="glass-card rounded-3xl p-8 border border-amber-500/30 reveal relative">
+          <div id="testimonial-carousel">
+            <div class="t-slide">
+              <div class="flex text-amber-400 mb-3 text-base">★★★★★</div>
+              <p class="font-display text-base text-amber-50 italic leading-relaxed mb-5">
+                „Klassische Berliner Gaststätte wie aus dem Bilderbuch! Das Eisbein war zart, die Portion riesig und das Fassbier perfekt gekühlt.“
+              </p>
+              <p class="font-bold text-white text-xs">Jürgen B. <span class="text-amber-400 font-normal">• Stammgast Tiergarten</span></p>
+            </div>
+            <div class="t-slide hidden">
+              <div class="flex text-amber-400 mb-3 text-base">★★★★★</div>
+              <p class="font-display text-base text-amber-50 italic leading-relaxed mb-5">
+                „Wir haben hier mit 25 Personen Geburtstag gefeiert. Super netter Service, tolles Essen und unkomplizierte Organisation!“
+              </p>
+              <p class="font-bold text-white text-xs">Monika S. <span class="text-amber-400 font-normal">• Berlin Schöneberg</span></p>
+            </div>
+            <div class="t-slide hidden">
+              <div class="flex text-amber-400 mb-3 text-base">★★★★★</div>
+              <p class="font-display text-base text-amber-50 italic leading-relaxed mb-5">
+                „Das Schnitzel Wiener Art mit Bratkartoffeln ist absolut herausragend. Sehr gemütlicher Außenbereich im Sommer!“
+              </p>
+              <p class="font-bold text-white text-xs">Alexander T. <span class="text-amber-400 font-normal">• Berlin</span></p>
+            </div>
+          </div>
+          <div class="flex justify-center gap-2 mt-6">
+            <button onclick="setTestimonial(0)" class="t-dot w-2.5 h-2.5 rounded-full bg-amber-400"></button>
+            <button onclick="setTestimonial(1)" class="t-dot w-2.5 h-2.5 rounded-full bg-red-900"></button>
+            <button onclick="setTestimonial(2)" class="t-dot w-2.5 h-2.5 rounded-full bg-red-900"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-16 relative bg-red-950/20">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12 reveal">
+          <span class="text-xs uppercase tracking-widest text-amber-400 font-bold block mb-2">Häufige Fragen</span>
+          <h2 class="font-display text-3xl font-extrabold text-white uppercase">FAQ</h2>
+        </div>
+        <div class="space-y-3 reveal">
+          <div class="glass-card rounded-xl p-5 cursor-pointer" onclick="toggleFaq(this)">
+            <div class="flex justify-between items-center font-bold text-white text-sm">
+              <span>Sollte man für ein Abendessen reservieren?</span>
+              <span class="text-amber-400 text-lg">+</span>
+            </div>
+            <div class="faq-body hidden mt-3 text-xs text-amber-100/80 border-t border-amber-500/20 pt-3">
+              Besonders an Wochenenden und für größere Gruppen empfehlen wir eine telefonische Reservierung unter +49 30 26 40 526.
+            </div>
+          </div>
+          <div class="glass-card rounded-xl p-5 cursor-pointer" onclick="toggleFaq(this)">
+            <div class="flex justify-between items-center font-bold text-white text-sm">
+              <span>Kann man bei Ihnen mit Karte zahlen?</span>
+              <span class="text-amber-400 text-lg">+</span>
+            </div>
+            <div class="faq-body hidden mt-3 text-xs text-amber-100/80 border-t border-amber-500/20 pt-3">
+              Ja, wir akzeptieren EC-Karten, gängige Kreditkarten sowie kontaktlose Zahlungen.
+            </div>
+          </div>
+          <div class="glass-card rounded-xl p-5 cursor-pointer" onclick="toggleFaq(this)">
+            <div class="flex justify-between items-center font-bold text-white text-sm">
+              <span>Gibt es auch vegetarische Gerichte?</span>
+              <span class="text-amber-400 text-lg">+</span>
+            </div>
+            <div class="faq-body hidden mt-3 text-xs text-amber-100/80 border-t border-amber-500/20 pt-3">
+              Ja, wir bieten auch hausgemachte vegetarische Spezialitäten wie Käsespätzle, frische Salate und Gemüsepfannen an.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="kontakt" class="py-16 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+          <div class="lg:col-span-5 reveal">
+            <span class="text-xs uppercase tracking-widest text-amber-400 font-bold block mb-2">Reservierung & Anfahrt</span>
+            <h2 class="font-display text-3xl font-extrabold text-white mb-4 uppercase">Gaststätte Ambrosius</h2>
+            <div class="space-y-4 text-xs text-amber-200">
+              <div class="glass-card p-4 rounded-xl border border-amber-500/20">
+                <p class="font-bold text-white">Adresse</p>
+                <p>Karl-Heinrich-Ulrichs-Str. 14, 10785 Berlin (Tiergarten)</p>
+              </div>
+              <div class="glass-card p-4 rounded-xl border border-amber-500/20">
+                <p class="font-bold text-white">Telefon</p>
+                <p class="text-amber-300 font-bold">+49 30 26 40 526</p>
+              </div>
+              <div class="glass-card p-4 rounded-xl border border-amber-500/20">
+                <p class="font-bold text-white">Öffnungszeiten</p>
+                <p>Täglich geöffet: 12:00 – 23:00 Uhr (Küche bis 22:00 Uhr)</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 reveal">
+            <div class="glass-card p-6 sm:p-8 rounded-2xl border border-amber-500/30">
+              <h3 class="font-display text-xl font-bold text-white mb-4 uppercase">Tisch Reservieren</h3>
+              <form onsubmit="handleFormSubmit(event)" class="space-y-3 text-xs">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <input type="text" required placeholder="Ihr Name *" class="w-full px-4 py-3 rounded-xl bg-pub-900/80 border border-amber-500/30 text-white focus:outline-none focus:border-amber-400">
+                  <input type="tel" required placeholder="Telefonnummer *" class="w-full px-4 py-3 rounded-xl bg-pub-900/80 border border-amber-500/30 text-white focus:outline-none focus:border-amber-400">
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <input type="email" required placeholder="E-Mail Adresse *" class="w-full px-4 py-3 rounded-xl bg-pub-900/80 border border-amber-500/30 text-white focus:outline-none focus:border-amber-400">
+                  <select class="w-full px-4 py-3 rounded-xl bg-pub-900/80 border border-amber-500/30 text-amber-100 focus:outline-none focus:border-amber-400">
+                    <option>Tischreservierung (1-4 Personen)</option>
+                    <option>Gruppenreservierung (5+ Personen)</option>
+                    <option>Private Feier / Event Anfrage</option>
+                  </select>
+                </div>
+                <textarea rows="3" placeholder="Datum, Uhrzeit und Personenzahl..." class="w-full px-4 py-3 rounded-xl bg-pub-900/80 border border-amber-500/30 text-white focus:outline-none focus:border-amber-400"></textarea>
+                <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-red-700 to-amber-500 text-white font-bold shadow-lg hover:scale-[1.01] transition">Tisch Jetzt Reservieren 🍺</button>
+              </form>
+              <div id="form-msg" class="hidden mt-3 p-3 rounded-xl bg-amber-500/20 border border-amber-400 text-amber-200 text-xs text-center">
+                ✓ Vielen Dank! Ihre Tischreservierung ist bei uns eingegangen.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-pub-950 border-t border-red-800/40 py-10 px-4 text-xs text-amber-200/70">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div>
+        <span class="font-display text-base font-bold text-white uppercase">Gaststätte Ambrosius</span>
+        <p class="text-[11px] text-amber-200/50">Karl-Heinrich-Ulrichs-Str. 14, 10785 Berlin • Tel: +49 30 26 40 526</p>
+      </div>
+      <div class="text-amber-200/50 text-[11px]">© 2026 Gaststätte Ambrosius. Alle Rechte vorbehalten.</div>
+    </div>
+  </footer>
+
+  <!-- Floating Call CTA -->
+  <a href="tel:+49302640526" class="fixed bottom-5 left-5 z-40 px-4 py-2.5 rounded-full bg-red-700 text-white font-bold text-xs shadow-2xl flex items-center gap-2 hover:bg-red-600 transition border border-red-400">
+    <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+    📞 +49 30 26 40 526
+  </a>
+
+  <!-- Back to Top -->
+  <button id="back-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})" class="fixed bottom-5 right-5 z-40 p-3 rounded-full glass-card text-amber-400 hidden border border-amber-500/40">↑</button>
+
+  <script>
+    document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+
+    window.addEventListener('scroll', () => {
+      const scroll = document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      document.getElementById('progress-bar').style.width = (scroll / height) * 100 + '%';
+      if (scroll > 300) document.getElementById('back-to-top').classList.remove('hidden');
+      else document.getElementById('back-to-top').classList.add('hidden');
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    let counterRun = false;
+    const statsSec = document.getElementById('stats-section');
+    if (statsSec) {
+      new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && !counterRun) {
+          counterRun = true;
+          document.querySelectorAll('.counter').forEach(c => {
+            const target = +c.getAttribute('data-target');
+            let count = 0;
+            const step = target / 50;
+            const t = setInterval(() => {
+              count += step;
+              if (count >= target) { c.innerText = target.toLocaleString(); clearInterval(t); }
+              else { c.innerText = Math.floor(count).toLocaleString(); }
+            }, 30);
+          });
+        }
+      }, { threshold: 0.2 }).observe(statsSec);
+    }
+
+    document.querySelectorAll('.tilt-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        card.style.transform = `perspective(1000px) rotateX(${-y / 20}deg) rotateY(${x / 20}deg) translateY(-4px)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+      });
+    });
+
+    let tIndex = 0;
+    const tSlides = document.querySelectorAll('.t-slide');
+    const tDots = document.querySelectorAll('.t-dot');
+    function setTestimonial(idx) {
+      tSlides.forEach((s, i) => s.classList.toggle('hidden', i !== idx));
+      tDots.forEach((d, i) => {
+        d.classList.toggle('bg-amber-400', i === idx);
+        d.classList.toggle('bg-red-900', i !== idx);
+      });
+      tIndex = idx;
+    }
+    setInterval(() => setTestimonial((tIndex + 1) % tSlides.length), 5000);
+
+    function toggleFaq(card) {
+      const body = card.querySelector('.faq-body');
+      const isHidden = body.classList.contains('hidden');
+      document.querySelectorAll('.faq-body').forEach(b => b.classList.add('hidden'));
+      if (isHidden) body.classList.remove('hidden');
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      document.getElementById('form-msg').classList.remove('hidden');
+      e.target.reset();
+    }
+  </script>
+
+<!-- WhatsApp Contact Button -->
+<a href="https://wa.me/+9233390025902?text=Hi%21%20I%20just%20saw%20the%20enhanced%20website%20preview%20you%20created%20for%20my%20business%20and%20I'm%20interested%20in%20learning%20more." 
+   target="_blank"
+   style="position:fixed;bottom:30px;left:30px;z-index:999;background:#25D366;color:white;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(37,211,102,0.5);transition:transform 0.3s;cursor:pointer;text-decoration:none;"
+   onmouseover="this.style.transform='scale(1.1)'"
+   onmouseout="this.style.transform='scale(1)'"
+   title="Chat with us on WhatsApp">
+   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="white">
+     <path d="M17.472 14.382c-.297.149-1.255.223-1.679.223-.62 0-1.225-.046-1.782-.158-.287-.057-.584-.124-.884-.124-.246 0-.49.036-.724.107-.399.121-.772.323-1.134.547-.51.316-.997.683-1.513.999-.413.253-.847.476-1.301.634-.473.165-.967.237-1.463.237-.553 0-1.106-.086-1.633-.257-.431-.14-.841-.342-1.221-.598-.358-.241-.689-.531-.99-.846-.293-.307-.557-.648-.776-1.012-.21-.349-.382-.722-.516-1.106-.124-.356-.21-.727-.262-1.101-.046-.333-.069-.671-.069-1.009 0-.475.069-.951.206-1.406.137-.455.342-.887.598-1.287.262-.41.581-.776.93-1.106.358-.338.758-.626 1.187-.854.431-.229.887-.404 1.357-.523.471-.119.96-.179 1.45-.179.515 0 1.027.065 1.526.193.5.129.981.319 1.433.567.453.249.873.558 1.249.916.377.359.71.776.989 1.234.279.459.491.961.629 1.484.137.523.206 1.069.206 1.614 0 .316-.027.629-.08.938-.052.31-.131.614-.234.911-.103.296-.231.583-.382.857-.151.275-.323.537-.516.785-.192.249-.405.481-.638.697-.232.217-.484.414-.752.591-.268.177-.552.331-.849.462-.296.131-.605.238-.923.32-.317.082-.642.139-.971.172-.329.032-.66.049-.991.049-.43 0-.858-.039-1.28-.117-.421-.077-.836-.194-1.236-.349-.4-.155-.784-.349-1.146-.583-.362-.234-.702-.506-1.015-.816-.313-.31-.598-.648-.854-1.009-.257-.361-.485-.746-.683-1.146-.198-.4-.366-.816-.504-1.246-.137-.43-.236-.872-.296-1.32-.06-.449-.09-.902-.09-1.355 0-.355.027-.711.08-1.062.052-.352.13-.699.234-1.038.103-.339.231-.671.382-.994.151-.323.323-.635.516-.937.192-.303.405-.591.638-.864.232-.273.484-.527.752-.762.268-.235.552-.451.849-.648.296-.197.605-.375.923-.534.317-.158.642-.298.971-.419.329-.121.66-.223.991-.307.329-.083.66-.146.991-.189.329-.043.66-.065.991-.065.43 0 .858.039 1.28.117.421.078.836.195 1.236.35.4.155.784.349 1.146.583.362.234.702.506 1.015.816.313.31.598.648.854 1.009.257.362.485.746.683 1.146.198.4.366.816.504 1.246.137.43.236.872.296 1.32.06.449.09.902.09 1.355 0 .355-.027.711-.08 1.062-.052.352-.13.699-.234 1.038-.103.339-.231.671-.382.994-.151.323-.323.635-.516.937-.192.303-.405.591-.638.864-.232.273-.484.527-.752.762-.268.235-.552.451-.849.648-.296.197-.605.375-.923.534-.317.158-.642.298-.971.419-.329.121-.66.223-.991.307z"/>
+   </svg>
+</a>
+
+</body>
+</html>
