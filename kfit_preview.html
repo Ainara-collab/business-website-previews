@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K-Fit Boutique Gym — Enhanced Preview</title>
+    <style>
+        :root {
+            --primary: #2a9db8;
+            --primary-light: #54a9c6;
+            --primary-dark: #1a6d85;
+            --dark: #1a1a1a;
+            --bg: #faf9f6;
+            --white: #ffffff;
+            --text: #1a1a1a;
+            --muted: #666666;
+            --border: #e5e0d8;
+            --accent: #f5a623;
+            --radius: 12px;
+            --shadow: 0 2px 16px rgba(0,0,0,0.06);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        .preview-banner {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: white;
+            text-align: center;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .preview-banner a { color: var(--accent); text-decoration: underline; }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 5%;
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 38px;
+            z-index: 999;
+        }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-badge {
+            width: 48px; height: 48px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 20px; font-weight: 800;
+        }
+        .logo-text { display: flex; flex-direction: column; line-height: 1.2; }
+        .logo-text .name { font-size: 18px; font-weight: 800; color: var(--dark); }
+        .logo-text .sub { font-size: 12px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-links { display: flex; gap: 28px; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--text); font-weight: 600; font-size: 14px; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--primary); }
+        .nav-cta {
+            background: var(--primary);
+            color: white; border: none;
+            padding: 10px 24px; border-radius: 50px;
+            font-weight: 700; font-size: 14px; cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(42,157,184,0.3); }
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 80px 5%;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary-dark) 100%);
+            color: white;
+            gap: 40px;
+        }
+        .hero-content { flex: 1; max-width: 550px; }
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+        .hero h1 .accent { color: var(--accent); }
+        .hero p {
+            font-size: 18px;
+            opacity: 0.85;
+            margin-bottom: 32px;
+        }
+        .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+        .btn-primary {
+            background: var(--primary);
+            color: white; border: none;
+            padding: 16px 36px; border-radius: 50px;
+            font-weight: 700; font-size: 16px; cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none; display: inline-block;
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(42,157,184,0.4); }
+        .btn-accent {
+            background: var(--accent);
+            color: var(--dark); border: none;
+            padding: 16px 36px; border-radius: 50px;
+            font-weight: 700; font-size: 16px; cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none; display: inline-block;
+        }
+        .btn-accent:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(245,166,35,0.4); }
+        .hero-visual {
+            flex: 1;
+            max-width: 350px;
+            text-align: center;
+        }
+        .hero-badge {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: var(--radius);
+            padding: 32px;
+        }
+        .hero-badge .big-num { font-size: 56px; font-weight: 800; color: var(--accent); }
+        .hero-badge .label { font-size: 14px; opacity: 0.8; text-transform: uppercase; letter-spacing: 1px; }
+        .info-bar {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 28px 5%;
+            background: var(--white);
+            box-shadow: var(--shadow);
+            flex-wrap: wrap;
+        }
+        .info-item { display: flex; align-items: center; gap: 10px; font-size: 15px; color: var(--muted); }
+        .info-item strong { color: var(--text); }
+        .info-item .info-icon { font-size: 20px; }
+        .services {
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .section-header h2 { font-size: 36px; font-weight: 800; color: var(--text); letter-spacing: -0.5px; }
+        .section-header p { font-size: 16px; color: var(--muted); margin-top: 10px; }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+        .service-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 36px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid var(--primary);
+        }
+        .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+        .service-card .service-icon {
+            width: 56px; height: 56px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .service-card h3 { font-size: 20px; color: var(--text); margin-bottom: 12px; }
+        .service-card p { font-size: 14px; color: var(--muted); line-height: 1.7; }
+        .about {
+            padding: 80px 5%;
+            background: linear-gradient(135deg, #eef8fb 0%, var(--bg) 100%);
+        }
+        .about-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+        .about-text { flex: 1; min-width: 300px; }
+        .about-text h2 { font-size: 34px; font-weight: 800; color: var(--text); margin-bottom: 20px; }
+        .about-text p { font-size: 17px; color: var(--muted); line-height: 1.8; margin-bottom: 16px; }
+        .about-features { display: flex; gap: 30px; margin-top: 28px; flex-wrap: wrap; }
+        .about-feature { display: flex; align-items: center; gap: 10px; }
+        .about-feature .check {
+            width: 30px; height: 30px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 16px; flex-shrink: 0;
+        }
+        .about-feature span { font-weight: 600; color: var(--text); font-size: 14px; }
+        .about-visual { flex: 1; min-width: 250px; display: flex; flex-direction: column; gap: 16px; }
+        .stat-badge {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 24px;
+            box-shadow: var(--shadow);
+            display: flex; align-items: center;
+            gap: 16px;
+        }
+        .stat-badge .badge-icon {
+            width: 48px; height: 48px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 22px;
+        }
+        .stat-badge h4 { font-size: 16px; color: var(--text); }
+        .stat-badge p { font-size: 13px; color: var(--muted); }
+        .testimonials { padding: 80px 5%; max-width: 900px; margin: 0 auto; }
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+        .testimonial-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 32px;
+            box-shadow: var(--shadow);
+        }
+        .testimonial-card .stars { color: var(--accent); font-size: 18px; margin-bottom: 12px; }
+        .testimonial-card p { font-size: 15px; color: var(--muted); line-height: 1.7; font-style: italic; margin-bottom: 16px; }
+        .testimonial-card .author { font-weight: 700; color: var(--text); font-size: 14px; }
+        .cta {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            padding: 80px 5%;
+            text-align: center;
+            color: white;
+        }
+        .cta h2 { font-size: 36px; font-weight: 800; margin-bottom: 16px; }
+        .cta p { font-size: 18px; opacity: 0.9; margin-bottom: 40px; }
+        .contact-grid {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        .contact-item { display: flex; align-items: center; gap: 12px; font-size: 16px; }
+        .contact-item .contact-icon {
+            width: 44px; height: 44px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px;
+        }
+        .contact-item strong { display: block; }
+        .contact-item span { font-size: 14px; opacity: 0.8; }
+        .cta .btn-accent { background: var(--accent); color: var(--dark); }
+        footer {
+            background: var(--dark);
+            color: rgba(255,255,255,0.7);
+            padding: 40px 5%;
+            text-align: center;
+        }
+        footer p { font-size: 14px; margin-bottom: 8px; }
+        footer .footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 20px; flex-wrap: wrap; }
+        footer .footer-links a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 14px; }
+        footer .footer-links a:hover { color: var(--primary); }
+        .social { display: flex; justify-content: center; gap: 14px; margin-top: 20px; }
+        .social a {
+            width: 40px; height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: white; text-decoration: none; font-size: 18px;
+        }
+        .social a:hover { background: var(--primary); }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero { flex-direction: column; text-align: center; padding: 50px 5%; }
+            .hero h1 { font-size: 32px; }
+            .hero-buttons { justify-content: center; }
+            .about-container { flex-direction: column; }
+            .section-header h2 { font-size: 26px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="preview-banner">
+        💪 This is a <strong>free preview</strong> created by <strong>Elio</strong> — not the live site. Like what you see? <a href="#contact">Let's talk</a>.
+    </div>
+
+    <nav>
+        <div class="logo">
+            <div class="logo-badge">K</div>
+            <div class="logo-text">
+                <span class="name">K-Fit</span>
+                <span class="sub">Boutique Gym</span>
+            </div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#testimonials">Stories</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Book a Call</button>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Where <span class="accent">Empowerment</span> Meets Transformation</h1>
+            <p>We stand at the intersection of fitness and mentorship — empowering busy women to unleash their highest potential through structured fitness plans, lifestyle coaching, and a thriving, uplifting tribe.</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn-accent">Schedule Connection Call</a>
+                <a href="#services" class="btn-primary">What We Offer</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-badge">
+                <div class="big-num">100%</div>
+                <div class="label">Women Empowered</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="info-bar">
+        <div class="info-item"><span class="info-icon">📍</span> <strong>11 Sunrise Plaza</strong>, Valley Stream</div>
+        <div class="info-item"><span class="info-icon">📞</span> <strong>(516) 589-1671</strong></div>
+        <div class="info-item"><span class="info-icon">👯</span> <strong>Women-only</strong> community</div>
+        <div class="info-item"><span class="info-icon">🌿</span> <strong>All fitness</strong> levels welcome</div>
+    </div>
+
+    <section class="services" id="services">
+        <div class="section-header">
+            <h2>What We Offer</h2>
+            <p>More than just a workout — a community where women lift each other up</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🏋️</div>
+                <h3>Personal Training</h3>
+                <p>One-on-one coaching tailored to your goals, fitness level, and schedule. Get the personalized attention you deserve.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💪</div>
+                <h3>Small Group Strength</h3>
+                <p>High-energy small group classes that combine challenging workouts with the support of a community that pushes you to succeed.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🧘</div>
+                <h3>Reformer Pilates</h3>
+                <p>Build core strength, flexibility, and body awareness with expert-led reformer Pilates sessions for all levels.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🎯</div>
+                <h3>Mentorship & Development</h3>
+                <p>More than fitness — we offer mentorship and personal development to help you grow as an individual, both physically and mentally.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🌱</div>
+                <h3>Lifestyle Coaching</h3>
+                <p>Accountability, education, and support to build sustainable healthy habits that extend far beyond the gym walls.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🤝</div>
+                <h3>The K-Fit Circle</h3>
+                <p>A welcoming, supportive community of diverse women spanning all ages and fitness levels. High-fives, challenges, and growth together.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-container">
+            <div class="about-text">
+                <h2>More Than Just a Gym</h2>
+                <p>Our circle is a welcoming, supportive community where we're all about having a blast while pushing each other to succeed. Our diverse group of women, spanning all ages and fitness levels, seeks more than just a good workout — we're on a mission for inspiration, encouragement, and strength.</p>
+                <p>We're not just your average fitness community. Picture this: high-fives, challenging workouts, and a supportive tribe, all backed up by mentorship and personal development. It's not just about breaking a sweat — it's about growing as individuals.</p>
+                <div class="about-features">
+                    <div class="about-feature"><div class="check">✓</div><span>All ages welcome</span></div>
+                    <div class="about-feature"><div class="check">✓</div><span>All fitness levels</span></div>
+                    <div class="about-feature"><div class="check">✓</div><span>Mentorship included</span></div>
+                </div>
+            </div>
+            <div class="about-visual">
+                <div class="stat-badge">
+                    <div class="badge-icon">🤗</div>
+                    <div><h4>Supportive Tribe</h4><p>Women empowering women</p></div>
+                </div>
+                <div class="stat-badge">
+                    <div class="badge-icon">📈</div>
+                    <div><h4>Real Transformations</h4><p>Jaw-dropping results</p></div>
+                </div>
+                <div class="stat-badge">
+                    <div class="badge-icon">🏆</div>
+                    <div><h4>Long-Term Growth</h4><p>Coaching, accountability & support</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+        <div class="section-header">
+            <h2>Jaw-Dropping Transformations</h2>
+            <p>Our members aspire to be better — for themselves and the people around them</p>
+        </div>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>"I've never felt more supported in a gym environment. The community here is unlike anything I've experienced. I've grown so much physically and mentally."</p>
+                <div class="author">— K-Fit Member</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>"The mentorship aspect is what sets K-Fit apart. It's not just about the workout — it's about becoming a better version of yourself with a tribe that has your back."</p>
+                <div class="author">— K-Fit Member</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>"I came for the fitness, I stayed for the community. The transformations I've witnessed — including my own — are truly jaw-dropping."</p>
+                <div class="author">— K-Fit Member</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta" id="contact">
+        <h2>Ready to Join the Circle?</h2>
+        <p>Schedule your connection call today and discover what empowerment feels like.</p>
+        <div class="contact-grid">
+            <div class="contact-item">
+                <div class="contact-icon">📞</div>
+                <div><strong>(516) 589-1671</strong><span>Call to connect</span></div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">✉️</div>
+                <div><strong>info@kfitny.com</strong><span>Email us</span></div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">📍</div>
+                <div><strong>11 Sunrise Plaza Store 5</strong><span>Valley Stream, NY 11581</span></div>
+            </div>
+        </div>
+        <a href="mailto:info@kfitny.com" class="btn-accent">Schedule Your Connection Call</a>
+    </section>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#testimonials">Stories</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <p>© 2026 K-Fit Boutique Gym. All Rights Reserved.</p>
+        <p style="font-size: 12px; margin-top: 10px; opacity: 0.5;">This is a preview website created by Elio — not the official K-Fit site.</p>
+        <div class="social">
+            <a href="#">📷</a>
+            <a href="#">f</a>
+            <a href="#">in</a>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+<!-- WhatsApp Contact Button -->
+<a href="https://wa.me/+9233390025902" target="_blank" style="position:fixed;bottom:30px;left:30px;z-index:999;background:#25D366;color:white;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(37,211,102,0.5);transition:transform 0.3s;cursor:pointer;text-decoration:none;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'" title="Chat with us on WhatsApp"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297.149-1.255.223-1.679.223-.62 0-1.225-.046-1.782-.158-.287-.057-.584-.124-.884-.124-.246 0-.49.036-.724.107-.399.121-.772.323-1.134.547-.51.316-.997.683-1.513.999-.413.253-.847.476-1.301.634-.473.165-.967.237-1.463.237-.553 0-1.106-.086-1.633-.257-.431-.14-.841-.342-1.221-.598-.358-.241-.689-.531-.99-.846-.293-.307-.557-.648-.776-1.012-.21-.349-.382-.722-.516-1.106-.124-.356-.21-.727-.262-1.101-.046-.333-.069-.671-.069-1.009 0-.475.069-.951.206-1.406.137-.455.342-.887.598-1.287.262-.41.581-.776.93-1.106.358-.338.758-.626 1.187-.854.431-.229.887-.404 1.357-.523.471-.119.96-.179 1.45-.179.515 0 1.027.065 1.526.193.5.129.981.319 1.433.567.453.249.873.558 1.249.916.377.359.71.776.989 1.234.279.459.491.961.629 1.484.137.523.206 1.069.206 1.614 0 .316-.027.629-.08.938-.052.31-.131.614-.234.911-.103.296-.231.583-.382.857-.151.275-.323.537-.516.785-.192.249-.405.481-.638.697-.232.217-.484.414-.752.591-.268.177-.552.331-.849.462-.296.131-.605.238-.923.32-.317.082-.642.139-.971.172-.329.032-.66.049-.991.049-.43 0-.858-.039-1.28-.117-.421-.077-.836-.194-1.236-.349-.4-.155-.784-.349-1.146-.583-.362-.234-.702-.506-1.015-.816-.313-.31-.598-.648-.854-1.009-.257-.361-.485-.746-.683-1.146-.198-.4-.366-.816-.504-1.246-.137-.43-.236-.872-.296-1.32-.06-.449-.09-.902-.09-1.355 0-.355.027-.711.08-1.062.052-.352.13-.699.234-1.038.103-.339.231-.671.382-.994.151-.323.323-.635.516-.937.192-.303.405-.591.638-.864.232-.273.484-.527.752-.762.268-.235.552-.451.849-.648.296-.197.605-.375.923-.534.317-.158.642-.298.971-.419.329-.121.66-.223.991-.307.329-.083.66-.146.991-.189.329-.043.66-.065.991-.065.43 0 .858.039 1.28.117.421.078.836.195 1.236.35.4.155.784.349 1.146.583.362.234.702.506 1.015.816.313.31.598.648.854 1.009.257.362.485.746.683 1.146.198.4.366.816.504 1.246.137.43.236.872.296 1.32.06.449.09.902.09 1.355 0 .355-.027.711-.08 1.062-.052.352-.13.699-.234 1.038-.103.339-.231.671-.382.994-.151.323-.323.635-.516.937-.192.303-.405.591-.638.864-.232.273-.484.527-.752.762-.268.235-.552.451-.849.648-.296.197-.605.375-.923.534-.317.158-.642.298-.971.419-.329.121-.66.223-.991.307z"/></svg></a>
+</body>
+</html>
