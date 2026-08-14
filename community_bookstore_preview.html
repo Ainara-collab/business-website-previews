@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Community Bookstore | Brooklyn's Independent Bookshop</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: { 500: '#8b5cf6', 400: '#c084fc', dark: '#1a1520', card: '#241c2e' }
+          },
+          fontFamily: { serif: ['Playfair Display', 'serif'], sans: ['Inter', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    body { background-color: #1a1520; color: #f3f4f6; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+    .glass-nav { background: rgba(26,21,32,0.8); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(139,92,246,0.25); }
+    .glass-card { background: rgba(36,28,46,0.65); backdrop-filter: blur(12px); border: 1px solid rgba(139,92,246,0.2); }
+    .glass-card:hover { border-color: rgba(192,132,252,0.5); box-shadow: 0 10px 30px -10px rgba(139,92,246,0.35); }
+    .orb { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.28; pointer-events: none; }
+    @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
+    .animate-marquee { display: flex; width: 200%; animation: marquee 30s linear infinite; }
+    .animate-marquee:hover { animation-play-state: paused; }
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .tilt-card { transform-style: preserve-3d; transition: transform 0.15s ease-out; }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #1a1520; }
+    ::-webkit-scrollbar-thumb { background: #5b21b6; border-radius: 4px; }
+  </style>
+</head>
+<body class="relative min-h-screen text-slate-100">
+  <div class="orb w-96 h-96 bg-purple-600 top-10 -left-20"></div>
+  <div class="orb w-[500px] h-[500px] bg-indigo-600 top-[1200px] -right-20"></div>
+  <div id="progress-bar" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-purple-500 via-purple-400 to-indigo-400 z-50 w-0 transition-all duration-100"></div>
+
+  <!-- Marquee Ticker -->
+  <div class="bg-purple-950/80 border-b border-purple-800/30 text-purple-200 text-xs py-2 overflow-hidden fixed top-0 w-full z-40 backdrop-blur-sm">
+    <div class="animate-marquee whitespace-nowrap flex items-center gap-10 font-medium">
+      <span>✦ "A reader lives a thousand lives before he dies." — George R.R. Martin</span>
+      <span>✦ Brooklyn's beloved independent bookshop since 2001</span>
+      <span>✦ "There is no friend as loyal as a book." — Ernest Hemingway</span>
+      <span>✦ Visit our Park Slope Garden Nook & Pour-Over Coffee Bar</span>
+      <span>✦ Free Brooklyn Local Delivery on orders over $35</span>
+      <span>✦ "A reader lives a thousand lives before he dies." — George R.R. Martin</span>
+      <span>✦ Brooklyn's beloved independent bookshop since 2001</span>
+    </div>
+  </div>
+
+  <!-- Glassmorphism Nav -->
+  <header class="glass-nav fixed top-[33px] left-0 right-0 z-30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-purple-900/40">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+        </div>
+        <div>
+          <span class="font-serif text-xl font-bold text-white block leading-tight">Community Bookstore</span>
+          <span class="text-[10px] uppercase tracking-widest text-purple-400 font-semibold block">Park Slope • Brooklyn</span>
+        </div>
+      </a>
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+        <a href="#about" class="hover:text-purple-300 transition-colors">About</a>
+        <a href="#collections" class="hover:text-purple-300 transition-colors">Curated Books</a>
+        <a href="#events" class="hover:text-purple-300 transition-colors">Events</a>
+        <a href="#garden" class="hover:text-purple-300 transition-colors">Garden Nook</a>
+        <a href="#faq" class="hover:text-purple-300 transition-colors">FAQ</a>
+        <a href="#contact" class="hover:text-purple-300 transition-colors">Contact</a>
+      </nav>
+      <a href="#contact" class="hidden md:inline-flex px-5 py-2.5 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-medium text-sm shadow-lg hover:scale-105 transition-all">Visit Our Shop</a>
+      <button id="mobile-menu-btn" class="md:hidden text-slate-300 p-2"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-[#1a1520]/95 px-6 py-4 space-y-3 border-t border-purple-800/30">
+      <a href="#about" class="block text-slate-200 py-1">About</a>
+      <a href="#collections" class="block text-slate-200 py-1">Curated Books</a>
+      <a href="#events" class="block text-slate-200 py-1">Events</a>
+      <a href="#garden" class="block text-slate-200 py-1">Garden Nook</a>
+      <a href="#faq" class="block text-slate-200 py-1">FAQ</a>
+      <a href="#contact" class="block text-slate-200 py-1">Contact</a>
+    </div>
+  </header>
+
+  <main class="pt-28">
+    <!-- Hero Section -->
+    <section class="relative min-h-[88vh] flex items-center justify-center overflow-hidden py-16">
+      <div class="absolute inset-0 z-0">
+        <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=1920&q=80" alt="Bookstore Interior" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-[#1a1520] via-[#1a1520]/85 to-[#1a1520]/60"></div>
+      </div>
+      <div class="relative z-10 max-w-4xl mx-auto px-4 text-center reveal active">
+        <span class="inline-block px-4 py-1.5 rounded-full glass-card text-purple-300 text-xs font-semibold uppercase tracking-widest mb-6">Established 2001 • Park Slope, Brooklyn</span>
+        <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
+          Where Stories Root <br><span class="bg-gradient-to-r from-purple-300 via-purple-400 to-indigo-300 bg-clip-text text-transparent italic">& Communities Flourish</span>
+        </h1>
+        <p class="text-lg text-purple-100/80 max-w-2xl mx-auto font-light mb-8">
+          A sanctuary for readers, thinkers, and storytellers. Explore hand-picked literature, intimate author talks, and quiet garden patio corners.
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+          <a href="#collections" class="px-8 py-4 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold shadow-lg hover:scale-105 transition-all">Explore Curated Titles</a>
+          <a href="#events" class="px-8 py-4 rounded-full glass-card hover:bg-purple-900/40 text-purple-200 font-semibold transition-all">Author Readings</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Counter Section -->
+    <section id="about" class="py-12 border-y border-purple-900/30 bg-purple-950/20">
+      <div class="max-w-6xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div class="glass-card p-6 rounded-2xl reveal">
+          <div class="font-serif text-4xl font-bold text-purple-300 counter" data-target="25">0</div>
+          <p class="text-xs text-purple-200/70 font-medium uppercase mt-1">Years in Brooklyn</p>
+        </div>
+        <div class="glass-card p-6 rounded-2xl reveal">
+          <div class="font-serif text-4xl font-bold text-purple-300 counter" data-target="45000">0</div>
+          <p class="text-xs text-purple-200/70 font-medium uppercase mt-1">Books in Stock</p>
+        </div>
+        <div class="glass-card p-6 rounded-2xl reveal">
+          <div class="font-serif text-4xl font-bold text-purple-300 counter" data-target="320">0</div>
+          <p class="text-xs text-purple-200/70 font-medium uppercase mt-1">Annual Events</p>
+        </div>
+        <div class="glass-card p-6 rounded-2xl reveal">
+          <div class="font-serif text-4xl font-bold text-purple-300 counter" data-target="90000">0</div>
+          <p class="text-xs text-purple-200/70 font-medium uppercase mt-1">Happy Readers</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Books Grid with 3D Tilt Cards -->
+    <section id="collections" class="py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-12 reveal">
+          <span class="text-purple-400 text-xs font-bold uppercase tracking-widest">Hand-Picked Selection</span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white mt-2">Curated Book Collections</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Card 1 -->
+          <div class="glass-card p-5 rounded-2xl tilt-card reveal group">
+            <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&q=80" alt="Book Cover" class="w-full h-64 object-cover rounded-xl mb-4">
+            <div class="flex justify-between items-start mb-1">
+              <h3 class="font-serif text-lg font-bold text-white group-hover:text-purple-300">The Park Slope Chronicle</h3>
+              <span class="text-purple-300 font-bold">$28.00</span>
+            </div>
+            <p class="text-xs text-purple-400 mb-2">by Elena Rostova • Hardcover</p>
+            <p class="text-slate-300 text-xs font-light mb-4">A spellbinding multi-generational novel set against Brooklyn's evolving brownstones.</p>
+            <button onclick="alert('Added to your reading list!')" class="w-full py-2.5 rounded-xl bg-purple-900/40 hover:bg-purple-600 border border-purple-500/30 text-white text-xs font-semibold transition-all">Add to Reading List</button>
+          </div>
+          <!-- Card 2 -->
+          <div class="glass-card p-5 rounded-2xl tilt-card reveal group">
+            <img src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?w=600&q=80" alt="Book Cover" class="w-full h-64 object-cover rounded-xl mb-4">
+            <div class="flex justify-between items-start mb-1">
+              <h3 class="font-serif text-lg font-bold text-white group-hover:text-purple-300">Echoes of Prospect Park</h3>
+              <span class="text-purple-300 font-bold">$24.50</span>
+            </div>
+            <p class="text-xs text-purple-400 mb-2">by Marcus Vance • Paperback</p>
+            <p class="text-slate-300 text-xs font-light mb-4">A lyrical deep dive into urban ecology, community memory, and city design.</p>
+            <button onclick="alert('Added to your reading list!')" class="w-full py-2.5 rounded-xl bg-purple-900/40 hover:bg-purple-600 border border-purple-500/30 text-white text-xs font-semibold transition-all">Add to Reading List</button>
+          </div>
+          <!-- Card 3 -->
+          <div class="glass-card p-5 rounded-2xl tilt-card reveal group">
+            <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?w=600&q=80" alt="Book Cover" class="w-full h-64 object-cover rounded-xl mb-4">
+            <div class="flex justify-between items-start mb-1">
+              <h3 class="font-serif text-lg font-bold text-white group-hover:text-purple-300">The Midnight Sanctuary</h3>
+              <span class="text-purple-300 font-bold">$31.00</span>
+            </div>
+            <p class="text-xs text-purple-400 mb-2">by Sarah Thorne • Signed Edition</p>
+            <p class="text-slate-300 text-xs font-light mb-4">An intriguing mystery surrounding a hidden private archive in Old New York.</p>
+            <button onclick="alert('Added to your reading list!')" class="w-full py-2.5 rounded-xl bg-purple-900/40 hover:bg-purple-600 border border-purple-500/30 text-white text-xs font-semibold transition-all">Add to Reading List</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Garden Nook Section -->
+    <section id="garden" class="py-16 bg-purple-950/20 border-y border-purple-900/30">
+      <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <div class="reveal">
+          <span class="text-purple-400 text-xs font-bold uppercase tracking-widest">Neighborhood Oasis</span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white my-3">Our Garden Reading Nook</h2>
+          <p class="text-slate-300 text-sm leading-relaxed mb-6">
+            Step behind our fiction section into an ivy-draped courtyard garden. Enjoy single-origin espresso, cozy bench seating, and quiet afternoon tranquility.
+          </p>
+          <a href="#contact" class="inline-flex px-6 py-3 rounded-full bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold transition-all">Plan Your Visit</a>
+        </div>
+        <div class="grid grid-cols-2 gap-4 reveal">
+          <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=600&q=80" alt="Garden Reading" class="rounded-2xl h-56 w-full object-cover border border-purple-500/20">
+          <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600&q=80" alt="Bookshelf Corner" class="rounded-2xl h-56 w-full object-cover border border-purple-500/20 translate-y-4">
+        </div>
+      </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="py-20">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="text-center max-w-2xl mx-auto mb-12 reveal">
+          <span class="text-purple-400 text-xs font-bold uppercase tracking-widest">Gatherings & Readings</span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white mt-2">Upcoming Author Events</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="glass-card p-6 rounded-2xl reveal flex flex-col justify-between">
+            <div>
+              <span class="text-xs text-purple-300 font-semibold bg-purple-900/60 px-3 py-1 rounded-full">Thu, Aug 20 • 7:00 PM</span>
+              <h3 class="font-serif text-xl font-bold text-white mt-4 mb-2">An Evening with Zadie Smith</h3>
+              <p class="text-slate-300 text-xs mb-6">Author reading, Q&A, and exclusive book signing in our main gallery.</p>
+            </div>
+            <button onclick="alert('RSVP confirmed!')" class="w-full py-2.5 rounded-xl bg-purple-600 text-white text-xs font-semibold">RSVP Free Seat</button>
+          </div>
+          <div class="glass-card p-6 rounded-2xl reveal flex flex-col justify-between">
+            <div>
+              <span class="text-xs text-purple-300 font-semibold bg-purple-900/60 px-3 py-1 rounded-full">Sat, Aug 22 • 11:00 AM</span>
+              <h3 class="font-serif text-xl font-bold text-white mt-4 mb-2">Kids' Storytime in Garden</h3>
+              <p class="text-slate-300 text-xs mb-6">Interactive picture book readings and crafts for young readers ages 3–8.</p>
+            </div>
+            <button onclick="alert('RSVP confirmed!')" class="w-full py-2.5 rounded-xl bg-purple-600 text-white text-xs font-semibold">RSVP Family Pass</button>
+          </div>
+          <div class="glass-card p-6 rounded-2xl reveal flex flex-col justify-between">
+            <div>
+              <span class="text-xs text-purple-300 font-semibold bg-purple-900/60 px-3 py-1 rounded-full">Wed, Aug 26 • 7:30 PM</span>
+              <h3 class="font-serif text-xl font-bold text-white mt-4 mb-2">Brooklyn Fiction Book Club</h3>
+              <p class="text-slate-300 text-xs mb-6">Community book discussion on contemporary Brooklyn fiction with light drinks.</p>
+            </div>
+            <button onclick="alert('RSVP confirmed!')" class="w-full py-2.5 rounded-xl bg-purple-600 text-white text-xs font-semibold">Join Discussion</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Carousel -->
+    <section class="py-16 bg-purple-950/20 border-y border-purple-900/30">
+      <div class="max-w-4xl mx-auto px-4 text-center reveal">
+        <span class="text-purple-400 text-xs font-bold uppercase tracking-widest">Community Voice</span>
+        <h2 class="font-serif text-2xl sm:text-3xl font-bold text-white mt-2 mb-8">What Our Neighbors Say</h2>
+        <div class="glass-card p-8 rounded-2xl relative">
+          <p id="test-text" class="font-serif text-lg text-purple-100 italic mb-4">"Community Bookstore is the heart of Park Slope. The staff picks section feels like getting recommendations from trusted friends."</p>
+          <p id="test-author" class="font-bold text-white text-sm">Samantha Reed</p>
+          <p id="test-role" class="text-xs text-purple-300">Park Slope Resident</p>
+          <div class="flex justify-center gap-4 mt-6">
+            <button id="prev-test" class="w-8 h-8 rounded-full glass-card text-white hover:bg-purple-600">←</button>
+            <button id="next-test" class="w-8 h-8 rounded-full glass-card text-white hover:bg-purple-600">→</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Accordion -->
+    <section id="faq" class="py-20">
+      <div class="max-w-3xl mx-auto px-4">
+        <h2 class="font-serif text-3xl font-bold text-white text-center mb-10 reveal">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+          <div class="glass-card rounded-xl overflow-hidden reveal">
+            <button class="faq-btn w-full p-4 text-left font-semibold text-white flex justify-between items-center">
+              <span>Can I order books not currently on your shelves?</span>
+              <span class="faq-icon text-purple-400">+</span>
+            </button>
+            <div class="faq-content hidden p-4 text-xs text-slate-300 border-t border-purple-800/20">
+              Yes! We place daily orders with suppliers. Most special orders arrive at our Park Slope store in 2 to 4 business days.
+            </div>
+          </div>
+          <div class="glass-card rounded-xl overflow-hidden reveal">
+            <button class="faq-btn w-full p-4 text-left font-semibold text-white flex justify-between items-center">
+              <span>How do local Brooklyn authors submit books for consideration?</span>
+              <span class="faq-icon text-purple-400">+</span>
+            </button>
+            <div class="faq-content hidden p-4 text-xs text-slate-300 border-t border-purple-800/20">
+              Authors can send details through our contact form or drop off consignment review copies in store.
+            </div>
+          </div>
+          <div class="glass-card rounded-xl overflow-hidden reveal">
+            <button class="faq-btn w-full p-4 text-left font-semibold text-white flex justify-between items-center">
+              <span>Do you offer digital e-gift cards and memberships?</span>
+              <span class="faq-icon text-purple-400">+</span>
+            </button>
+            <div class="faq-content hidden p-4 text-xs text-slate-300 border-t border-purple-800/20">
+              Yes! Both physical and e-gift cards are available online or in person alongside our Reader Circle membership.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-purple-950/30 border-t border-purple-900/30">
+      <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <div class="reveal">
+          <span class="text-purple-400 text-xs font-bold uppercase tracking-widest">Visit Us</span>
+          <h2 class="font-serif text-3xl font-bold text-white my-3">Drop By & Say Hello</h2>
+          <p class="text-slate-300 text-sm mb-6">Located steps from Prospect Park in Park Slope, Brooklyn.</p>
+          <div class="space-y-4 text-xs text-purple-200">
+            <p>📍 143 Seventh Avenue, Brooklyn, NY 11215</p>
+            <p>⏰ Mon – Sat: 10:00 AM – 8:00 PM | Sun: 10:00 AM – 7:00 PM</p>
+            <p>✉️ hello@communitybookstore.com | (718) 783-3075</p>
+          </div>
+        </div>
+        <div class="glass-card p-6 rounded-2xl reveal">
+          <form id="contact-form" onsubmit="event.preventDefault(); document.getElementById('form-msg').classList.remove('hidden');" class="space-y-4">
+            <div>
+              <label class="block text-xs text-purple-200 mb-1">Name</label>
+              <input type="text" required class="w-full p-2.5 rounded-lg bg-purple-950/80 border border-purple-800/40 text-white text-xs focus:border-purple-400 focus:outline-none">
+            </div>
+            <div>
+              <label class="block text-xs text-purple-200 mb-1">Email</label>
+              <input type="email" required class="w-full p-2.5 rounded-lg bg-purple-950/80 border border-purple-800/40 text-white text-xs focus:border-purple-400 focus:outline-none">
+            </div>
+            <div>
+              <label class="block text-xs text-purple-200 mb-1">Message</label>
+              <textarea rows="3" required class="w-full p-2.5 rounded-lg bg-purple-950/80 border border-purple-800/40 text-white text-xs focus:border-purple-400 focus:outline-none"></textarea>
+            </div>
+            <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-xs font-semibold">Send Message</button>
+          </form>
+          <div id="form-msg" class="hidden mt-3 p-3 bg-purple-900/80 rounded-lg text-purple-200 text-xs text-center">✨ Thank you! We will get back to you shortly.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-[#120e17] py-10 border-t border-purple-900/40 text-xs text-slate-400">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div>
+        <p class="font-serif text-base text-white font-bold">Community Bookstore</p>
+        <p>© 2026 Community Bookstore • Park Slope, Brooklyn</p>
+      </div>
+      <div class="flex gap-2">
+        <input type="email" placeholder="Subscribe to newsletter" class="p-2 rounded-lg bg-purple-950 border border-purple-800/40 text-white text-xs">
+        <button onclick="alert('Subscribed!')" class="px-4 py-2 bg-purple-600 text-white font-semibold rounded-lg">Join</button>
+      </div>
+    </div>
+  </footer>
+
+  <a id="floating-cta" href="#contact" class="fixed bottom-6 right-20 z-40 px-4 py-2.5 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-xs font-semibold shadow-xl opacity-0 transition-all pointer-events-none">📖 Order Book</a>
+  <button id="back-to-top" class="fixed bottom-6 right-6 z-40 w-10 h-10 rounded-full bg-purple-900/80 text-white border border-purple-500/40 flex items-center justify-center shadow-xl opacity-0 transition-all pointer-events-none">↑</button>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      const scroll = document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      document.getElementById('progress-bar').style.width = (scroll / height * 100) + '%';
+      const fCta = document.getElementById('floating-cta');
+      const bTop = document.getElementById('back-to-top');
+      if (scroll > 300) {
+        fCta.classList.remove('opacity-0', 'pointer-events-none');
+        bTop.classList.remove('opacity-0', 'pointer-events-none');
+      } else {
+        fCta.classList.add('opacity-0', 'pointer-events-none');
+        bTop.classList.add('opacity-0', 'pointer-events-none');
+      }
+    });
+    document.getElementById('back-to-top').onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.getElementById('mobile-menu-btn').onclick = () => document.getElementById('mobile-menu').classList.toggle('hidden');
+
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+    const counterObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const c = e.target;
+          const target = +c.getAttribute('data-target');
+          let count = 0;
+          const update = () => {
+            count += Math.ceil(target / 40);
+            if (count < target) { c.innerText = count.toLocaleString() + '+'; setTimeout(update, 30); }
+            else { c.innerText = target.toLocaleString() + '+'; }
+          };
+          update();
+          counterObs.unobserve(c);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.counter').forEach(el => counterObs.observe(el));
+
+    document.querySelectorAll('.faq-btn').forEach(btn => {
+      btn.onclick = () => {
+        const content = btn.nextElementSibling;
+        content.classList.toggle('hidden');
+      };
+    });
+
+    document.querySelectorAll('.tilt-card').forEach(card => {
+      card.onmousemove = (e) => {
+        const r = card.getBoundingClientRect();
+        const x = (e.clientX - r.left - r.width / 2) / (r.width / 2) * 6;
+        const y = (e.clientY - r.top - r.height / 2) / (r.height / 2) * -6;
+        card.style.transform = `perspective(1000px) rotateX(${y}deg) rotateY(${x}deg) translateY(-4px)`;
+      };
+      card.onmouseleave = () => card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+    });
+
+    const testimonials = [
+      { t: '"Community Bookstore is the heart of Park Slope. The staff picks section feels like getting recommendations from trusted friends."', a: 'Samantha Reed', r: 'Park Slope Resident' },
+      { t: '"Their garden patio is my favorite place in all of New York to read on a Sunday afternoon."', a: 'David Chen', r: 'Brooklyn Poet' },
+      { t: '"The author readings are intimate and unforgettable. Truly a treasure of a bookstore."', a: 'Elena Vance', r: 'Local Author' }
+    ];
+    let tIdx = 0;
+    const updateT = () => {
+      document.getElementById('test-text').innerText = testimonials[tIdx].t;
+      document.getElementById('test-author').innerText = testimonials[tIdx].a;
+      document.getElementById('test-role').innerText = testimonials[tIdx].r;
+    };
+    document.getElementById('next-test').onclick = () => { tIdx = (tIdx + 1) % testimonials.length; updateT(); };
+    document.getElementById('prev-test').onclick = () => { tIdx = (tIdx - 1 + testimonials.length) % testimonials.length; updateT(); };
+    setInterval(() => { tIdx = (tIdx + 1) % testimonials.length; updateT(); }, 6000);
+  </script>
+
+<!-- WhatsApp Contact Button -->
+<a href="https://wa.me/+9233390025902?text=Hi%21%20I%20just%20saw%20the%20enhanced%20website%20preview%20you%20created%20for%20my%20business%20and%20I'm%20interested%20in%20learning%20more." 
+   target="_blank"
+   style="position:fixed;bottom:30px;left:30px;z-index:999;background:#25D366;color:white;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(37,211,102,0.5);transition:transform 0.3s;cursor:pointer;text-decoration:none;"
+   onmouseover="this.style.transform='scale(1.1)'"
+   onmouseout="this.style.transform='scale(1)'"
+   title="Chat with us on WhatsApp">
+   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="white">
+     <path d="M17.472 14.382c-.297.149-1.255.223-1.679.223-.62 0-1.225-.046-1.782-.158-.287-.057-.584-.124-.884-.124-.246 0-.49.036-.724.107-.399.121-.772.323-1.134.547-.51.316-.997.683-1.513.999-.413.253-.847.476-1.301.634-.473.165-.967.237-1.463.237-.553 0-1.106-.086-1.633-.257-.431-.14-.841-.342-1.221-.598-.358-.241-.689-.531-.99-.846-.293-.307-.557-.648-.776-1.012-.21-.349-.382-.722-.516-1.106-.124-.356-.21-.727-.262-1.101-.046-.333-.069-.671-.069-1.009 0-.475.069-.951.206-1.406.137-.455.342-.887.598-1.287.262-.41.581-.776.93-1.106.358-.338.758-.626 1.187-.854.431-.229.887-.404 1.357-.523.471-.119.96-.179 1.45-.179.515 0 1.027.065 1.526.193.5.129.981.319 1.433.567.453.249.873.558 1.249.916.377.359.71.776.989 1.234.279.459.491.961.629 1.484.137.523.206 1.069.206 1.614 0 .316-.027.629-.08.938-.052.31-.131.614-.234.911-.103.296-.231.583-.382.857-.151.275-.323.537-.516.785-.192.249-.405.481-.638.697-.232.217-.484.414-.752.591-.268.177-.552.331-.849.462-.296.131-.605.238-.923.32-.317.082-.642.139-.971.172-.329.032-.66.049-.991.049-.43 0-.858-.039-1.28-.117-.421-.077-.836-.194-1.236-.349-.4-.155-.784-.349-1.146-.583-.362-.234-.702-.506-1.015-.816-.313-.31-.598-.648-.854-1.009-.257-.361-.485-.746-.683-1.146-.198-.4-.366-.816-.504-1.246-.137-.43-.236-.872-.296-1.32-.06-.449-.09-.902-.09-1.355 0-.355.027-.711.08-1.062.052-.352.13-.699.234-1.038.103-.339.231-.671.382-.994.151-.323.323-.635.516-.937.192-.303.405-.591.638-.864.232-.273.484-.527.752-.762.268-.235.552-.451.849-.648.296-.197.605-.375.923-.534.317-.158.642-.298.971-.419.329-.121.66-.223.991-.307.329-.083.66-.146.991-.189.329-.043.66-.065.991-.065.43 0 .858.039 1.28.117.421.078.836.195 1.236.35.4.155.784.349 1.146.583.362.234.702.506 1.015.816.313.31.598.648.854 1.009.257.362.485.746.683 1.146.198.4.366.816.504 1.246.137.43.236.872.296 1.32.06.449.09.902.09 1.355 0 .355-.027.711-.08 1.062-.052.352-.13.699-.234 1.038-.103.339-.231.671-.382.994-.151.323-.323.635-.516.937-.192.303-.405.591-.638.864-.232.273-.484.527-.752.762-.268.235-.552.451-.849.648-.296.197-.605.375-.923.534-.317.158-.642.298-.971.419-.329.121-.66.223-.991.307z"/>
+   </svg>
+</a>
+
+</body>
+</html>
