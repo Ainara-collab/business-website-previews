@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Howard A. Silver, DDS | Dental Practice Williamsburg Brooklyn</title>
+    <meta name="description" content="Top-rated dental practice in Williamsburg & Greenpoint, Brooklyn. Dr. Howard A. Silver offers general, cosmetic, emergency dental care & implants. Call (718) 486-8900.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0ea5e9',
+                        secondary: '#06b6d4',
+                        lightbg: '#f0f9ff'
+                    },
+                    fontFamily: { poppins: ['Poppins', 'sans-serif'], inter: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; }
+        .glass-nav { background: rgba(255, 255, 255, 0.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        .glass-card { background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(10px); border: 1px solid rgba(14, 165, 233, 0.2); }
+        .tilt-card { transition: transform 0.25s ease, box-shadow 0.25s ease; transform-style: preserve-3d; }
+        .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease-out, transform 0.7s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .gradient-btn { background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%); }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-sky-200">
+
+    <!-- Scroll Progress Bar -->
+    <div id="scrollProgress" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-sky-400 to-cyan-500 z-50 transition-all duration-150" style="width:0%"></div>
+
+    <!-- Top Bar -->
+    <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 hidden sm:block">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div><i class="fa-solid fa-location-dot text-sky-400 mr-2"></i>Williamsburg / Greenpoint, Brooklyn, NY | <i class="fa-solid fa-clock text-sky-400 mx-2"></i>Mon-Thu: 8:30am-6pm, Fri: 8:30am-2pm</div>
+            <div><a href="tel:7184868900" class="hover:text-sky-400 font-semibold"><i class="fa-solid fa-phone text-sky-400 mr-1"></i>(718) 486-8900</a></div>
+        </div>
+    </div>
+
+    <!-- Header / Nav -->
+    <header class="sticky top-0 z-40 glass-nav shadow-sm border-b border-sky-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="#" class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl gradient-btn text-white flex items-center justify-center font-bold text-xl shadow-md"><i class="fa-solid fa-tooth"></i></div>
+                    <div>
+                        <span class="font-extrabold text-xl text-slate-900 block leading-tight">Howard A. Silver <span class="text-sky-500">DDS</span></span>
+                        <span class="text-[10px] text-slate-500 uppercase font-medium tracking-wider">Williamsburg Dental Excellence</span>
+                    </div>
+                </a>
+                <nav class="hidden lg:flex space-x-7 font-medium text-slate-700 text-sm">
+                    <a href="#about" class="hover:text-sky-600 transition">About Dr. Silver</a>
+                    <a href="#services" class="hover:text-sky-600 transition">Services</a>
+                    <a href="#why-us" class="hover:text-sky-600 transition">Why Choose Us</a>
+                    <a href="#testimonials" class="hover:text-sky-600 transition">Reviews</a>
+                    <a href="#faq" class="hover:text-sky-600 transition">FAQs</a>
+                    <a href="#contact" class="hover:text-sky-600 transition">Contact</a>
+                </nav>
+                <div class="hidden lg:flex">
+                    <a href="#contact" class="gradient-btn text-white font-semibold px-5 py-2.5 rounded-full shadow-lg hover:opacity-95 text-sm"><i class="fa-regular fa-calendar-check mr-2"></i>Book Visit</a>
+                </div>
+                <button id="mobileMenuBtn" aria-label="Toggle Menu" class="lg:hidden text-slate-700 p-2"><i class="fa-solid fa-bars text-xl" id="menuIcon"></i></button>
+            </div>
+        </div>
+        <div id="mobileMenu" class="hidden lg:hidden bg-white/95 px-4 pt-2 pb-6 space-y-3 border-b">
+            <a href="#about" class="block py-2 text-slate-700 font-medium">About Dr. Silver</a>
+            <a href="#services" class="block py-2 text-slate-700 font-medium">Services</a>
+            <a href="#why-us" class="block py-2 text-slate-700 font-medium">Why Choose Us</a>
+            <a href="#testimonials" class="block py-2 text-slate-700 font-medium">Reviews</a>
+            <a href="#faq" class="block py-2 text-slate-700 font-medium">FAQs</a>
+            <a href="#contact" class="block py-2 text-slate-700 font-medium">Contact Us</a>
+            <a href="tel:7184868900" class="block text-center text-sky-600 font-bold bg-sky-50 py-2 rounded-lg">(718) 486-8900</a>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="relative min-h-[85vh] flex items-center justify-center bg-slate-900 text-white overflow-hidden py-16">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1920&q=80" alt="Dental Practice Williamsburg Brooklyn" class="w-full h-full object-cover opacity-25">
+            <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-900/90 to-transparent"></div>
+        </div>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-12 gap-10 items-center">
+            <div class="lg:col-span-7 space-y-5 text-center lg:text-left reveal">
+                <span class="inline-block bg-sky-500/20 text-sky-300 text-xs font-semibold uppercase px-3 py-1.5 rounded-full border border-sky-400/30"><i class="fa-solid fa-star text-amber-400 mr-1.5"></i>Williamsburg & Greenpoint Brooklyn</span>
+                <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">Gentle Dentistry. <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-cyan-400">Radiant Smiles.</span></h1>
+                <p class="text-slate-300 text-base sm:text-lg font-light leading-relaxed">Providing high-quality, compassionate dental care tailored to Brooklyn families for over 20 years. Experience modern, pain-free dental treatments.</p>
+                <div class="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start pt-2">
+                    <a href="#contact" class="gradient-btn text-white font-bold px-7 py-3.5 rounded-full shadow-xl hover:opacity-95 text-center"><i class="fa-solid fa-calendar-check mr-2"></i>Schedule Appointment</a>
+                    <a href="tel:7184868900" class="bg-white/10 hover:bg-white/20 text-white font-semibold px-7 py-3.5 rounded-full backdrop-blur-md text-center border border-white/20"><i class="fa-solid fa-phone mr-2 text-sky-400"></i>(718) 486-8900</a>
+                </div>
+            </div>
+            <div class="lg:col-span-5 reveal">
+                <div class="glass-card rounded-2xl p-6 shadow-xl text-slate-800">
+                    <h3 class="text-lg font-bold text-slate-900 mb-1">Quick Appointment Request</h3>
+                    <p class="text-xs text-slate-500 mb-4">Fast confirmation within 2 hours</p>
+                    <form class="space-y-3" onsubmit="event.preventDefault(); alert('Request submitted!');">
+                        <input type="text" placeholder="Your Full Name" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 text-sm outline-none focus:ring-2 focus:ring-sky-500" required>
+                        <input type="tel" placeholder="Phone Number" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 text-sm outline-none focus:ring-2 focus:ring-sky-500" required>
+                        <select class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 text-sm outline-none focus:ring-2 focus:ring-sky-500">
+                            <option>General Exam & Cleaning</option>
+                            <option>Cosmetic Dentistry / Whitening</option>
+                            <option>Emergency Dental Care</option>
+                            <option>Dental Implants Consultation</option>
+                            <option>Root Canal Therapy</option>
+                        </select>
+                        <button type="submit" class="w-full gradient-btn text-white font-bold py-3 rounded-lg text-sm shadow">Submit Request</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
+            <div class="relative reveal">
+                <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1000&q=80" alt="Dr. Silver DDS" class="rounded-2xl shadow-xl w-full h-[400px] object-cover">
+                <div class="absolute -bottom-4 -right-4 bg-white p-4 rounded-xl shadow-lg border border-sky-100 hidden sm:block">
+                    <p class="font-bold text-slate-900 text-sm"><i class="fa-solid fa-award text-sky-500 mr-2"></i>20+ Years Experience</p>
+                    <p class="text-xs text-slate-500">Brooklyn Trusted Specialist</p>
+                </div>
+            </div>
+            <div class="space-y-5 reveal">
+                <span class="text-sky-600 font-bold text-xs uppercase tracking-wider bg-sky-50 px-3 py-1 rounded-full">Meet Your Dentist</span>
+                <h2 class="text-3xl font-extrabold text-slate-900">Dr. Howard A. Silver, DDS</h2>
+                <p class="text-slate-600 text-sm leading-relaxed">Dr. Howard A. Silver brings over two decades of clinical expertise to Williamsburg and Greenpoint. Our practice focuses on minimally invasive, comfortable, and highly personalized dental care for patients of all ages.</p>
+                <div class="grid grid-cols-2 gap-3 pt-2 text-sm font-semibold text-slate-700">
+                    <div class="flex items-center"><i class="fa-solid fa-check text-sky-500 mr-2"></i>Digital Diagnostics</div>
+                    <div class="flex items-center"><i class="fa-solid fa-check text-sky-500 mr-2"></i>Painless Treatments</div>
+                    <div class="flex items-center"><i class="fa-solid fa-check text-sky-500 mr-2"></i>Same-Day Emergencies</div>
+                    <div class="flex items-center"><i class="fa-solid fa-check text-sky-500 mr-2"></i>PPO Insurance Accepted</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="py-20 bg-sky-50/70">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12 reveal">
+                <span class="text-sky-600 font-bold text-xs uppercase tracking-wider bg-sky-100 px-3 py-1 rounded-full">Comprehensive Care</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 mt-2">Our Specialty Dental Services</h2>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- 1 -->
+                <div class="tilt-card bg-white p-6 rounded-2xl shadow border border-slate-100 hover:shadow-xl transition reveal">
+                    <div class="w-12 h-12 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-teeth-open"></i></div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">General Dentistry</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Routine checkups, dental cleanings, cavity restorations, and preventive oral health care.</p>
+                </div>
+                <!-- 2 -->
+                <div class="tilt-card bg-white p-6 rounded-2xl shadow border border-slate-100 hover:shadow-xl transition reveal">
+                    <div class="w-12 h-12 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Cosmetic Dentistry</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Porcelain veneers, tooth bonding, and full smile makeovers tailored to boost your confidence.</p>
+                </div>
+                <!-- 3 -->
+                <div class="tilt-card bg-white p-6 rounded-2xl shadow border border-slate-100 hover:shadow-xl transition reveal">
+                    <div class="w-12 h-12 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-truck-medical"></i></div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Emergency Dental Care</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Urgent relief for severe toothaches, broken teeth, lost crowns, and acute dental trauma.</p>
+                </div>
+                <!-- 4 -->
+                <div class="tilt-card bg-white p-6 rounded-2xl shadow border border-slate-100 hover:shadow-xl transition reveal">
+                    <div class="w-12 h-12 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-screws"></i></div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Dental Implants</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Permanent, natural-looking tooth replacements that restore aesthetics, stability, and function.</p>
+                </div>
+                <!-- 5 -->
+                <div class="tilt-card bg-white p-6 rounded-2xl shadow border border-slate-100 hover:shadow-xl transition reveal">
+                    <div class="w-12 h-12 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-sun"></i></div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Teeth Whitening</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">In-office professional whitening and custom take-home trays to brighten your smile up to 8 shades.</p>
+                </div>
+                <!-- 6 -->
+                <div class="tilt-card bg-white p-6 rounded-2xl shadow border border-slate-100 hover:shadow-xl transition reveal">
+                    <div class="w-12 h-12 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-microscope"></i></div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Root Canal Therapy</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Gentle endodontic procedures to eliminate root infection, relieve pain, and save your tooth.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Us -->
+    <section id="why-us" class="py-20 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-10 items-center">
+            <div class="space-y-4 reveal">
+                <span class="bg-sky-500/20 text-sky-300 text-xs font-bold uppercase px-3 py-1 rounded-full border border-sky-400/30">Why Choose Dr. Silver</span>
+                <h2 class="text-3xl font-extrabold">Patient-Centered Dental Practice</h2>
+                <p class="text-slate-300 text-sm leading-relaxed">We prioritize patient comfort, clear communication, and modern dental technology to deliver exceptional oral care in a relaxed Brooklyn environment.</p>
+                <div class="space-y-3 pt-2">
+                    <div class="flex items-start space-x-3">
+                        <div class="w-8 h-8 rounded-lg gradient-btn text-white flex items-center justify-center shrink-0 font-bold text-sm">1</div>
+                        <div><h4 class="font-bold text-sm">Pain-Free Gentle Techniques</h4><p class="text-xs text-slate-400">Advanced local anesthesia & soothing atmosphere.</p></div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <div class="w-8 h-8 rounded-lg gradient-btn text-white flex items-center justify-center shrink-0 font-bold text-sm">2</div>
+                        <div><h4 class="font-bold text-sm">Modern Digital Imaging</h4><p class="text-xs text-slate-400">Low-radiation X-rays and precise intraoral scanning.</p></div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <div class="w-8 h-8 rounded-lg gradient-btn text-white flex items-center justify-center shrink-0 font-bold text-sm">3</div>
+                        <div><h4 class="font-bold text-sm">Transparent Pricing</h4><p class="text-xs text-slate-400">Clear cost estimates and flexible insurance handling.</p></div>
+                    </div>
+                </div>
+            </div>
+            <div class="reveal">
+                <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=1000&q=80" alt="Dental Care Brooklyn" class="rounded-2xl shadow-xl border border-slate-800 w-full h-[360px] object-cover">
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Carousel -->
+    <section id="testimonials" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10 reveal">
+                <span class="text-sky-600 font-bold text-xs uppercase tracking-wider bg-sky-50 px-3 py-1 rounded-full">Patient Reviews</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 mt-2">What Our Patients Say</h2>
+            </div>
+            <div class="relative reveal">
+                <div class="overflow-hidden rounded-2xl bg-slate-50 p-8 border border-sky-100 shadow-md">
+                    <div id="testimonialTrack" class="flex transition-transform duration-500">
+                        <div class="w-full shrink-0 space-y-4">
+                            <div class="text-amber-400 text-sm"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                            <p class="text-slate-700 italic text-base">"Dr. Silver is hands down the best dentist in Brooklyn! I used to have dental anxiety, but he made me feel completely comfortable during my visit."</p>
+                            <p class="font-bold text-slate-900 text-sm">— Michael S., Williamsburg</p>
+                        </div>
+                        <div class="w-full shrink-0 space-y-4">
+                            <div class="text-amber-400 text-sm"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                            <p class="text-slate-700 italic text-base">"Amazing teeth whitening results before my wedding! Honest pricing, no waiting, and extremely professional care."</p>
+                            <p class="font-bold text-slate-900 text-sm">— Emily R., Greenpoint</p>
+                        </div>
+                        <div class="w-full shrink-0 space-y-4">
+                            <div class="text-amber-400 text-sm"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                            <p class="text-slate-700 italic text-base">"Called with an emergency toothache and they got me in right away. Dr. Silver took care of everything seamlessly."</p>
+                            <p class="font-bold text-slate-900 text-sm">— David J., Brooklyn</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-between items-center mt-4">
+                    <button id="prevBtn" class="w-10 h-10 rounded-full bg-white shadow border text-slate-700 hover:bg-sky-500 hover:text-white transition"><i class="fa-solid fa-chevron-left"></i></button>
+                    <div id="carouselDots" class="flex space-x-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-sky-600"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
+                    </div>
+                    <button id="nextBtn" class="w-10 h-10 rounded-full bg-white shadow border text-slate-700 hover:bg-sky-500 hover:text-white transition"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQs -->
+    <section id="faq" class="py-20 bg-sky-50/70">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10 reveal">
+                <span class="text-sky-600 font-bold text-xs uppercase tracking-wider bg-sky-50 px-3 py-1 rounded-full">FAQs</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 mt-2">Frequently Asked Questions</h2>
+            </div>
+            <div class="space-y-3 reveal">
+                <div class="bg-white rounded-xl border border-slate-200 overflow-hidden">
+                    <button class="faq-btn w-full p-4 text-left flex justify-between items-center font-bold text-slate-900 text-sm">
+                        <span>Do you accept dental insurance?</span>
+                        <i class="fa-solid fa-plus text-sky-500"></i>
+                    </button>
+                    <div class="faq-answer hidden px-4 pb-4 text-xs text-slate-600 border-t border-slate-100 pt-3">
+                        Yes! We accept most major PPO dental plans and assist with claim submission to maximize your coverage.
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl border border-slate-200 overflow-hidden">
+                    <button class="faq-btn w-full p-4 text-left flex justify-between items-center font-bold text-slate-900 text-sm">
+                        <span>What if I have a dental emergency?</span>
+                        <i class="fa-solid fa-plus text-sky-500"></i>
+                    </button>
+                    <div class="faq-answer hidden px-4 pb-4 text-xs text-slate-600 border-t border-slate-100 pt-3">
+                        Call (718) 486-8900 immediately. We reserve time daily for emergency patients in pain or with dental injuries.
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl border border-slate-200 overflow-hidden">
+                    <button class="faq-btn w-full p-4 text-left flex justify-between items-center font-bold text-slate-900 text-sm">
+                        <span>How often should I get a dental checkup?</span>
+                        <i class="fa-solid fa-plus text-sky-500"></i>
+                    </button>
+                    <div class="faq-answer hidden px-4 pb-4 text-xs text-slate-600 border-t border-slate-100 pt-3">
+                        We recommend routine checkups and cleanings every 6 months to ensure healthy teeth and prevent dental problems.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-12 gap-10">
+            <div class="lg:col-span-5 space-y-6 reveal">
+                <span class="text-sky-600 font-bold text-xs uppercase tracking-wider bg-sky-50 px-3 py-1 rounded-full">Contact Us</span>
+                <h2 class="text-3xl font-extrabold text-slate-900">Visit Our Williamsburg Practice</h2>
+                <div class="space-y-4 text-sm text-slate-600">
+                    <p><i class="fa-solid fa-location-dot text-sky-500 mr-3"></i>Williamsburg/Greenpoint, Brooklyn, NY</p>
+                    <p><i class="fa-solid fa-phone text-sky-500 mr-3"></i><a href="tel:7184868900" class="hover:text-sky-600 font-semibold">(718) 486-8900</a></p>
+                    <p><i class="fa-solid fa-clock text-sky-500 mr-3"></i>Mon-Thu: 8:30am - 6:00pm | Fri: 8:30am - 2:00pm</p>
+                </div>
+                <div class="rounded-xl overflow-hidden border border-slate-200 shadow h-44 bg-slate-100">
+                    <iframe class="w-full h-full border-0" src="https://maps.google.com/maps?q=Williamsburg+Brooklyn+NY&t=&z=14&ie=UTF8&iwloc=&output=embed" loading="lazy"></iframe>
+                </div>
+            </div>
+            <div class="lg:col-span-7 reveal">
+                <div class="bg-sky-50/70 p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-lg">
+                    <h3 class="text-xl font-bold text-slate-900 mb-4">Send Us a Message</h3>
+                    <form class="space-y-4" onsubmit="event.preventDefault(); alert('Message sent successfully!');">
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <input type="text" placeholder="First Name *" required class="w-full px-4 py-3 rounded-xl border text-sm outline-none bg-white focus:ring-2 focus:ring-sky-500">
+                            <input type="text" placeholder="Last Name *" required class="w-full px-4 py-3 rounded-xl border text-sm outline-none bg-white focus:ring-2 focus:ring-sky-500">
+                        </div>
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <input type="tel" placeholder="Phone Number *" required class="w-full px-4 py-3 rounded-xl border text-sm outline-none bg-white focus:ring-2 focus:ring-sky-500">
+                            <input type="email" placeholder="Email Address *" required class="w-full px-4 py-3 rounded-xl border text-sm outline-none bg-white focus:ring-2 focus:ring-sky-500">
+                        </div>
+                        <textarea rows="3" placeholder="How can Dr. Silver help you?" class="w-full px-4 py-3 rounded-xl border text-sm outline-none bg-white focus:ring-2 focus:ring-sky-500"></textarea>
+                        <button type="submit" class="w-full gradient-btn text-white font-bold py-3.5 rounded-xl shadow hover:opacity-95 text-sm">Send Message <i class="fa-solid fa-paper-plane ml-1"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 py-12 text-xs border-t border-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p>&copy; 2026 Howard A. Silver, DDS. Williamsburg & Greenpoint Brooklyn, NY. All rights reserved.</p>
+            <div class="flex space-x-4">
+                <a href="tel:7184868900" class="hover:text-sky-400">(718) 486-8900</a>
+                <span>|</span>
+                <a href="#about" class="hover:text-sky-400">About</a>
+                <span>|</span>
+                <a href="#services" class="hover:text-sky-400">Services</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Buttons -->
+    <a href="tel:7184868900" class="fixed bottom-6 left-6 z-40 gradient-btn text-white p-3.5 rounded-full shadow-2xl hover:scale-110 transition border border-white/20" title="Call Us"><i class="fa-solid fa-phone text-lg"></i></a>
+    <button id="backToTop" class="fixed bottom-6 right-6 z-40 bg-slate-800 text-white p-3.5 rounded-full shadow-2xl opacity-0 pointer-events-none transition hover:bg-sky-600 border border-white/10"><i class="fa-solid fa-arrow-up text-lg"></i></button>
+
+    <!-- JS -->
+    <script>
+        const scrollProgress = document.getElementById('scrollProgress');
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            const total = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            scrollProgress.style.width = ((window.scrollY / total) * 100) + '%';
+            if (window.scrollY > 300) backToTop.classList.remove('opacity-0', 'pointer-events-none');
+            else backToTop.classList.add('opacity-0', 'pointer-events-none');
+        });
+        backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+        document.querySelectorAll('.faq-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const answer = btn.nextElementSibling;
+                const icon = btn.querySelector('i');
+                const isHidden = answer.classList.contains('hidden');
+                document.querySelectorAll('.faq-answer').forEach(a => a.classList.add('hidden'));
+                document.querySelectorAll('.faq-btn i').forEach(i => { i.classList.remove('fa-minus'); i.classList.add('fa-plus'); });
+                if (isHidden) {
+                    answer.classList.remove('hidden');
+                    icon.classList.remove('fa-plus');
+                    icon.classList.add('fa-minus');
+                }
+            });
+        });
+
+        const track = document.getElementById('testimonialTrack');
+        const dots = document.querySelectorAll('#carouselDots span');
+        let slide = 0;
+        function setSlide(s) {
+            slide = s;
+            track.style.transform = `translateX(-${slide * 100}%)`;
+            dots.forEach((d, i) => d.className = i === slide ? 'w-2.5 h-2.5 rounded-full bg-sky-600' : 'w-2.5 h-2.5 rounded-full bg-slate-300');
+        }
+        document.getElementById('nextBtn').addEventListener('click', () => setSlide((slide + 1) % 3));
+        document.getElementById('prevBtn').addEventListener('click', () => setSlide((slide - 1 + 3) % 3));
+        setInterval(() => setSlide((slide + 1) % 3), 5000);
+
+        document.querySelectorAll('.tilt-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                card.style.transform = `perspective(1000px) rotateX(${-y / 15}deg) rotateY(${x / 15}deg) scale(1.02)`;
+            });
+            card.addEventListener('mouseleave', () => card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)');
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+
+<!-- WhatsApp Contact Button -->
+<a href="https://wa.me/+9233390025902?text=Hi%21%20I%20just%20saw%20the%20enhanced%20website%20preview%20you%20created%20for%20my%20business%20and%20I'm%20interested%20in%20learning%20more." 
+   target="_blank"
+   style="position:fixed;bottom:30px;left:30px;z-index:999;background:#25D366;color:white;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(37,211,102,0.5);transition:transform 0.3s;cursor:pointer;text-decoration:none;"
+   onmouseover="this.style.transform='scale(1.1)'"
+   onmouseout="this.style.transform='scale(1)'"
+   title="Chat with us on WhatsApp">
+   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="white">
+     <path d="M17.472 14.382c-.297.149-1.255.223-1.679.223-.62 0-1.225-.046-1.782-.158-.287-.057-.584-.124-.884-.124-.246 0-.49.036-.724.107-.399.121-.772.323-1.134.547-.51.316-.997.683-1.513.999-.413.253-.847.476-1.301.634-.473.165-.967.237-1.463.237-.553 0-1.106-.086-1.633-.257-.431-.14-.841-.342-1.221-.598-.358-.241-.689-.531-.99-.846-.293-.307-.557-.648-.776-1.012-.21-.349-.382-.722-.516-1.106-.124-.356-.21-.727-.262-1.101-.046-.333-.069-.671-.069-1.009 0-.475.069-.951.206-1.406.137-.455.342-.887.598-1.287.262-.41.581-.776.93-1.106.358-.338.758-.626 1.187-.854.431-.229.887-.404 1.357-.523.471-.119.96-.179 1.45-.179.515 0 1.027.065 1.526.193.5.129.981.319 1.433.567.453.249.873.558 1.249.916.377.359.71.776.989 1.234.279.459.491.961.629 1.484.137.523.206 1.069.206 1.614 0 .316-.027.629-.08.938-.052.31-.131.614-.234.911-.103.296-.231.583-.382.857-.151.275-.323.537-.516.785-.192.249-.405.481-.638.697-.232.217-.484.414-.752.591-.268.177-.552.331-.849.462-.296.131-.605.238-.923.32-.317.082-.642.139-.971.172-.329.032-.66.049-.991.049-.43 0-.858-.039-1.28-.117-.421-.077-.836-.194-1.236-.349-.4-.155-.784-.349-1.146-.583-.362-.234-.702-.506-1.015-.816-.313-.31-.598-.648-.854-1.009-.257-.361-.485-.746-.683-1.146-.198-.4-.366-.816-.504-1.246-.137-.43-.236-.872-.296-1.32-.06-.449-.09-.902-.09-1.355 0-.355.027-.711.08-1.062.052-.352.13-.699.234-1.038.103-.339.231-.671.382-.994.151-.323.323-.635.516-.937.192-.303.405-.591.638-.864.232-.273.484-.527.752-.762.268-.235.552-.451.849-.648.296-.197.605-.375.923-.534.317-.158.642-.298.971-.419.329-.121.66-.223.991-.307.329-.083.66-.146.991-.189.329-.043.66-.065.991-.065.43 0 .858.039 1.28.117.421.078.836.195 1.236.35.4.155.784.349 1.146.583.362.234.702.506 1.015.816.313.31.598.648.854 1.009.257.362.485.746.683 1.146.198.4.366.816.504 1.246.137.43.236.872.296 1.32.06.449.09.902.09 1.355 0 .355-.027.711-.08 1.062-.052.352-.13.699-.234 1.038-.103.339-.231.671-.382.994-.151.323-.323.635-.516.937-.192.303-.405.591-.638.864-.232.273-.484.527-.752.762-.268.235-.552.451-.849.648-.296.197-.605.375-.923.534-.317.158-.642.298-.971.419-.329.121-.66.223-.991.307z"/>
+   </svg>
+</a>
+
+</body>
+</html>
