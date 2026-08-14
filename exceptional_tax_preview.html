@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exceptional Tax & Accounting | Brooklyn, NY</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script>
+tailwind.config = {
+theme: {
+extend: {
+fontFamily: { sans: ['DM Sans', 'sans-serif'] },
+colors: { navy: { DEFAULT: '#1e40af', dark: '#0a0f1e', card: '#131b2e' }, steel: { DEFAULT: '#3b82f6' } }
+}
+}
+}
+</script>
+<style>
+body { font-family: 'DM Sans', sans-serif; background-color: #0a0f1e; color: #f8fafc; overflow-x: hidden; }
+.glass-nav { background: rgba(10, 15, 30, 0.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+.glass-card { background: rgba(19, 27, 46, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(59, 130, 246, 0.18); transition: all 0.3s ease; }
+.glass-card:hover { border-color: rgba(59, 130, 246, 0.5); transform: translateY(-4px); box-shadow: 0 15px 30px -10px rgba(59, 130, 246, 0.25); }
+.orb { position: absolute; border-radius: 50%; filter: blur(100px); pointer-events: none; z-index: 0; }
+.scroll-reveal { opacity: 0; transform: translateY(25px); transition: all 0.7s ease; }
+.scroll-reveal.active { opacity: 1; transform: translateY(0); }
+.accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+.accordion-content.open { max-height: 200px; }
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #0a0f1e; }
+::-webkit-scrollbar-thumb { background: #1e40af; border-radius: 4px; }
+</style>
+</head>
+<body class="relative">
+<div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-blue-600 to-blue-400 z-50 transition-all" style="width: 0%"></div>
+<div class="orb w-96 h-96 bg-blue-700/20 top-[-50px] left-[-100px]"></div>
+<div class="orb w-[500px] h-[500px] bg-indigo-900/20 top-[1000px] right-[-150px]"></div>
+<header class="sticky top-0 z-40 glass-nav">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+<a href="#" class="flex items-center space-x-3">
+<div class="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-500/25">
+<i class="fa-solid fa-calculator text-lg"></i>
+</div>
+<div>
+<span class="text-xl font-bold tracking-tight text-white block leading-none">EXCEPTIONAL</span>
+<span class="text-[10px] text-blue-400 font-bold tracking-widest uppercase">Tax & Accounting</span>
+</div>
+</a>
+<nav class="hidden md:flex space-x-8 text-sm font-semibold text-slate-300">
+<a href="#services" class="hover:text-blue-400 transition-colors">Services</a>
+<a href="#process" class="hover:text-blue-400 transition-colors">Process</a>
+<a href="#pricing" class="hover:text-blue-400 transition-colors">Pricing</a>
+<a href="#testimonials" class="hover:text-blue-400 transition-colors">Reviews</a>
+<a href="#faq" class="hover:text-blue-400 transition-colors">FAQ</a>
+</nav>
+<div class="hidden md:flex items-center space-x-4">
+<a href="tel:7185550199" class="text-sm font-bold text-slate-300 hover:text-white flex items-center gap-2">
+<i class="fa-solid fa-phone text-blue-400"></i> (718) 555-0199
+</a>
+<a href="#contact" class="px-5 py-2.5 text-sm font-bold text-white bg-blue-600 hover:bg-blue-500 rounded-xl shadow-lg shadow-blue-600/30 transition-all">Book Consultation</a>
+</div>
+<button id="mobile-menu-btn" class="md:hidden text-slate-300 text-2xl focus:outline-none"><i class="fa-solid fa-bars"></i></button>
+</div>
+<div id="mobile-menu" class="hidden md:hidden bg-slate-950/95 border-b border-slate-800 px-6 py-6 space-y-4">
+<a href="#services" class="block text-slate-300 hover:text-blue-400 text-base font-semibold">Services</a>
+<a href="#process" class="block text-slate-300 hover:text-blue-400 text-base font-semibold">Process</a>
+<a href="#pricing" class="block text-slate-300 hover:text-blue-400 text-base font-semibold">Pricing</a>
+<a href="#testimonials" class="block text-slate-300 hover:text-blue-400 text-base font-semibold">Reviews</a>
+<a href="#faq" class="block text-slate-300 hover:text-blue-400 text-base font-semibold">FAQ</a>
+<a href="#contact" class="block text-center py-3 text-white bg-blue-600 rounded-xl font-bold">Book Consultation</a>
+</div>
+</header>
+<section class="relative pt-24 pb-20 md:pt-36 md:pb-32 overflow-hidden flex items-center">
+<div class="absolute inset-0 z-0">
+<img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1800&q=80" alt="Tax Office" class="w-full h-full object-cover opacity-20">
+<div class="absolute inset-0 bg-gradient-to-t from-[#0a0f1e] via-[#0a0f1e]/80 to-transparent"></div>
+</div>
+<div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+<div class="max-w-3xl space-y-8">
+<div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-bold uppercase">
+<i class="fa-solid fa-location-dot"></i><span>Brooklyn, New York</span>
+</div>
+<h1 class="text-4xl sm:text-6xl font-black tracking-tight text-white leading-tight">
+Exceptional tax services for <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-300">Brooklyn’s hardest workers</span>
+</h1>
+<p class="text-lg text-slate-300 leading-relaxed">
+Maximize legal deductions, ensure 100% compliance, and retain more revenue. Premier tax preparation & business accounting tailor-made for Brooklyn entrepreneurs.
+</p>
+<div class="flex flex-col sm:flex-row gap-4">
+<a href="#contact" class="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white bg-blue-600 hover:bg-blue-500 rounded-xl shadow-xl shadow-blue-600/30 transition-all hover:scale-105 group">
+Book Consultation <i class="fa-solid fa-arrow-right ml-3 group-hover:translate-x-1 transition-transform"></i>
+</a>
+<a href="#services" class="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-slate-200 bg-slate-800/80 hover:bg-slate-700 border border-slate-700 rounded-xl backdrop-blur-md transition-all">Explore Services</a>
+</div>
+<div class="pt-8 border-t border-slate-800/80 flex flex-wrap gap-6 items-center text-xs text-slate-400 font-semibold">
+<div class="flex items-center gap-2"><i class="fa-solid fa-shield-halved text-blue-400 text-base"></i><span>IRS Authorized e-File Provider</span></div>
+<div class="flex items-center gap-2"><i class="fa-solid fa-award text-blue-400 text-base"></i><span>BBB Accredited (A+ Rating)</span></div>
+<div class="flex items-center gap-2"><i class="fa-solid fa-user-check text-blue-400 text-base"></i><span>Licensed NY Enrolled Agents</span></div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-16 bg-slate-900/60 border-y border-slate-800/80 relative z-10">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+<div><div class="text-4xl font-black text-blue-400 font-mono counter" data-target="2500">0</div><div class="text-xs text-slate-400 uppercase font-bold mt-1">Clients Served</div></div>
+<div><div class="text-4xl font-black text-blue-400 font-mono counter" data-target="15">0</div><div class="text-xs text-slate-400 uppercase font-bold mt-1">Years Experience</div></div>
+<div><div class="text-4xl font-black text-blue-400 font-mono counter" data-target="12000">0</div><div class="text-xs text-slate-400 uppercase font-bold mt-1">Returns Filed</div></div>
+<div><div class="text-4xl font-black text-blue-400 font-mono counter" data-target="24">0</div><div class="text-xs text-slate-400 uppercase font-bold mt-1">Avg % Refund Boost</div></div>
+</div>
+</div>
+</section>
+<section id="services" class="py-24 relative z-10">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center max-w-3xl mx-auto mb-16 scroll-reveal">
+<h2 class="text-xs font-bold text-blue-400 uppercase tracking-widest mb-2">Our Solutions</h2>
+<p class="text-3xl font-black text-white">Tax & Accounting Crafted For Growth</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="glass-card p-8 rounded-2xl scroll-reveal group">
+<div class="w-12 h-12 rounded-xl bg-blue-600/20 text-blue-400 flex items-center justify-center text-xl mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+<h3 class="text-xl font-bold text-white mb-2">Tax Preparation</h3>
+<p class="text-slate-400 text-sm leading-relaxed mb-4">Meticulous state and federal tax preparation designed to maximize legal write-offs.</p>
+<a href="#contact" class="text-xs font-bold text-blue-400 group-hover:text-blue-300 flex items-center gap-1">Get Help <i class="fa-solid fa-arrow-right"></i></a>
+</div>
+<div class="glass-card p-8 rounded-2xl scroll-reveal group">
+<div class="w-12 h-12 rounded-xl bg-blue-600/20 text-blue-400 flex items-center justify-center text-xl mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all"><i class="fa-solid fa-book-open"></i></div>
+<h3 class="text-xl font-bold text-white mb-2">Bookkeeping</h3>
+<p class="text-slate-400 text-sm leading-relaxed mb-4">Real-time financial tracking, ledger reconciliation, and automated reporting.</p>
+<a href="#contact" class="text-xs font-bold text-blue-400 group-hover:text-blue-300 flex items-center gap-1">Streamline <i class="fa-solid fa-arrow-right"></i></a>
+</div>
+<div class="glass-card p-8 rounded-2xl scroll-reveal group">
+<div class="w-12 h-12 rounded-xl bg-blue-600/20 text-blue-400 flex items-center justify-center text-xl mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all"><i class="fa-solid fa-users-gear"></i></div>
+<h3 class="text-xl font-bold text-white mb-2">Payroll Solutions</h3>
+<p class="text-slate-400 text-sm leading-relaxed mb-4">Seamless payroll processing, direct deposit setup, and automated tax filings.</p>
+<a href="#contact" class="text-xs font-bold text-blue-400 group-hover:text-blue-300 flex items-center gap-1">Automate <i class="fa-solid fa-arrow-right"></i></a>
+</div>
+<div class="glass-card p-8 rounded-2xl scroll-reveal group">
+<div class="w-12 h-12 rounded-xl bg-blue-600/20 text-blue-400 flex items-center justify-center text-xl mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all"><i class="fa-solid fa-shield-check"></i></div>
+<h3 class="text-xl font-bold text-white mb-2">IRS Audit Defense</h3>
+<p class="text-slate-400 text-sm leading-relaxed mb-4">Aggressive defense against IRS & NY audits with direct agency representation.</p>
+<a href="#contact" class="text-xs font-bold text-blue-400 group-hover:text-blue-300 flex items-center gap-1">Protect <i class="fa-solid fa-arrow-right"></i></a>
+</div>
+<div class="glass-card p-8 rounded-2xl scroll-reveal group">
+<div class="w-12 h-12 rounded-xl bg-blue-600/20 text-blue-400 flex items-center justify-center text-xl mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all"><i class="fa-solid fa-chart-line"></i></div>
+<h3 class="text-xl font-bold text-white mb-2">Business Consulting</h3>
+<p class="text-slate-400 text-sm leading-relaxed mb-4">Strategic CFO guidance, cash flow forecasting, and S-Corp entity structuring.</p>
+<a href="#contact" class="text-xs font-bold text-blue-400 group-hover:text-blue-300 flex items-center gap-1">Scale Up <i class="fa-solid fa-arrow-right"></i></a>
+</div>
+<div class="glass-card p-8 rounded-2xl scroll-reveal group">
+<div class="w-12 h-12 rounded-xl bg-blue-600/20 text-blue-400 flex items-center justify-center text-xl mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all"><i class="fa-solid fa-vault"></i></div>
+<h3 class="text-xl font-bold text-white mb-2">Estate & Trust Strategy</h3>
+<p class="text-slate-400 text-sm leading-relaxed mb-4">Protect family wealth and secure legacy assets with strategic tax minimization.</p>
+<a href="#contact" class="text-xs font-bold text-blue-400 group-hover:text-blue-300 flex items-center gap-1">Secure <i class="fa-solid fa-arrow-right"></i></a>
+</div>
+</div>
+</div>
+</section>
+<section id="process" class="py-20 bg-slate-900/40 relative z-10 border-t border-slate-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center max-w-3xl mx-auto mb-16 scroll-reveal">
+<h2 class="text-xs font-bold text-blue-400 uppercase tracking-widest mb-2">How We Work</h2>
+<p class="text-3xl font-black text-white">Our 5-Step Process</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-5 gap-6">
+<div class="glass-card p-6 rounded-2xl text-center scroll-reveal">
+<div class="w-10 h-10 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center mx-auto mb-3 text-sm">1</div>
+<h4 class="font-bold text-white mb-1">Consult</h4>
+<p class="text-xs text-slate-400">Discovery call to evaluate tax liabilities.</p>
+</div>
+<div class="glass-card p-6 rounded-2xl text-center scroll-reveal">
+<div class="w-10 h-10 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center mx-auto mb-3 text-sm">2</div>
+<h4 class="font-bold text-white mb-1">Gather</h4>
+<p class="text-xs text-slate-400">Secure upload of tax documents via encrypted portal.</p>
+</div>
+<div class="glass-card p-6 rounded-2xl text-center scroll-reveal">
+<div class="w-10 h-10 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center mx-auto mb-3 text-sm">3</div>
+<h4 class="font-bold text-white mb-1">Analyze</h4>
+<p class="text-xs text-slate-400">Audit by CPAs to maximize legal write-offs.</p>
+</div>
+<div class="glass-card p-6 rounded-2xl text-center scroll-reveal">
+<div class="w-10 h-10 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center mx-auto mb-3 text-sm">4</div>
+<h4 class="font-bold text-white mb-1">File</h4>
+<p class="text-xs text-slate-400">E-filing directly with IRS and NY Dept of Taxation.</p>
+</div>
+<div class="glass-card p-6 rounded-2xl text-center scroll-reveal">
+<div class="w-10 h-10 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center mx-auto mb-3 text-sm">5</div>
+<h4 class="font-bold text-white mb-1">Optimize</h4>
+<p class="text-xs text-slate-400">Year-round strategy for continuous efficiency.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="pricing" class="py-24 relative z-10">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center max-w-3xl mx-auto mb-16 scroll-reveal">
+<h2 class="text-xs font-bold text-blue-400 uppercase tracking-widest mb-2">Transparent Plans</h2>
+<p class="text-3xl font-black text-white">Pricing Built For Brooklyn</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="glass-card p-8 rounded-3xl flex flex-col justify-between scroll-reveal">
+<div>
+<div class="text-xs font-bold text-blue-400 uppercase mb-2">Individual</div>
+<h3 class="text-2xl font-bold text-white mb-3">Tax Starter</h3>
+<div class="text-4xl font-black text-white mb-6">$299 <span class="text-xs font-normal text-slate-400">/ return</span></div>
+<ul class="space-y-3 text-xs text-slate-300 mb-8">
+<li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-blue-400"></i> Federal & NY State Filing</li>
+<li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-blue-400"></i> W-2 & 1099 Deduction Review</li>
+<li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-blue-400"></i> Secure Client Vault</li>
+</ul>
+</div>
+<a href="#contact" class="w-full text-center py-3 rounded-xl font-bold text-white bg-slate-800 hover:bg-slate-700 transition-all">Select Plan</a>
+</div>
+<div class="glass-card p-8 rounded-3xl flex flex-col justify-between scroll-reveal relative border-2 border-blue-500 bg-slate-900/90 shadow-2xl shadow-blue-500/20">
+<div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-blue-600 text-white text-[10px] font-bold uppercase">Most Popular</div>
+<div>
+<div class="text-xs font-bold text-blue-400 uppercase mb-2">Small Business</div>
+<h3 class="text-2xl font-bold text-white mb-3">Business Pro</h3>
+<div class="text-4xl font-black text-white mb-6">$649 <span class="text-xs font-normal text-slate-400">/ month</span></div>
+<ul class="space-y-3 text-xs text-slate-300 mb-8">
+<li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-blue-400"></i> Full-Charge Monthly Bookkeeping</li>
+<li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-blue-400"></i> S-Corp / LLC Corporate Tax Returns</li>
+<li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-blue-400"></i> Payroll for up to 10 Employees</li>
+<li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-blue-400"></i> Quarterly Strategy Reviews</li>
+</ul>
+</div>
+<a href="#contact" class="w-full text-center py-3 rounded-xl font-bold text-white bg-blue-600 hover:bg-blue-500 shadow-lg shadow-blue-600/30 transition-all">Get Started</a>
+</div>
+<div class="glass-card p-8 rounded-3xl flex flex-col justify-between scroll-reveal">
+<div>
+<div class="text-xs font-bold text-blue-400 uppercase mb-2">Enterprise</div>
+<h3 class="text-2xl font-bold text-white mb-3">CFO Executive</h3>
+<div class="text-4xl font-black text-white mb-6">$1,299 <span class="text-xs font-normal text-slate-400">/ month</span></div>
+<ul class="space-y-3 text-xs text-slate-300 mb-8">
+<li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-blue-400"></i> Outsourced Accounting Dept</li>
+<li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-blue-400"></i> Dedicated Senior CPA Advisor</li>
+<li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-blue-400"></i> Unlimited IRS Audit Representation</li>
+</ul>
+</div>
+<a href="#contact" class="w-full text-center py-3 rounded-xl font-bold text-white bg-slate-800 hover:bg-slate-700 transition-all">Contact Sales</a>
+</div>
+</div>
+</div>
+</section>
+<section id="testimonials" class="py-20 bg-slate-900/30 relative z-10 border-t border-slate-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center max-w-3xl mx-auto mb-16 scroll-reveal">
+<h2 class="text-xs font-bold text-blue-400 uppercase tracking-widest mb-2">Testimonials</h2>
+<p class="text-3xl font-black text-white">Trusted By Local Business Owners</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="glass-card p-6 rounded-2xl scroll-reveal">
+<p class="text-slate-300 text-xs italic mb-4">"Exceptional Tax saved our restaurant over $18,000 in local tax credits. Outstanding firm!"</p>
+<div class="flex items-center gap-3">
+<img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Elena" class="w-10 h-10 rounded-full border border-blue-500 object-cover">
+<div><h5 class="text-white font-bold text-xs">Elena Rostova</h5><span class="text-[10px] text-slate-400">Brooklyn Bites Co.</span></div>
+</div>
+</div>
+<div class="glass-card p-6 rounded-2xl scroll-reveal">
+<p class="text-slate-300 text-xs italic mb-4">"Transitioning our bookkeeping eliminated all tax filing stress. The portal is super easy."</p>
+<div class="flex items-center gap-3">
+<img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" alt="Marcus" class="w-10 h-10 rounded-full border border-blue-500 object-cover">
+<div><h5 class="text-white font-bold text-xs">Marcus Vance</h5><span class="text-[10px] text-slate-400">Vance Design Studio</span></div>
+</div>
+</div>
+<div class="glass-card p-6 rounded-2xl scroll-reveal">
+<p class="text-slate-300 text-xs italic mb-4">"They audited our prior returns and secured an extra $6,400 refund. Highly recommended!"</p>
+<div class="flex items-center gap-3">
+<img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=120&q=80" alt="Sarah" class="w-10 h-10 rounded-full border border-blue-500 object-cover">
+<div><h5 class="text-white font-bold text-xs">Sarah Jenkins</h5><span class="text-[10px] text-slate-400">Tech Consultant</span></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="faq" class="py-24 relative z-10">
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16 scroll-reveal">
+<h2 class="text-xs font-bold text-blue-400 uppercase tracking-widest mb-2">Help Center</h2>
+<p class="text-3xl font-black text-white">Frequently Asked Questions</p>
+</div>
+<div class="space-y-4">
+<div class="glass-card rounded-2xl p-6 cursor-pointer accordion-item">
+<div class="flex justify-between items-center font-bold text-white text-base accordion-header">
+<span>What documents do I need for my tax appointment?</span>
+<i class="fa-solid fa-chevron-down text-blue-400 text-xs transition-transform"></i>
+</div>
+<div class="accordion-content text-slate-400 text-xs mt-3 leading-relaxed">
+Bring government ID, W-2s, 1099s, bank statements, business expense logs, and last year's return. You can also upload them to our encrypted portal.
+</div>
+</div>
+<div class="glass-card rounded-2xl p-6 cursor-pointer accordion-item">
+<div class="flex justify-between items-center font-bold text-white text-base accordion-header">
+<span>How fast can you file my tax return?</span>
+<i class="fa-solid fa-chevron-down text-blue-400 text-xs transition-transform"></i>
+</div>
+<div class="accordion-content text-slate-400 text-xs mt-3 leading-relaxed">
+Standard individual returns take 48-72 hours once documents are received. IRS e-file refunds arrive in 14-21 days via direct deposit.
+</div>
+</div>
+<div class="glass-card rounded-2xl p-6 cursor-pointer accordion-item">
+<div class="flex justify-between items-center font-bold text-white text-base accordion-header">
+<span>Do you assist with unfiled back taxes?</span>
+<i class="fa-solid fa-chevron-down text-blue-400 text-xs transition-transform"></i>
+</div>
+<div class="accordion-content text-slate-400 text-xs mt-3 leading-relaxed">
+Yes, we specialize in back taxes, IRS wage garnishment release, installment agreements, and Offer in Compromise negotiations.
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="contact" class="py-24 bg-slate-900/50 relative z-10 border-t border-slate-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div class="space-y-6 scroll-reveal">
+<h2 class="text-3xl sm:text-5xl font-black text-white">Ready to optimize your Brooklyn taxes?</h2>
+<p class="text-slate-400 text-sm">Schedule a free 15-minute consultation with our senior advisors today. We'll analyze your strategy and highlight exact tax savings.</p>
+<div class="space-y-3 pt-2 text-xs text-slate-300">
+<p><i class="fa-solid fa-location-dot text-blue-400 mr-2"></i> 482 Atlantic Ave, Brooklyn, NY 11217</p>
+<p><i class="fa-solid fa-phone text-blue-400 mr-2"></i> (718) 555-0199</p>
+<p><i class="fa-solid fa-envelope text-blue-400 mr-2"></i> contact@exceptionaltaxbk.com</p>
+</div>
+</div>
+<div class="glass-card p-8 rounded-3xl border border-blue-500/20 scroll-reveal">
+<form id="contact-form" class="space-y-4" onsubmit="event.preventDefault(); document.getElementById('form-success').classList.remove('hidden');">
+<div>
+<label class="block text-xs font-bold uppercase text-slate-300 mb-1">Full Name</label>
+<input type="text" required placeholder="John Doe" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-700 text-white text-xs focus:outline-none focus:border-blue-500">
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div>
+<label class="block text-xs font-bold uppercase text-slate-300 mb-1">Email</label>
+<input type="email" required placeholder="john@example.com" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-700 text-white text-xs focus:outline-none focus:border-blue-500">
+</div>
+<div>
+<label class="block text-xs font-bold uppercase text-slate-300 mb-1">Phone</label>
+<input type="tel" placeholder="(718) 000-0000" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-700 text-white text-xs focus:outline-none focus:border-blue-500">
+</div>
+</div>
+<div>
+<label class="block text-xs font-bold uppercase text-slate-300 mb-1">Service Needed</label>
+<select class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-700 text-white text-xs focus:outline-none focus:border-blue-500">
+<option>Tax Preparation</option>
+<option>Full-Charge Bookkeeping</option>
+<option>Payroll Services</option>
+<option>IRS Audit Defense</option>
+</select>
+</div>
+<div>
+<label class="block text-xs font-bold uppercase text-slate-300 mb-1">Message</label>
+<textarea rows="3" placeholder="Describe your tax situation..." class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-700 text-white text-xs focus:outline-none focus:border-blue-500"></textarea>
+</div>
+<button type="submit" class="w-full py-3.5 px-6 font-bold text-white bg-blue-600 hover:bg-blue-500 rounded-xl shadow-lg shadow-blue-600/30 text-xs transition-all">Request Consultation</button>
+<div id="form-success" class="hidden text-center text-emerald-400 font-bold text-xs pt-2"><i class="fa-solid fa-circle-check"></i> Thank you! Request received.</div>
+</form>
+</div>
+</div>
+</div>
+</section>
+<footer class="bg-[#060a14] border-t border-slate-800 text-slate-400 text-xs py-12 relative z-10">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded bg-blue-600 flex items-center justify-center text-white"><i class="fa-solid fa-calculator text-xs"></i></div>
+<span class="text-white font-bold tracking-wider">EXCEPTIONAL TAX</span>
+</div>
+<p>&copy; 2026 Exceptional Tax & Accounting, Brooklyn NY. All rights reserved.</p>
+<div class="flex space-x-4">
+<a href="#" class="hover:text-blue-400">Privacy Policy</a>
+<a href="#" class="hover:text-blue-400">Terms of Service</a>
+</div>
+</div>
+</footer>
+<a href="#contact" class="fixed bottom-6 right-6 z-40 px-5 py-3 rounded-full bg-blue-600 text-white font-bold text-xs shadow-2xl shadow-blue-500/50 flex items-center gap-2 hover:scale-105 transition-all">
+<i class="fa-solid fa-calendar-check"></i> Book Tax Review
+</a>
+<button id="back-to-top" class="fixed bottom-6 left-6 z-40 w-10 h-10 rounded-full bg-slate-800 border border-slate-700 text-slate-300 flex items-center justify-center opacity-0 pointer-events-none transition-all hover:bg-blue-600 hover:text-white">
+<i class="fa-solid fa-arrow-up"></i>
+</button>
+<script>
+window.addEventListener('scroll', () => {
+const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+document.getElementById('scroll-progress').style.width = (winScroll / height * 100) + '%';
+const btt = document.getElementById('back-to-top');
+if (winScroll > 300) btt.classList.remove('opacity-0', 'pointer-events-none');
+else btt.classList.add('opacity-0', 'pointer-events-none');
+});
+document.getElementById('back-to-top').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+document.getElementById('mobile-menu-btn').addEventListener('click', () => document.getElementById('mobile-menu').classList.toggle('hidden'));
+document.querySelectorAll('.accordion-item').forEach(item => {
+item.addEventListener('click', () => {
+const content = item.querySelector('.accordion-content');
+const isOpen = content.classList.contains('open');
+document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('open'));
+if (!isOpen) content.classList.add('open');
+});
+});
+const revealObserver = new IntersectionObserver((entries) => {
+entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.scroll-reveal').forEach(el => revealObserver.observe(el));
+const counters = document.querySelectorAll('.counter');
+let counterAnimated = false;
+const counterObserver = new IntersectionObserver((entries) => {
+if (entries[0].isIntersecting && !counterAnimated) {
+counterAnimated = true;
+counters.forEach(c => {
+const target = +c.getAttribute('data-target');
+let count = 0;
+const step = target / 40;
+const timer = setInterval(() => {
+count += step;
+if (count >= target) { c.innerText = target + '+'; clearInterval(timer); }
+else { c.innerText = Math.ceil(count) + '+'; }
+}, 30);
+});
+}
+}, { threshold: 0.5 });
+if (counters.length) counterObserver.observe(counters[0].parentElement.parentElement);
+</script>
+
+<!-- WhatsApp Contact Button -->
+<a href="https://wa.me/+9233390025902?text=Hi%21%20I%20just%20saw%20the%20enhanced%20website%20preview%20you%20created%20for%20my%20business%20and%20I'm%20interested%20in%20learning%20more." 
+   target="_blank"
+   style="position:fixed;bottom:30px;left:30px;z-index:999;background:#25D366;color:white;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(37,211,102,0.5);transition:transform 0.3s;cursor:pointer;text-decoration:none;"
+   onmouseover="this.style.transform='scale(1.1)'"
+   onmouseout="this.style.transform='scale(1)'"
+   title="Chat with us on WhatsApp">
+   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="white">
+     <path d="M17.472 14.382c-.297.149-1.255.223-1.679.223-.62 0-1.225-.046-1.782-.158-.287-.057-.584-.124-.884-.124-.246 0-.49.036-.724.107-.399.121-.772.323-1.134.547-.51.316-.997.683-1.513.999-.413.253-.847.476-1.301.634-.473.165-.967.237-1.463.237-.553 0-1.106-.086-1.633-.257-.431-.14-.841-.342-1.221-.598-.358-.241-.689-.531-.99-.846-.293-.307-.557-.648-.776-1.012-.21-.349-.382-.722-.516-1.106-.124-.356-.21-.727-.262-1.101-.046-.333-.069-.671-.069-1.009 0-.475.069-.951.206-1.406.137-.455.342-.887.598-1.287.262-.41.581-.776.93-1.106.358-.338.758-.626 1.187-.854.431-.229.887-.404 1.357-.523.471-.119.96-.179 1.45-.179.515 0 1.027.065 1.526.193.5.129.981.319 1.433.567.453.249.873.558 1.249.916.377.359.71.776.989 1.234.279.459.491.961.629 1.484.137.523.206 1.069.206 1.614 0 .316-.027.629-.08.938-.052.31-.131.614-.234.911-.103.296-.231.583-.382.857-.151.275-.323.537-.516.785-.192.249-.405.481-.638.697-.232.217-.484.414-.752.591-.268.177-.552.331-.849.462-.296.131-.605.238-.923.32-.317.082-.642.139-.971.172-.329.032-.66.049-.991.049-.43 0-.858-.039-1.28-.117-.421-.077-.836-.194-1.236-.349-.4-.155-.784-.349-1.146-.583-.362-.234-.702-.506-1.015-.816-.313-.31-.598-.648-.854-1.009-.257-.361-.485-.746-.683-1.146-.198-.4-.366-.816-.504-1.246-.137-.43-.236-.872-.296-1.32-.06-.449-.09-.902-.09-1.355 0-.355.027-.711.08-1.062.052-.352.13-.699.234-1.038.103-.339.231-.671.382-.994.151-.323.323-.635.516-.937.192-.303.405-.591.638-.864.232-.273.484-.527.752-.762.268-.235.552-.451.849-.648.296-.197.605-.375.923-.534.317-.158.642-.298.971-.419.329-.121.66-.223.991-.307.329-.083.66-.146.991-.189.329-.043.66-.065.991-.065.43 0 .858.039 1.28.117.421.078.836.195 1.236.35.4.155.784.349 1.146.583.362.234.702.506 1.015.816.313.31.598.648.854 1.009.257.362.485.746.683 1.146.198.4.366.816.504 1.246.137.43.236.872.296 1.32.06.449.09.902.09 1.355 0 .355-.027.711-.08 1.062-.052.352-.13.699-.234 1.038-.103.339-.231.671-.382.994-.151.323-.323.635-.516.937-.192.303-.405.591-.638.864-.232.273-.484.527-.752.762-.268.235-.552.451-.849.648-.296.197-.605.375-.923.534-.317.158-.642.298-.971.419-.329.121-.66.223-.991.307z"/>
+   </svg>
+</a>
+
+</body>
+</html>
