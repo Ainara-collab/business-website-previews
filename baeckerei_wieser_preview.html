@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bäckerei & Konditorei Pierre Wieser | Handwerkskunst in Berlin-Schöneberg</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            amber: { 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706', 800: '#92400e', 900: '#78350f', 950: '#451a03' },
+            bakery: { 800: '#3e1d08', 900: '#1c0e06', 950: '#120803' }
+          },
+          fontFamily: { serif: ['Playfair Display', 'serif'], sans: ['DM Sans', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <style>
+    body { background-color: #120803; color: #fef3c7; font-family: 'DM Sans', sans-serif; overflow-x: hidden; }
+    .glass-nav { background: rgba(18, 8, 3, 0.88); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(245, 158, 11, 0.25); }
+    .glass-card { background: rgba(38, 18, 8, 0.75); backdrop-filter: blur(12px); border: 1px solid rgba(245, 158, 11, 0.2); }
+    .glass-card:hover { border-color: rgba(251, 191, 36, 0.5); box-shadow: 0 12px 35px -10px rgba(245, 158, 11, 0.3); }
+    .orb { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.22; pointer-events: none; }
+    @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
+    .animate-marquee { display: flex; width: 200%; animation: marquee 26s linear infinite; }
+    .animate-marquee:hover { animation-play-state: paused; }
+    .reveal { opacity: 0; transform: translateY(28px); transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .tilt-card { transform-style: preserve-3d; transition: transform 0.2s ease-out; }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #120803; }
+    ::-webkit-scrollbar-thumb { background: #92400e; border-radius: 4px; }
+  </style>
+</head>
+<body class="relative min-h-screen text-amber-50">
+  <div class="orb w-96 h-96 bg-amber-600 top-10 -left-28"></div>
+  <div class="orb w-[500px] h-[500px] bg-amber-800 top-[1200px] -right-32"></div>
+
+  <!-- Scroll Progress -->
+  <div id="progress-bar" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-600 z-50 w-0 transition-all duration-100"></div>
+
+  <!-- Glass Nav -->
+  <header class="glass-nav fixed top-0 left-0 right-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-amber-700 flex items-center justify-center text-bakery-950 font-bold text-xl shadow-lg">🥨</div>
+        <div>
+          <span class="font-serif text-xl font-bold text-white block leading-tight">Bäckerei Wieser</span>
+          <span class="text-[10px] uppercase tracking-widest text-amber-400 font-semibold block">Konditorei • Schöneberg</span>
+        </div>
+      </a>
+      <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-amber-100/90">
+        <a href="#services" class="hover:text-amber-400 transition">Spezialitäten</a>
+        <a href="#handwerk" class="hover:text-amber-400 transition">Handwerk</a>
+        <a href="#bewertungen" class="hover:text-amber-400 transition">Stimmen</a>
+        <a href="#faq" class="hover:text-amber-400 transition">FAQ</a>
+        <a href="#kontakt" class="hover:text-amber-400 transition">Kontakt</a>
+      </nav>
+      <a href="tel:0307957425" class="hidden md:inline-flex px-5 py-2.5 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 text-bakery-950 font-bold text-sm shadow-lg hover:scale-105 transition">📞 030 7957425</a>
+      <button id="mobile-menu-btn" class="md:hidden text-amber-200 p-2"><svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-bakery-950/95 px-6 py-4 space-y-3 border-b border-amber-600/30 text-sm">
+      <a href="#services" class="block text-amber-100">Spezialitäten</a>
+      <a href="#handwerk" class="block text-amber-100">Handwerk</a>
+      <a href="#bewertungen" class="block text-amber-100">Stimmen</a>
+      <a href="#faq" class="block text-amber-100">FAQ</a>
+      <a href="#kontakt" class="block text-amber-100">Kontakt</a>
+    </div>
+  </header>
+
+  <main class="pt-20">
+    <!-- Hero Section -->
+    <section class="relative min-h-[88vh] flex items-center justify-center overflow-hidden py-16">
+      <div class="absolute inset-0 z-0">
+        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1600&q=80" alt="Backstube Pierre Wieser" class="w-full h-full object-cover opacity-25">
+        <div class="absolute inset-0 bg-gradient-to-t from-[#120803] via-[#120803]/80 to-transparent"></div>
+      </div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div class="lg:col-span-7 reveal active">
+            <span class="inline-block px-4 py-1.5 rounded-full glass-card text-amber-300 text-xs font-semibold uppercase tracking-widest mb-6 border border-amber-500/30">Meisterbetrieb in Schöneberg</span>
+            <h1 class="font-serif text-4xl sm:text-6xl font-extrabold text-white leading-tight mb-6">
+              Echte Backkunst. <br><span class="bg-gradient-to-r from-amber-300 via-amber-400 to-yellow-200 bg-clip-text text-transparent italic">Mit Liebe gebacken.</span>
+            </h1>
+            <p class="text-base sm:text-lg text-amber-100/90 max-w-xl leading-relaxed mb-8">
+              Willkommen bei Bäckerei & Konditorei Pierre Wieser. Täglich ofenfrischer Natursauerteig, butterzarte Croissants, meisterhafte Torten und feinstes Bäckereihandwerk in der Sachsenwaldstraße.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a href="#kontakt" class="px-8 py-4 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 text-bakery-950 font-bold shadow-xl hover:scale-105 transition text-center">Torten & Catering Bestellen</a>
+              <a href="#services" class="px-8 py-4 rounded-full glass-card text-amber-200 font-semibold hover:bg-amber-900/40 transition text-center border border-amber-500/30">Spezialitäten Entdecken</a>
+            </div>
+          </div>
+          <div class="lg:col-span-5 reveal">
+            <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-amber-500/30 glass-card p-3">
+              <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=900&q=80" alt="Frische Croissants" class="w-full h-[400px] object-cover rounded-2xl">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#120803] via-transparent to-transparent opacity-80"></div>
+              <div class="absolute bottom-6 left-6 right-6 glass-card p-4 rounded-2xl border border-amber-400/30">
+                <p class="font-serif text-base font-bold text-white">Natursauerteig & Bio-Mehl</p>
+                <p class="text-xs text-amber-300">Sachsenwaldstraße 30, Berlin • Di-So ab 06:00 Uhr</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Marquee Banner -->
+    <section class="bg-amber-950/80 border-y border-amber-800/40 text-amber-200 text-xs py-3 overflow-hidden backdrop-blur-md">
+      <div class="animate-marquee whitespace-nowrap flex items-center gap-12 font-medium uppercase tracking-wider">
+        <span>🌾 100% Echte Handwerkskunst</span>
+        <span>🍞 Natursauerteig mit 48h Teigruhe</span>
+        <span>🎂 Hochzeitstorten & Festtagsgebäck</span>
+        <span>☕ Frischer Specialty Coffee & Frühstück</span>
+        <span>🌱 Glutenfreie Spezialitäten</span>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section id="stats-section" class="py-14 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div class="glass-card p-5 rounded-2xl text-center">
+            <div class="font-serif text-3xl font-extrabold text-amber-400 mb-1"><span class="counter" data-target="38">0</span>+</div>
+            <p class="text-[11px] text-amber-200 uppercase tracking-wider">Jahre Tradition</p>
+          </div>
+          <div class="glass-card p-5 rounded-2xl text-center">
+            <div class="font-serif text-3xl font-extrabold text-amber-400 mb-1"><span class="counter" data-target="24">0</span></div>
+            <p class="text-[11px] text-amber-200 uppercase tracking-wider">Brotsorten Täglich</p>
+          </div>
+          <div class="glass-card p-5 rounded-2xl text-center">
+            <div class="font-serif text-3xl font-extrabold text-amber-400 mb-1"><span class="counter" data-target="100">0</span>%</div>
+            <p class="text-[11px] text-amber-200 uppercase tracking-wider">Regionale Zutaten</p>
+          </div>
+          <div class="glass-card p-5 rounded-2xl text-center">
+            <div class="font-serif text-3xl font-extrabold text-amber-400 mb-1"><span class="counter" data-target="49">0</span>/50</div>
+            <p class="text-[11px] text-amber-200 uppercase tracking-wider">Kundenbewertung</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Grid (3D Tilt Cards) -->
+    <section id="services" class="py-16 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-14 reveal">
+          <span class="text-xs uppercase tracking-widest text-amber-400 font-bold block mb-2">Unsere Angebote</span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-extrabold text-white">Spezialitäten aus Meisterhand</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="glass-card rounded-2xl p-6 tilt-card reveal">
+            <img src="https://images.unsplash.com/photo-1549931319-a545dcf3bc73?w=800&q=80" alt="Fresh Bread Daily" class="w-full h-44 object-cover rounded-xl mb-5">
+            <h3 class="font-serif text-xl font-bold text-white mb-2">Fresh Bread Daily</h3>
+            <p class="text-xs text-amber-100/80 leading-relaxed mb-4">Knuspriges Schöneberger Landbrot, Roggensauerteig und Vollkornspezialitäten aus 48h Teigruhe.</p>
+            <ul class="text-xs text-amber-300 space-y-1 mb-4">
+              <li>✓ 100% Natursauerteig</li>
+              <li>✓ Steinofen-Gebacken</li>
+            </ul>
+            <a href="#kontakt" class="text-xs font-bold text-amber-400 hover:underline">Jetzt Vorbestellen &rarr;</a>
+          </div>
+
+          <div class="glass-card rounded-2xl p-6 tilt-card reveal">
+            <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=800&q=80" alt="Artisan Pastries" class="w-full h-44 object-cover rounded-xl mb-5">
+            <h3 class="font-serif text-xl font-bold text-white mb-2">Artisan Pastries</h3>
+            <p class="text-xs text-amber-100/80 leading-relaxed mb-4">Buttercroissants, Zimtschnecken und Franzbrötchen mit echter deutscher Markenbutter handgefaltet.</p>
+            <ul class="text-xs text-amber-300 space-y-1 mb-4">
+              <li>✓ Französische Falttchnik</li>
+              <li>✓ Tägliche Frische</li>
+            </ul>
+            <a href="#kontakt" class="text-xs font-bold text-amber-400 hover:underline">Jetzt Vorbestellen &rarr;</a>
+          </div>
+
+          <div class="glass-card rounded-2xl p-6 tilt-card reveal">
+            <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&q=80" alt="Custom Cakes" class="w-full h-44 object-cover rounded-xl mb-5">
+            <h3 class="font-serif text-xl font-bold text-white mb-2">Custom Cakes</h3>
+            <p class="text-xs text-amber-100/80 leading-relaxed mb-4">Traumhafte Hochzeitstorten und Festtagskreationen individuell verziert nach Ihren Wünschen.</p>
+            <ul class="text-xs text-amber-300 space-y-1 mb-4">
+              <li>✓ Beratung & Tasting</li>
+              <li>✓ Pünktliche Lieferung</li>
+            </ul>
+            <a href="#kontakt" class="text-xs font-bold text-amber-400 hover:underline">Jetzt Vorbestellen &rarr;</a>
+          </div>
+
+          <div class="glass-card rounded-2xl p-6 tilt-card reveal">
+            <img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=800&q=80" alt="Breakfast & Coffee" class="w-full h-44 object-cover rounded-xl mb-5">
+            <h3 class="font-serif text-xl font-bold text-white mb-2">Breakfast & Coffee</h3>
+            <p class="text-xs text-amber-100/80 leading-relaxed mb-4">Frühstück im Cafébereich mit belegten Brötchen, Rührei und frisch geröstetem Espresso.</p>
+            <ul class="text-xs text-amber-300 space-y-1 mb-4">
+              <li>✓ Barista Kaffee</li>
+              <li>✓ Bio-Eier & Aufschnitt</li>
+            </ul>
+            <a href="#kontakt" class="text-xs font-bold text-amber-400 hover:underline">Jetzt Vorbestellen &rarr;</a>
+          </div>
+
+          <div class="glass-card rounded-2xl p-6 tilt-card reveal">
+            <img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?w=800&q=80" alt="Catering Services" class="w-full h-44 object-cover rounded-xl mb-5">
+            <h3 class="font-serif text-xl font-bold text-white mb-2">Catering Services</h3>
+            <p class="text-xs text-amber-100/80 leading-relaxed mb-4">Fingerfood-Platten und Canapés für Firmenmeetings, Geburtstage und Events in ganz Berlin.</p>
+            <ul class="text-xs text-amber-300 space-y-1 mb-4">
+              <li>✓ Fingerfood & Mini-Plunder</li>
+              <li>✓ Für 10-200 Personen</li>
+            </ul>
+            <a href="#kontakt" class="text-xs font-bold text-amber-400 hover:underline">Jetzt Vorbestellen &rarr;</a>
+          </div>
+
+          <div class="glass-card rounded-2xl p-6 tilt-card reveal">
+            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800&q=80" alt="Gluten-Free Options" class="w-full h-44 object-cover rounded-xl mb-5">
+            <h3 class="font-serif text-xl font-bold text-white mb-2">Gluten-Free Options</h3>
+            <p class="text-xs text-amber-100/80 leading-relaxed mb-4">Spezielles Dinkel- und Buchweizengebäck für ernährungsbewusste Genießer ohne Weizen.</p>
+            <ul class="text-xs text-amber-300 space-y-1 mb-4">
+              <li>✓ Sorgfältige Zubereitung</li>
+              <li>✓ Vegane Fruchtkuchen</li>
+            </ul>
+            <a href="#kontakt" class="text-xs font-bold text-amber-400 hover:underline">Jetzt Vorbestellen &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Handwerk Story -->
+    <section id="handwerk" class="py-16 relative bg-amber-950/20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          <div class="lg:col-span-6 reveal">
+            <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=900&q=80" alt="Pierre Wieser Backstube" class="w-full h-96 object-cover rounded-3xl border border-amber-500/30">
+          </div>
+          <div class="lg:col-span-6 reveal">
+            <span class="text-xs uppercase tracking-widest text-amber-400 font-bold block mb-2">Tradition & Leidenschaft</span>
+            <h2 class="font-serif text-3xl font-extrabold text-white mb-4">Warum Berlin unser Brot liebt</h2>
+            <p class="text-xs text-amber-100/90 leading-relaxed mb-6">
+              In einer Zeit industrieller Teiglinge setzen wir in Schöneberg konsequent auf echtes Bäckereihandwerk. Unser Natursauerteig reift 48 Stunden für beste Bekömmlichkeit und unverwechselbaren Geschmack.
+            </p>
+            <div class="space-y-3 text-xs text-amber-200 mb-6">
+              <p>✓ Über 30 Jahre gepflegte Sauerteigkultur</p>
+              <p>✓ Regionales Bio-Getreide aus Brandenburg</p>
+              <p>✓ Frei von künstlichen Zusatzstoffen</p>
+            </div>
+            <a href="#kontakt" class="px-6 py-3 rounded-full bg-amber-500 text-bakery-950 font-bold text-xs shadow-lg hover:bg-amber-400 transition inline-block">Sachsenwaldstraße 30 Besuchen</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonial Carousel -->
+    <section id="bewertungen" class="py-16 relative">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12 reveal">
+          <span class="text-xs uppercase tracking-widest text-amber-400 font-bold block mb-2">Kundenstimmen</span>
+          <h2 class="font-serif text-3xl font-extrabold text-white">Das sagen unsere Kunden</h2>
+        </div>
+        <div class="glass-card rounded-3xl p-8 border border-amber-500/30 reveal relative">
+          <div id="testimonial-carousel">
+            <div class="t-slide">
+              <div class="flex text-amber-400 mb-3 text-base">★★★★★</div>
+              <p class="font-serif text-base text-amber-50 italic leading-relaxed mb-5">
+                „Das Schöneberger Krustenbrot ist das beste Sauerteigbrot in ganz Berlin! Die Kruste ist wunderbar knusprig und das Brot bleibt tagelang saftig.“
+              </p>
+              <p class="font-bold text-white text-xs">Clara L. <span class="text-amber-400 font-normal">• Schöneberg</span></p>
+            </div>
+            <div class="t-slide hidden">
+              <div class="flex text-amber-400 mb-3 text-base">★★★★★</div>
+              <p class="font-serif text-base text-amber-50 italic leading-relaxed mb-5">
+                „Pierre Wieser hat unsere dreistöckige Hochzeitstorte kreiert. Sie war optisch ein Traum und geschmacklich leicht und wunderbar fruchtig!“
+              </p>
+              <p class="font-bold text-white text-xs">Markus & Katrin <span class="text-amber-400 font-normal">• Berlin</span></p>
+            </div>
+            <div class="t-slide hidden">
+              <div class="flex text-amber-400 mb-3 text-base">★★★★★</div>
+              <p class="font-serif text-base text-amber-50 italic leading-relaxed mb-5">
+                „Kanzleicatering in Perfektion. Die belegten Brötchenplatten für unsere Meetings sind immer frischester Qualität. Absolute Empfehlung!“
+              </p>
+              <p class="font-bold text-white text-xs">Dr. Roland S. <span class="text-amber-400 font-normal">• Steglitz</span></p>
+            </div>
+          </div>
+          <div class="flex justify-center gap-2 mt-6">
+            <button onclick="setTestimonial(0)" class="t-dot w-2.5 h-2.5 rounded-full bg-amber-400"></button>
+            <button onclick="setTestimonial(1)" class="t-dot w-2.5 h-2.5 rounded-full bg-amber-900"></button>
+            <button onclick="setTestimonial(2)" class="t-dot w-2.5 h-2.5 rounded-full bg-amber-900"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-16 relative bg-amber-950/20">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12 reveal">
+          <span class="text-xs uppercase tracking-widest text-amber-400 font-bold block mb-2">Häufige Fragen</span>
+          <h2 class="font-serif text-3xl font-extrabold text-white">FAQ</h2>
+        </div>
+        <div class="space-y-3 reveal">
+          <div class="glass-card rounded-xl p-5 cursor-pointer" onclick="toggleFaq(this)">
+            <div class="flex justify-between items-center font-bold text-white text-sm">
+              <span>Wann muss ich Torten oder Catering vorbestellen?</span>
+              <span class="text-amber-400 text-lg">+</span>
+            </div>
+            <div class="faq-body hidden mt-3 text-xs text-amber-100/80 border-t border-amber-500/20 pt-3">
+              Festtagstorten benötigen ca. 2-3 Wochen Vorlauf. Catering-Platten bestellen Sie bitte mindestens 48 Stunden vorher.
+            </div>
+          </div>
+          <div class="glass-card rounded-xl p-5 cursor-pointer" onclick="toggleFaq(this)">
+            <div class="flex justify-between items-center font-bold text-white text-sm">
+              <span>Nutzen Sie Fertigmischungen oder Chemie?</span>
+              <span class="text-amber-400 text-lg">+</span>
+            </div>
+            <div class="faq-body hidden mt-3 text-xs text-amber-100/80 border-t border-amber-500/20 pt-3">
+              Nein! Wir backen 100% ohne Konservierungsstoffe oder künstliche Backtriebmittel. Nur Mehl, Wasser, Natursauerteig und Salz.
+            </div>
+          </div>
+          <div class="glass-card rounded-xl p-5 cursor-pointer" onclick="toggleFaq(this)">
+            <div class="flex justify-between items-center font-bold text-white text-sm">
+              <span>Gibt es Parkplätze und Kartenzahlung?</span>
+              <span class="text-amber-400 text-lg">+</span>
+            </div>
+            <div class="faq-body hidden mt-3 text-xs text-amber-100/80 border-t border-amber-500/20 pt-3">
+              Ja, Kontaktlose EC-/Kreditkartenzahlung sowie Apple/Google Pay werden akzeptiert. Parkmöglichkeiten finden Sie direkt in der Sachsenwaldstraße.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section id="kontakt" class="py-16 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+          <div class="lg:col-span-5 reveal">
+            <span class="text-xs uppercase tracking-widest text-amber-400 font-bold block mb-2">Kontakt & Anfahrt</span>
+            <h2 class="font-serif text-3xl font-extrabold text-white mb-4">Bäckerei Pierre Wieser</h2>
+            <div class="space-y-4 text-xs text-amber-200">
+              <div class="glass-card p-4 rounded-xl border border-amber-500/20">
+                <p class="font-bold text-white">Adresse</p>
+                <p>Sachsenwaldstraße 30, 12157 Berlin (Schöneberg)</p>
+              </div>
+              <div class="glass-card p-4 rounded-xl border border-amber-500/20">
+                <p class="font-bold text-white">Telefon</p>
+                <p class="text-amber-300 font-bold">030 7957425</p>
+              </div>
+              <div class="glass-card p-4 rounded-xl border border-amber-500/20">
+                <p class="font-bold text-white">Öffnungszeiten</p>
+                <p>Di–Fr: 06:00–18:30 Uhr | Sa–So: 07:00–16:00 Uhr | Mo: Ruhetag</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 reveal">
+            <div class="glass-card p-6 sm:p-8 rounded-2xl border border-amber-500/30">
+              <h3 class="font-serif text-xl font-bold text-white mb-4">Vorbestellung & Anfrage</h3>
+              <form onsubmit="handleFormSubmit(event)" class="space-y-3 text-xs">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <input type="text" required placeholder="Ihr Name *" class="w-full px-4 py-3 rounded-xl bg-bakery-900/80 border border-amber-500/30 text-white focus:outline-none focus:border-amber-400">
+                  <input type="tel" required placeholder="Telefonnummer *" class="w-full px-4 py-3 rounded-xl bg-bakery-900/80 border border-amber-500/30 text-white focus:outline-none focus:border-amber-400">
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <input type="email" required placeholder="E-Mail *" class="w-full px-4 py-3 rounded-xl bg-bakery-900/80 border border-amber-500/30 text-white focus:outline-none focus:border-amber-400">
+                  <select class="w-full px-4 py-3 rounded-xl bg-bakery-900/80 border border-amber-500/30 text-amber-100 focus:outline-none focus:border-amber-400">
+                    <option>Torten-Bestellung</option>
+                    <option>Catering / Event-Platten</option>
+                    <option>Tägliche Brot-Vorbestellung</option>
+                  </select>
+                </div>
+                <textarea rows="3" placeholder="Ihre Wünsche..." class="w-full px-4 py-3 rounded-xl bg-bakery-900/80 border border-amber-500/30 text-white focus:outline-none focus:border-amber-400"></textarea>
+                <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 text-bakery-950 font-bold shadow-lg hover:scale-[1.01] transition">Anfrage Absenden 🥐</button>
+              </form>
+              <div id="form-msg" class="hidden mt-3 p-3 rounded-xl bg-amber-500/20 border border-amber-400 text-amber-200 text-xs text-center">
+                ✓ Vielen Dank! Ihre Anfrage wurde übermittelt.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-bakery-950 border-t border-amber-800/40 py-10 px-4 text-xs text-amber-200/70">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div>
+        <span class="font-serif text-base font-bold text-white">Bäckerei Pierre Wieser</span>
+        <p class="text-[11px] text-amber-200/50">Sachsenwaldstraße 30, 12157 Berlin • Tel: 030 7957425</p>
+      </div>
+      <div class="text-amber-200/50 text-[11px]">© 2026 Bäckerei & Konditorei Pierre Wieser. Alle Rechte vorbehalten.</div>
+    </div>
+  </footer>
+
+  <!-- Floating Call CTA -->
+  <a href="tel:0307957425" class="fixed bottom-5 left-5 z-40 px-4 py-2.5 rounded-full bg-amber-500 text-bakery-950 font-bold text-xs shadow-2xl flex items-center gap-2 hover:bg-amber-400 transition border border-amber-300">
+    <span class="w-2 h-2 rounded-full bg-bakery-950 animate-ping"></span>
+    📞 030 7957425
+  </a>
+
+  <!-- Back to Top -->
+  <button id="back-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})" class="fixed bottom-5 right-5 z-40 p-3 rounded-full glass-card text-amber-400 hidden border border-amber-500/40">↑</button>
+
+  <script>
+    document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+
+    window.addEventListener('scroll', () => {
+      const scroll = document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      document.getElementById('progress-bar').style.width = (scroll / height) * 100 + '%';
+      if (scroll > 300) document.getElementById('back-to-top').classList.remove('hidden');
+      else document.getElementById('back-to-top').classList.add('hidden');
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    let counterRun = false;
+    const statsSec = document.getElementById('stats-section');
+    if (statsSec) {
+      new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && !counterRun) {
+          counterRun = true;
+          document.querySelectorAll('.counter').forEach(c => {
+            const target = +c.getAttribute('data-target');
+            let count = 0;
+            const step = target / 50;
+            const t = setInterval(() => {
+              count += step;
+              if (count >= target) { c.innerText = target.toLocaleString(); clearInterval(t); }
+              else { c.innerText = Math.floor(count).toLocaleString(); }
+            }, 30);
+          });
+        }
+      }, { threshold: 0.2 }).observe(statsSec);
+    }
+
+    document.querySelectorAll('.tilt-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        card.style.transform = `perspective(1000px) rotateX(${-y / 20}deg) rotateY(${x / 20}deg) translateY(-4px)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+      });
+    });
+
+    let tIndex = 0;
+    const tSlides = document.querySelectorAll('.t-slide');
+    const tDots = document.querySelectorAll('.t-dot');
+    function setTestimonial(idx) {
+      tSlides.forEach((s, i) => s.classList.toggle('hidden', i !== idx));
+      tDots.forEach((d, i) => {
+        d.classList.toggle('bg-amber-400', i === idx);
+        d.classList.toggle('bg-amber-900', i !== idx);
+      });
+      tIndex = idx;
+    }
+    setInterval(() => setTestimonial((tIndex + 1) % tSlides.length), 5000);
+
+    function toggleFaq(card) {
+      const body = card.querySelector('.faq-body');
+      const isHidden = body.classList.contains('hidden');
+      document.querySelectorAll('.faq-body').forEach(b => b.classList.add('hidden'));
+      if (isHidden) body.classList.remove('hidden');
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      document.getElementById('form-msg').classList.remove('hidden');
+      e.target.reset();
+    }
+  </script>
+
+<!-- WhatsApp Contact Button -->
+<a href="https://wa.me/+9233390025902?text=Hi%21%20I%20just%20saw%20the%20enhanced%20website%20preview%20you%20created%20for%20my%20business%20and%20I'm%20interested%20in%20learning%20more." 
+   target="_blank"
+   style="position:fixed;bottom:30px;left:30px;z-index:999;background:#25D366;color:white;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(37,211,102,0.5);transition:transform 0.3s;cursor:pointer;text-decoration:none;"
+   onmouseover="this.style.transform='scale(1.1)'"
+   onmouseout="this.style.transform='scale(1)'"
+   title="Chat with us on WhatsApp">
+   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="white">
+     <path d="M17.472 14.382c-.297.149-1.255.223-1.679.223-.62 0-1.225-.046-1.782-.158-.287-.057-.584-.124-.884-.124-.246 0-.49.036-.724.107-.399.121-.772.323-1.134.547-.51.316-.997.683-1.513.999-.413.253-.847.476-1.301.634-.473.165-.967.237-1.463.237-.553 0-1.106-.086-1.633-.257-.431-.14-.841-.342-1.221-.598-.358-.241-.689-.531-.99-.846-.293-.307-.557-.648-.776-1.012-.21-.349-.382-.722-.516-1.106-.124-.356-.21-.727-.262-1.101-.046-.333-.069-.671-.069-1.009 0-.475.069-.951.206-1.406.137-.455.342-.887.598-1.287.262-.41.581-.776.93-1.106.358-.338.758-.626 1.187-.854.431-.229.887-.404 1.357-.523.471-.119.96-.179 1.45-.179.515 0 1.027.065 1.526.193.5.129.981.319 1.433.567.453.249.873.558 1.249.916.377.359.71.776.989 1.234.279.459.491.961.629 1.484.137.523.206 1.069.206 1.614 0 .316-.027.629-.08.938-.052.31-.131.614-.234.911-.103.296-.231.583-.382.857-.151.275-.323.537-.516.785-.192.249-.405.481-.638.697-.232.217-.484.414-.752.591-.268.177-.552.331-.849.462-.296.131-.605.238-.923.32-.317.082-.642.139-.971.172-.329.032-.66.049-.991.049-.43 0-.858-.039-1.28-.117-.421-.077-.836-.194-1.236-.349-.4-.155-.784-.349-1.146-.583-.362-.234-.702-.506-1.015-.816-.313-.31-.598-.648-.854-1.009-.257-.361-.485-.746-.683-1.146-.198-.4-.366-.816-.504-1.246-.137-.43-.236-.872-.296-1.32-.06-.449-.09-.902-.09-1.355 0-.355.027-.711.08-1.062.052-.352.13-.699.234-1.038.103-.339.231-.671.382-.994.151-.323.323-.635.516-.937.192-.303.405-.591.638-.864.232-.273.484-.527.752-.762.268-.235.552-.451.849-.648.296-.197.605-.375.923-.534.317-.158.642-.298.971-.419.329-.121.66-.223.991-.307.329-.083.66-.146.991-.189.329-.043.66-.065.991-.065.43 0 .858.039 1.28.117.421.078.836.195 1.236.35.4.155.784.349 1.146.583.362.234.702.506 1.015.816.313.31.598.648.854 1.009.257.362.485.746.683 1.146.198.4.366.816.504 1.246.137.43.236.872.296 1.32.06.449.09.902.09 1.355 0 .355-.027.711-.08 1.062-.052.352-.13.699-.234 1.038-.103.339-.231.671-.382.994-.151.323-.323.635-.516.937-.192.303-.405.591-.638.864-.232.273-.484.527-.752.762-.268.235-.552.451-.849.648-.296.197-.605.375-.923.534-.317.158-.642.298-.971.419-.329.121-.66.223-.991.307z"/>
+   </svg>
+</a>
+
+</body>
+</html>
