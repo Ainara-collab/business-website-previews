@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4 Legged Friends Veterinary Clinic | Compassionate Pet Care in Brooklyn, NY</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            sky: { 400: '#38bdf8', 500: '#0ea5e9', 600: '#0284c7' },
+            teal: { 400: '#2dd4bf', 500: '#14b8a6', 600: '#0d9488' },
+            vet: { 900: '#071726', 950: '#030c17' }
+          },
+          fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Nunito', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    body { background-color: #030c17; color: #f0f9ff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+    .glass-nav { background: rgba(3, 12, 23, 0.88); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(14, 165, 233, 0.25); }
+    .glass-card { background: rgba(7, 23, 38, 0.75); backdrop-filter: blur(12px); border: 1px solid rgba(20, 184, 166, 0.2); }
+    .glass-card:hover { border-color: rgba(56, 189, 248, 0.5); box-shadow: 0 12px 35px -10px rgba(14, 165, 233, 0.35); }
+    .orb { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.22; pointer-events: none; }
+    @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
+    .animate-marquee { display: flex; width: 200%; animation: marquee 26s linear infinite; }
+    .animate-marquee:hover { animation-play-state: paused; }
+    .reveal { opacity: 0; transform: translateY(28px); transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .tilt-card { transform-style: preserve-3d; transition: transform 0.2s ease-out; }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #030c17; }
+    ::-webkit-scrollbar-thumb { background: #0ea5e9; border-radius: 4px; }
+  </style>
+</head>
+<body class="relative min-h-screen text-sky-50">
+  <div class="orb w-96 h-96 bg-sky-600 top-10 -left-28"></div>
+  <div class="orb w-[500px] h-[500px] bg-teal-600 top-[1200px] -right-32"></div>
+
+  <!-- Scroll Progress -->
+  <div id="progress-bar" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-sky-400 via-teal-400 to-sky-600 z-50 w-0 transition-all duration-100"></div>
+
+  <!-- Glass Nav -->
+  <header class="glass-nav fixed top-0 left-0 right-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-sky-400 to-teal-500 flex items-center justify-center text-vet-950 font-bold text-xl shadow-lg">🐾</div>
+        <div>
+          <span class="font-display font-extrabold text-xl text-white block leading-tight">4 Legged Friends</span>
+          <span class="text-[10px] uppercase tracking-widest text-sky-400 font-semibold block">Veterinary Clinic • Brooklyn, NY</span>
+        </div>
+      </a>
+      <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-sky-100/90">
+        <a href="#services" class="hover:text-sky-400 transition">Services</a>
+        <a href="#about" class="hover:text-sky-400 transition">About Us</a>
+        <a href="#reviews" class="hover:text-sky-400 transition">Reviews</a>
+        <a href="#faq" class="hover:text-sky-400 transition">FAQ</a>
+        <a href="#contact" class="hover:text-sky-400 transition">Contact</a>
+      </nav>
+      <a href="tel:7183768957" class="hidden md:inline-flex px-5 py-2.5 rounded-full bg-gradient-to-r from-sky-500 to-teal-500 text-vet-950 font-bold text-sm shadow-lg hover:scale-105 transition">📞 (718) 376-8957</a>
+      <button id="mobile-menu-btn" class="md:hidden text-sky-200 p-2"><svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-vet-950/95 px-6 py-4 space-y-3 border-b border-sky-600/30 text-sm">
+      <a href="#services" class="block text-sky-100">Services</a>
+      <a href="#about" class="block text-sky-100">About Us</a>
+      <a href="#reviews" class="block text-sky-100">Reviews</a>
+      <a href="#faq" class="block text-sky-100">FAQ</a>
+      <a href="#contact" class="block text-sky-100">Contact</a>
+    </div>
+  </header>
+
+  <main class="pt-20">
+    <!-- Hero Section -->
+    <section class="relative min-h-[88vh] flex items-center justify-center overflow-hidden py-16">
+      <div class="absolute inset-0 z-0">
+        <img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?w=1600&q=80" alt="Veterinary Clinic Brooklyn" class="w-full h-full object-cover opacity-25">
+        <div class="absolute inset-0 bg-gradient-to-t from-[#030c17] via-[#030c17]/80 to-transparent"></div>
+      </div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div class="lg:col-span-7 reveal active">
+            <span class="inline-block px-4 py-1.5 rounded-full glass-card text-sky-300 text-xs font-semibold uppercase tracking-widest mb-6 border border-sky-500/30">Premier Vet Clinic in Brooklyn</span>
+            <h1 class="font-display text-4xl sm:text-6xl font-black text-white leading-tight mb-6">
+              Loving Care <br><span class="bg-gradient-to-r from-sky-300 via-teal-300 to-emerald-200 bg-clip-text text-transparent italic">For Your Best Friends.</span>
+            </h1>
+            <p class="text-base sm:text-lg text-sky-100/90 max-w-xl leading-relaxed mb-8">
+              At 4 Legged Friends Veterinary Clinic on Kings Highway, we treat your pets like family. Complete veterinary care, advanced surgery, dental health, and urgent care with warmth and expertise.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a href="#contact" class="px-8 py-4 rounded-full bg-gradient-to-r from-sky-500 to-teal-500 text-vet-950 font-bold shadow-xl hover:scale-105 transition text-center">Book An Appointment</a>
+              <a href="#services" class="px-8 py-4 rounded-full glass-card text-sky-200 font-semibold hover:bg-sky-950/60 transition text-center border border-sky-500/30">Explore Our Services</a>
+            </div>
+          </div>
+          <div class="lg:col-span-5 reveal">
+            <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-sky-500/30 glass-card p-3">
+              <img src="https://images.unsplash.com/photo-1576201836106-db1758fd1c97?w=900&q=80" alt="Pet Doctor Examination" class="w-full h-[400px] object-cover rounded-2xl">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#030c17] via-transparent to-transparent opacity-80"></div>
+              <div class="absolute bottom-6 left-6 right-6 glass-card p-4 rounded-2xl border border-sky-400/30">
+                <p class="font-display text-base font-bold text-white">291 Kings Hwy, Brooklyn, NY</p>
+                <p class="text-xs text-sky-300">Mon–Sat Open • Call (718) 376-8957</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Marquee Banner -->
+    <section class="bg-sky-950/80 border-y border-sky-800/40 text-sky-200 text-xs py-3 overflow-hidden backdrop-blur-md">
+      <div class="animate-marquee whitespace-nowrap flex items-center gap-12 font-medium uppercase tracking-wider">
+        <span>🐾 State-Of-The-Art Animal Clinic</span>
+        <span>💉 Preventive Vaccinations & Wellness</span>
+        <span>🩺 Advanced Surgery & Dental Care</span>
+        <span>🚨 Emergency Pet Medical Services</span>
+        <span>❤️ Dedicated Brooklyn Veterinary Specialists</span>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section id="stats-section" class="py-14 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div class="glass-card p-5 rounded-2xl text-center">
+            <div class="font-display text-3xl font-extrabold text-sky-400 mb-1"><span class="counter" data-target="20">0</span>+</div>
+            <p class="text-[11px] text-sky-200 uppercase tracking-wider">Years Serving Brooklyn</p>
+          </div>
+          <div class="glass-card p-5 rounded-2xl text-center">
+            <div class="font-display text-3xl font-extrabold text-sky-400 mb-1"><span class="counter" data-target="12000">0</span>+</div>
+            <p class="text-[11px] text-sky-200 uppercase tracking-wider">Happy Pets Treated</p>
+          </div>
+          <div class="glass-card p-5 rounded-2xl text-center">
+            <div class="font-display text-3xl font-extrabold text-sky-400 mb-1"><span class="counter" data-target="100">0</span>%</div>
+            <p class="text-[11px] text-sky-200 uppercase tracking-wider">Compassionate Care</p>
+          </div>
+          <div class="glass-card p-5 rounded-2xl text-center">
+            <div class="font-display text-3xl font-extrabold text-sky-400 mb-1"><span class="counter" data-target="49">0</span>/50</div>
+            <p class="text-[11px] text-sky-200 uppercase tracking-wider">Client Rating</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Grid (3D Tilt Cards) -->
+    <section id="services" class="py-16 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-14 reveal">
+          <span class="text-xs uppercase tracking-widest text-sky-400 font-bold block mb-2">Our Clinical Care</span>
+          <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-white">Comprehensive Veterinary Services</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="glass-card rounded-2xl p-6 tilt-card reveal">
+            <img src="https://images.unsplash.com/photo-1576201836106-db1758fd1c97?w=800&q=80" alt="Wellness Exams" class="w-full h-44 object-cover rounded-xl mb-5">
+            <h3 class="font-display text-xl font-bold text-white mb-2">Wellness Exams</h3>
+            <p class="text-xs text-sky-100/80 leading-relaxed mb-4">Thorough nose-to-tail physical health checkups, nutritional advice, and early disease detection.</p>
+            <ul class="text-xs text-teal-300 space-y-1 mb-4">
+              <li>✓ Complete Physical Checkup</li>
+              <li>✓ Personalized Nutrition Plan</li>
+            </ul>
+            <a href="#contact" class="text-xs font-bold text-sky-400 hover:underline">Book Exam &rarr;</a>
+          </div>
+
+          <div class="glass-card rounded-2xl p-6 tilt-card reveal">
+            <img src="https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?w=800&q=80" alt="Vaccinations" class="w-full h-44 object-cover rounded-xl mb-5">
+            <h3 class="font-display text-xl font-bold text-white mb-2">Vaccinations</h3>
+            <p class="text-xs text-sky-100/80 leading-relaxed mb-4">Core and non-core immunization schedules tailored specifically to your dog's or cat's lifestyle.</p>
+            <ul class="text-xs text-teal-300 space-y-1 mb-4">
+              <li>✓ Rabies & Distemper</li>
+              <li>✓ Customized Vaccine Plan</li>
+            </ul>
+            <a href="#contact" class="text-xs font-bold text-sky-400 hover:underline">Book Exam &rarr;</a>
+          </div>
+
+          <div class="glass-card rounded-2xl p-6 tilt-card reveal">
+            <img src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?w=800&q=80" alt="Surgery" class="w-full h-44 object-cover rounded-xl mb-5">
+            <h3 class="font-display text-xl font-bold text-white mb-2">Surgery</h3>
+            <p class="text-xs text-sky-100/80 leading-relaxed mb-4">Spay/neuter, soft tissue surgeries, and emergency surgical interventions with full vital monitoring.</p>
+            <ul class="text-xs text-teal-300 space-y-1 mb-4">
+              <li>✓ Advanced Anesthesia Monitoring</li>
+              <li>✓ Compassionate Recovery ICU</li>
+            </ul>
+            <a href="#contact" class="text-xs font-bold text-sky-400 hover:underline">Book Exam &rarr;</a>
+          </div>
+
+          <div class="glass-card rounded-2xl p-6 tilt-card reveal">
+            <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=800&q=80" alt="Dental Care" class="w-full h-44 object-cover rounded-xl mb-5">
+            <h3 class="font-display text-xl font-bold text-white mb-2">Dental Care</h3>
+            <p class="text-xs text-sky-100/80 leading-relaxed mb-4">Professional dental cleanings, digital oral X-rays, and tooth extractions to eliminate oral pain.</p>
+            <ul class="text-xs text-teal-300 space-y-1 mb-4">
+              <li>✓ Ultrasonic Scale & Polish</li>
+              <li>✓ Digital Dental Radiography</li>
+            </ul>
+            <a href="#contact" class="text-xs font-bold text-sky-400 hover:underline">Book Exam &rarr;</a>
+          </div>
+
+          <div class="glass-card rounded-2xl p-6 tilt-card reveal">
+            <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=800&q=80" alt="Emergency Care" class="w-full h-44 object-cover rounded-xl mb-5">
+            <h3 class="font-display text-xl font-bold text-white mb-2">Emergency Care</h3>
+            <p class="text-xs text-sky-100/80 leading-relaxed mb-4">Urgent medical triage for sudden illness, trauma, toxic ingestion, or acute injuries in pets.</p>
+            <ul class="text-xs text-teal-300 space-y-1 mb-4">
+              <li>✓ Urgent Triage & Oxygen</li>
+              <li>✓ In-House Blood Diagnostics</li>
+            </ul>
+            <a href="#contact" class="text-xs font-bold text-sky-400 hover:underline">Book Exam &rarr;</a>
+          </div>
+
+          <div class="glass-card rounded-2xl p-6 tilt-card reveal">
+            <img src="https://images.unsplash.com/photo-1548767797-d8c844163c4c?w=800&q=80" alt="Microchipping" class="w-full h-44 object-cover rounded-xl mb-5">
+            <h3 class="font-display text-xl font-bold text-white mb-2">Microchipping</h3>
+            <p class="text-xs text-sky-100/80 leading-relaxed mb-4">Permanent microchip identification registration to help lost pets return home safely.</p>
+            <ul class="text-xs text-teal-300 space-y-1 mb-4">
+              <li>✓ National Pet Registry</li>
+              <li>✓ Quick & Painless Procedure</li>
+            </ul>
+            <a href="#contact" class="text-xs font-bold text-sky-400 hover:underline">Book Exam &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 relative bg-sky-950/20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          <div class="lg:col-span-6 reveal">
+            <img src="https://images.unsplash.com/photo-1548767797-d8c844163c4c?w=900&q=80" alt="Brooklyn Vet Team" class="w-full h-96 object-cover rounded-3xl border border-sky-500/30">
+          </div>
+          <div class="lg:col-span-6 reveal">
+            <span class="text-xs uppercase tracking-widest text-sky-400 font-bold block mb-2">Why Brooklyn Pet Owners Trust Us</span>
+            <h2 class="font-display text-3xl font-extrabold text-white mb-4">Modern Medical Technology & Fear-Free Care</h2>
+            <p class="text-xs text-sky-100/90 leading-relaxed mb-6">
+              At 4 Legged Friends Veterinary Clinic, we combine gentle, stress-reducing handling with advanced diagnostic equipment (digital X-ray, in-house lab, ultrasound) to give your pets the best health outcomes.
+            </p>
+            <div class="space-y-3 text-xs text-sky-200 mb-6">
+              <p>✓ Fear-Free certified examination techniques</p>
+              <p>✓ Transparent pricing with zero hidden fees</p>
+              <p>✓ Dedicated feline & canine recovery rooms</p>
+            </div>
+            <a href="#contact" class="px-6 py-3 rounded-full bg-sky-500 text-vet-950 font-bold text-xs shadow-lg hover:bg-sky-400 transition inline-block">Visit Us On Kings Highway</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reviews Carousel -->
+    <section id="reviews" class="py-16 relative">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12 reveal">
+          <span class="text-xs uppercase tracking-widest text-sky-400 font-bold block mb-2">Pet Parent Reviews</span>
+          <h2 class="font-display text-3xl font-extrabold text-white">What Our Brooklyn Neighbors Say</h2>
+        </div>
+        <div class="glass-card rounded-3xl p-8 border border-sky-500/30 reveal relative">
+          <div id="testimonial-carousel">
+            <div class="t-slide">
+              <div class="flex text-sky-400 mb-3 text-base">★★★★★</div>
+              <p class="font-display text-base text-sky-50 italic leading-relaxed mb-5">
+                "The doctors and staff at 4 Legged Friends are absolute angels. They performed emergency surgery on my golden retriever Rocky and saved his life!"
+              </p>
+              <p class="font-bold text-white text-xs">Jessica M. <span class="text-sky-400 font-normal">• Kings Highway, Brooklyn</span></p>
+            </div>
+            <div class="t-slide hidden">
+              <div class="flex text-sky-400 mb-3 text-base">★★★★★</div>
+              <p class="font-display text-base text-sky-50 italic leading-relaxed mb-5">
+                "Finding a vet who knows how to keep anxious cats calm is hard. This clinic is gentle, thorough, and incredibly attentive. Highly recommend!"
+              </p>
+              <p class="font-bold text-white text-xs">David L. <span class="text-sky-400 font-normal">• Midwood, Brooklyn</span></p>
+            </div>
+            <div class="t-slide hidden">
+              <div class="flex text-sky-400 mb-3 text-base">★★★★★</div>
+              <p class="font-display text-base text-sky-50 italic leading-relaxed mb-5">
+                "Honest advice, fair prices, and top-tier veterinary care. My French bulldog loves coming here for his checkups!"
+              </p>
+              <p class="font-bold text-white text-xs">Maria P. <span class="text-sky-400 font-normal">• Gravesend, Brooklyn</span></p>
+            </div>
+          </div>
+          <div class="flex justify-center gap-2 mt-6">
+            <button onclick="setTestimonial(0)" class="t-dot w-2.5 h-2.5 rounded-full bg-sky-400"></button>
+            <button onclick="setTestimonial(1)" class="t-dot w-2.5 h-2.5 rounded-full bg-sky-900"></button>
+            <button onclick="setTestimonial(2)" class="t-dot w-2.5 h-2.5 rounded-full bg-sky-900"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-16 relative bg-sky-950/20">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12 reveal">
+          <span class="text-xs uppercase tracking-widest text-sky-400 font-bold block mb-2">Helpful Information</span>
+          <h2 class="font-display text-3xl font-extrabold text-white">Frequently Asked Questions</h2>
+        </div>
+        <div class="space-y-3 reveal">
+          <div class="glass-card rounded-xl p-5 cursor-pointer" onclick="toggleFaq(this)">
+            <div class="flex justify-between items-center font-bold text-white text-sm">
+              <span>Do I need an appointment for emergency visits?</span>
+              <span class="text-sky-400 text-lg">+</span>
+            </div>
+            <div class="faq-body hidden mt-3 text-xs text-sky-100/80 border-t border-sky-500/20 pt-3">
+              Walk-ins for urgent emergencies are prioritized immediately. Calling ahead at (718) 376-8957 allows our team to prepare the trauma room in advance.
+            </div>
+          </div>
+          <div class="glass-card rounded-xl p-5 cursor-pointer" onclick="toggleFaq(this)">
+            <div class="flex justify-between items-center font-bold text-white text-sm">
+              <span>Which pet insurance plans do you accept?</span>
+              <span class="text-sky-400 text-lg">+</span>
+            </div>
+            <div class="faq-body hidden mt-3 text-xs text-sky-100/80 border-t border-sky-500/20 pt-3">
+              We work with all major pet insurance providers including Trupanion, Nationwide, Healthy Paws, and Lemonade, providing detailed claim documentation.
+            </div>
+          </div>
+          <div class="glass-card rounded-xl p-5 cursor-pointer" onclick="toggleFaq(this)">
+            <div class="flex justify-between items-center font-bold text-white text-sm">
+              <span>What are your clinic operating hours?</span>
+              <span class="text-sky-400 text-lg">+</span>
+            </div>
+            <div class="faq-body hidden mt-3 text-xs text-sky-100/80 border-t border-sky-500/20 pt-3">
+              We are open Monday through Friday from 8:00 AM to 7:00 PM, and Saturday from 9:00 AM to 4:00 PM.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="kontakt" class="py-16 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+          <div class="lg:col-span-5 reveal">
+            <span class="text-xs uppercase tracking-widest text-sky-400 font-bold block mb-2">Get In Touch</span>
+            <h2 class="font-display text-3xl font-extrabold text-white mb-4">4 Legged Friends Clinic</h2>
+            <div class="space-y-4 text-xs text-sky-200">
+              <div class="glass-card p-4 rounded-xl border border-sky-500/20">
+                <p class="font-bold text-white">Location Address</p>
+                <p>291 Kings Highway, Brooklyn, NY 11223</p>
+              </div>
+              <div class="glass-card p-4 rounded-xl border border-sky-500/20">
+                <p class="font-bold text-white">Direct Phone</p>
+                <p class="text-sky-300 font-bold">(718) 376-8957</p>
+              </div>
+              <div class="glass-card p-4 rounded-xl border border-sky-500/20">
+                <p class="font-bold text-white">Clinic Hours</p>
+                <p>Mon–Fri: 8:00 AM – 7:00 PM | Sat: 9:00 AM – 4:00 PM | Sun: Closed</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 reveal">
+            <div class="glass-card p-6 sm:p-8 rounded-2xl border border-sky-500/30">
+              <h3 class="font-display text-xl font-bold text-white mb-4">Request An Appointment</h3>
+              <form onsubmit="handleFormSubmit(event)" class="space-y-3 text-xs">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <input type="text" required placeholder="Owner Name *" class="w-full px-4 py-3 rounded-xl bg-vet-900/80 border border-sky-500/30 text-white focus:outline-none focus:border-sky-400">
+                  <input type="tel" required placeholder="Phone Number *" class="w-full px-4 py-3 rounded-xl bg-vet-900/80 border border-sky-500/30 text-white focus:outline-none focus:border-sky-400">
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <input type="email" required placeholder="Email Address *" class="w-full px-4 py-3 rounded-xl bg-vet-900/80 border border-sky-500/30 text-white focus:outline-none focus:border-sky-400">
+                  <select class="w-full px-4 py-3 rounded-xl bg-vet-900/80 border border-sky-500/30 text-sky-100 focus:outline-none focus:border-sky-400">
+                    <option>Wellness Exam & Checkup</option>
+                    <option>Vaccinations</option>
+                    <option>Dental Cleaning</option>
+                    <option>Surgical Consultation</option>
+                  </select>
+                </div>
+                <textarea rows="3" placeholder="Tell us about your pet (Name, Breed, Reason for Visit)..." class="w-full px-4 py-3 rounded-xl bg-vet-900/80 border border-sky-500/30 text-white focus:outline-none focus:border-sky-400"></textarea>
+                <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-sky-500 to-teal-500 text-vet-950 font-bold shadow-lg hover:scale-[1.01] transition">Schedule Appointment Now 🐾</button>
+              </form>
+              <div id="form-msg" class="hidden mt-3 p-3 rounded-xl bg-sky-500/20 border border-sky-400 text-sky-200 text-xs text-center">
+                ✓ Thank you! Your appointment request has been submitted. We will call to confirm.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-vet-950 border-t border-sky-800/40 py-10 px-4 text-xs text-sky-200/70">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div>
+        <span class="font-display text-base font-bold text-white">4 Legged Friends Veterinary Clinic</span>
+        <p class="text-[11px] text-sky-200/50">291 Kings Highway, Brooklyn, NY 11223 • Phone: (718) 376-8957</p>
+      </div>
+      <div class="text-sky-200/50 text-[11px]">© 2026 4 Legged Friends Veterinary Clinic. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <!-- Floating Call CTA -->
+  <a href="tel:7183768957" class="fixed bottom-5 left-5 z-40 px-4 py-2.5 rounded-full bg-sky-500 text-vet-950 font-bold text-xs shadow-2xl flex items-center gap-2 hover:bg-sky-400 transition border border-sky-300">
+    <span class="w-2 h-2 rounded-full bg-vet-950 animate-ping"></span>
+    📞 (718) 376-8957
+  </a>
+
+  <!-- Back to Top -->
+  <button id="back-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})" class="fixed bottom-5 right-5 z-40 p-3 rounded-full glass-card text-sky-400 hidden border border-sky-500/40">↑</button>
+
+  <script>
+    document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+
+    window.addEventListener('scroll', () => {
+      const scroll = document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      document.getElementById('progress-bar').style.width = (scroll / height) * 100 + '%';
+      if (scroll > 300) document.getElementById('back-to-top').classList.remove('hidden');
+      else document.getElementById('back-to-top').classList.add('hidden');
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    let counterRun = false;
+    const statsSec = document.getElementById('stats-section');
+    if (statsSec) {
+      new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && !counterRun) {
+          counterRun = true;
+          document.querySelectorAll('.counter').forEach(c => {
+            const target = +c.getAttribute('data-target');
+            let count = 0;
+            const step = target / 50;
+            const t = setInterval(() => {
+              count += step;
+              if (count >= target) { c.innerText = target.toLocaleString(); clearInterval(t); }
+              else { c.innerText = Math.floor(count).toLocaleString(); }
+            }, 30);
+          });
+        }
+      }, { threshold: 0.2 }).observe(statsSec);
+    }
+
+    document.querySelectorAll('.tilt-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        card.style.transform = `perspective(1000px) rotateX(${-y / 20}deg) rotateY(${x / 20}deg) translateY(-4px)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+      });
+    });
+
+    let tIndex = 0;
+    const tSlides = document.querySelectorAll('.t-slide');
+    const tDots = document.querySelectorAll('.t-dot');
+    function setTestimonial(idx) {
+      tSlides.forEach((s, i) => s.classList.toggle('hidden', i !== idx));
+      tDots.forEach((d, i) => {
+        d.classList.toggle('bg-sky-400', i === idx);
+        d.classList.toggle('bg-sky-900', i !== idx);
+      });
+      tIndex = idx;
+    }
+    setInterval(() => setTestimonial((tIndex + 1) % tSlides.length), 5000);
+
+    function toggleFaq(card) {
+      const body = card.querySelector('.faq-body');
+      const isHidden = body.classList.contains('hidden');
+      document.querySelectorAll('.faq-body').forEach(b => b.classList.add('hidden'));
+      if (isHidden) body.classList.remove('hidden');
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      document.getElementById('form-msg').classList.remove('hidden');
+      e.target.reset();
+    }
+  </script>
+
+<!-- WhatsApp Contact Button -->
+<a href="https://wa.me/+9233390025902?text=Hi%21%20I%20just%20saw%20the%20enhanced%20website%20preview%20you%20created%20for%20my%20business%20and%20I'm%20interested%20in%20learning%20more." 
+   target="_blank"
+   style="position:fixed;bottom:30px;left:30px;z-index:999;background:#25D366;color:white;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(37,211,102,0.5);transition:transform 0.3s;cursor:pointer;text-decoration:none;"
+   onmouseover="this.style.transform='scale(1.1)'"
+   onmouseout="this.style.transform='scale(1)'"
+   title="Chat with us on WhatsApp">
+   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="white">
+     <path d="M17.472 14.382c-.297.149-1.255.223-1.679.223-.62 0-1.225-.046-1.782-.158-.287-.057-.584-.124-.884-.124-.246 0-.49.036-.724.107-.399.121-.772.323-1.134.547-.51.316-.997.683-1.513.999-.413.253-.847.476-1.301.634-.473.165-.967.237-1.463.237-.553 0-1.106-.086-1.633-.257-.431-.14-.841-.342-1.221-.598-.358-.241-.689-.531-.99-.846-.293-.307-.557-.648-.776-1.012-.21-.349-.382-.722-.516-1.106-.124-.356-.21-.727-.262-1.101-.046-.333-.069-.671-.069-1.009 0-.475.069-.951.206-1.406.137-.455.342-.887.598-1.287.262-.41.581-.776.93-1.106.358-.338.758-.626 1.187-.854.431-.229.887-.404 1.357-.523.471-.119.96-.179 1.45-.179.515 0 1.027.065 1.526.193.5.129.981.319 1.433.567.453.249.873.558 1.249.916.377.359.71.776.989 1.234.279.459.491.961.629 1.484.137.523.206 1.069.206 1.614 0 .316-.027.629-.08.938-.052.31-.131.614-.234.911-.103.296-.231.583-.382.857-.151.275-.323.537-.516.785-.192.249-.405.481-.638.697-.232.217-.484.414-.752.591-.268.177-.552.331-.849.462-.296.131-.605.238-.923.32-.317.082-.642.139-.971.172-.329.032-.66.049-.991.049-.43 0-.858-.039-1.28-.117-.421-.077-.836-.194-1.236-.349-.4-.155-.784-.349-1.146-.583-.362-.234-.702-.506-1.015-.816-.313-.31-.598-.648-.854-1.009-.257-.361-.485-.746-.683-1.146-.198-.4-.366-.816-.504-1.246-.137-.43-.236-.872-.296-1.32-.06-.449-.09-.902-.09-1.355 0-.355.027-.711.08-1.062.052-.352.13-.699.234-1.038.103-.339.231-.671.382-.994.151-.323.323-.635.516-.937.192-.303.405-.591.638-.864.232-.273.484-.527.752-.762.268-.235.552-.451.849-.648.296-.197.605-.375.923-.534.317-.158.642-.298.971-.419.329-.121.66-.223.991-.307.329-.083.66-.146.991-.189.329-.043.66-.065.991-.065.43 0 .858.039 1.28.117.421.078.836.195 1.236.35.4.155.784.349 1.146.583.362.234.702.506 1.015.816.313.31.598.648.854 1.009.257.362.485.746.683 1.146.198.4.366.816.504 1.246.137.43.236.872.296 1.32.06.449.09.902.09 1.355 0 .355-.027.711-.08 1.062-.052.352-.13.699-.234 1.038-.103.339-.231.671-.382.994-.151.323-.323.635-.516.937-.192.303-.405.591-.638.864-.232.273-.484.527-.752.762-.268.235-.552.451-.849.648-.296.197-.605.375-.923.534-.317.158-.642.298-.971.419-.329.121-.66.223-.991.307z"/>
+   </svg>
+</a>
+
+</body>
+</html>
